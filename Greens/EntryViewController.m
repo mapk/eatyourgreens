@@ -9,6 +9,7 @@
 #import "EntryViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Entry.h"
+#import "DescriptionViewController.h"
 
 @interface EntryViewController ()
 
@@ -72,22 +73,15 @@
     [btnEdit setFrame:CGRectMake(CGRectGetMaxX(btnPhoto.frame) + 5, 350, imgEdit.size.width, imgEdit.size.height)];
     [self.view addSubview:btnEdit];
     
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
-    [df setDateStyle:NSDateFormatterFullStyle];
-    [df setTimeStyle:NSDateFormatterNoStyle];
-
-    NSDateFormatter *tf = [[NSDateFormatter alloc] init];
-    [tf setDateStyle:NSDateFormatterNoStyle];
-    [tf setTimeStyle:NSDateFormatterShortStyle];
 
     UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(btnShare.frame) + 10, self.view.frame.size.width, 18)];
     [lblDate setTextAlignment:NSTextAlignmentCenter];
-    [lblDate setText:[df stringFromDate:entry.date]];
+    [lblDate setText:[entry longDate]];
     [self.view addSubview:lblDate];
 
     UILabel *lblTime = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lblDate.frame) + 10, self.view.frame.size.width, 18)];
     [lblTime setTextAlignment:NSTextAlignmentCenter];
-    [lblTime setText:[tf stringFromDate:entry.date]];
+    [lblTime setText:[entry shortTime]];
     [self.view addSubview:lblTime];
 
 }
@@ -100,6 +94,15 @@
 
 -(void)edit
 {
+    DescriptionViewController *menu = [[DescriptionViewController alloc] init];
+    [menu setViewController:self];
+    [menu setEntry:entry];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:menu];
+    [nav.navigationBar setTintColor:[UIColor whiteColor]];
+    
+    [self.tabBarController setModalPresentationStyle:UIModalPresentationCurrentContext];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 -(void)photo

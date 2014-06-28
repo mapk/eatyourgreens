@@ -26,5 +26,7 @@
 -(void)remove;
 +(NSArray *)fetchFiles;
 
+-(NSString *)longDate;
+-(NSString *)shortTime;
 
 @end

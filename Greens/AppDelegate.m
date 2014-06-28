@@ -36,13 +36,13 @@
     EntriesTableViewController *vc2 = [[EntriesTableViewController alloc] init];
     ViewController *vc3 = [[ViewController alloc] init];
     TipsTableViewController *vc4 = [[TipsTableViewController alloc] init];
-//    SettingsTableViewController *vc5 = [[SettingsTableViewController alloc] init];
+    SettingsTableViewController *vc5 = [[SettingsTableViewController alloc] init];
     
     UITabBarItem *tb1 = [[UITabBarItem alloc] initWithTitle:@"Foods" image:[UIImage imageNamed:@"nav-apple"] selectedImage:[UIImage imageNamed:@"nav-apple-active"]];
     UITabBarItem *tb2 = [[UITabBarItem alloc] initWithTitle:@"Entries" image:[UIImage imageNamed:@"nav-colorwheel"] selectedImage:[UIImage imageNamed:@"nav-colorwheel-active"]];
     UITabBarItem *tb3 = [[UITabBarItem alloc] initWithTitle:@"Camera" image:[UIImage imageNamed:@"nav-camera"] tag:999];
     UITabBarItem *tb4 = [[UITabBarItem alloc] initWithTitle:@"Tips" image:[UIImage imageNamed:@"nav-book"] selectedImage:[UIImage imageNamed:@"nav-book-active"]];
-//    UITabBarItem *tb5 = [[UITabBarItem alloc] initWithTitle:@"Settings" image:[UIImage imageNamed:@"nav-cog"] selectedImage:[UIImage imageNamed:@"nav-cog"]];
+    UITabBarItem *tb5 = [[UITabBarItem alloc] initWithTitle:@"Settings" image:[UIImage imageNamed:@"nav-cog"] selectedImage:[UIImage imageNamed:@"nav-cog"]];
 
     UIColor *navColor = [UIColor colorWithRed:54.0f/255.0f green:59.0f/255.0f blue:71.0f/255.0f alpha:1.0];
     [[UINavigationBar appearance] setBarTintColor:navColor];
@@ -51,25 +51,25 @@
     UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:vc2];
     UINavigationController *nav3 = [[UINavigationController alloc] initWithRootViewController:vc3];
     UINavigationController *nav4 = [[UINavigationController alloc] initWithRootViewController:vc4];
-//    UINavigationController *nav5 = [[UINavigationController alloc] initWithRootViewController:vc5];
+    UINavigationController *nav5 = [[UINavigationController alloc] initWithRootViewController:vc5];
     
     [nav1.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [nav2.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [nav3.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [nav4.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-//    [nav5.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [nav5.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
     [nav1.navigationBar setTintColor:[UIColor whiteColor]];
     [nav2.navigationBar setTintColor:[UIColor whiteColor]];
     [nav3.navigationBar setTintColor:[UIColor whiteColor]];
     [nav4.navigationBar setTintColor:[UIColor whiteColor]];
-//    [nav5.navigationBar setTintColor:[UIColor whiteColor]];
+    [nav5.navigationBar setTintColor:[UIColor whiteColor]];
     
     [nav1 setTabBarItem:tb1];
     [nav2 setTabBarItem:tb2];
     [nav3 setTabBarItem:tb3];
     [nav4 setTabBarItem:tb4];
-//    [nav5 setTabBarItem:tb5];
+    [nav5 setTabBarItem:tb5];
     
     /*
     NSDictionary *tabTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -96,7 +96,7 @@
     
     [tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tab_bar_background"]];
     
-    [tabBarController setViewControllers:@[nav1, nav2, nav3, nav4]];
+    [tabBarController setViewControllers:@[nav1, nav2, nav3, nav4, nav5]];
     
     return tabBarController;
 }

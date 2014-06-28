@@ -106,5 +106,23 @@
 
 }
 
+-(NSString *)longDate
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateStyle:NSDateFormatterFullStyle];
+    [df setTimeStyle:NSDateFormatterNoStyle];
+    
+    return [df stringFromDate:self.date];
+}
+
+-(NSString *)shortTime
+{
+    NSDateFormatter *tf = [[NSDateFormatter alloc] init];
+    [tf setDateStyle:NSDateFormatterNoStyle];
+    [tf setTimeStyle:NSDateFormatterShortStyle];
+
+    return [tf stringFromDate:self.date];
+}
+
 
 @end
