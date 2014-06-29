@@ -140,24 +140,24 @@
     {
         value = NO;
         
+        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+        [imagePicker.navigationBar setTintColor:[UIColor whiteColor]];
+        [imagePicker.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+        [imagePicker setDelegate:self];
         
         if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront]
            || [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
         {
-            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-            [imagePicker setDelegate:self];
             [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
             [imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
-            [self.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
         }
         else
         {
-            UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-            [imagePicker setDelegate:self];
             [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
             [imagePicker setMediaTypes:[NSArray arrayWithObject:(NSString *) kUTTypeImage]];
-            [self.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
         }
+
+        [self.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
         
         /*
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take New Picture", @"Select Picture From Library", nil];

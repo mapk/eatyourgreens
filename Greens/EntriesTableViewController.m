@@ -58,10 +58,15 @@
         
         if(!oldDate)
         {
-            oldDate = entry.date;
+            NSCalendar *calendar = [NSCalendar currentCalendar];
+            NSInteger comps = (NSDayCalendarUnit | NSMonthCalendarUnit | NSYearCalendarUnit);
+            
+            NSDateComponents *date1Components = [calendar components:comps fromDate:entry.date];
+
+            oldDate = [calendar dateFromComponents:date1Components];
             [current addObject:entry];
             if(entries.count == 1)
-                [entrySections addObject:current];
+                [entrySections addObject:[NSArray arrayWithArray:current]];
         }
         else
         {
@@ -75,14 +80,14 @@
                 [current addObject:entry];
             else
             {
-                [entrySections addObject:current];
+                [entrySections addObject:[NSArray arrayWithArray:current]];
                 oldDate = entry.date;
                 [current removeAllObjects];
                 [current addObject:entry];
             }
             
             if(i == entries.count -1)
-                [entrySections addObject:current];
+                [entrySections addObject:[NSArray arrayWithArray:current]];
         }
     }
     
@@ -156,6 +161,8 @@
 
     EntryViewController *entryViewController = [[EntryViewController alloc] init];
     [entryViewController setEntry:entry];
+    [entryViewController setEntries:array];
+    [entryViewController setIndex:indexPath.row];
     [self.navigationController pushViewController:entryViewController animated:YES];
 }
 @end

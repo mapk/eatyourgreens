@@ -120,6 +120,9 @@
 
 -(void)close
 {
+    [entry setDescription:txtViewDescription.text];
+    [entry save];
+    
     UIView *v = [self.view viewWithTag:999];
     
     [UIView animateWithDuration:.3 animations:^{

@@ -12,13 +12,20 @@
 
 @class EntryPoint, Entry;
 
-@interface EntryViewController : UIViewController <XYPieChartDataSource, XYPieChartDelegate, ImageViewControllerDelegate>
+@interface EntryViewController : UIViewController <XYPieChartDataSource, XYPieChartDelegate, ImageViewControllerDelegate, UIScrollViewDelegate>
 {
-    XYPieChart *pie;
+//    XYPieChart *pie;
     
     ImageViewController *imageViewController;
+    
+    UIScrollView *scroller;
+    UIPageControl *pager;
+    BOOL pageControlBeingUsed;
+    NSMutableArray *pies;
 }
 
 @property (nonatomic, strong) Entry *entry;
+@property (nonatomic, strong) NSArray *entries;
+@property (nonatomic, assign) NSInteger index;
 
 @end
