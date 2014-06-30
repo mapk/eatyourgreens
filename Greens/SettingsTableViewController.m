@@ -28,6 +28,8 @@
     [super viewDidLoad];
 
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    
+    [self setTitle:@"Settings"];
 }
 
 - (void)didReceiveMemoryWarning

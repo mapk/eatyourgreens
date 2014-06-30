@@ -39,44 +39,45 @@
         [self.view addSubview:[self viewForEntry:entry forFrame:self.view.frame forTag:0]];
     else
     {
-        
-        scroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-85)];
-        [scroller setDelegate:self];
-
-        for(int i = 0;i<entries.count;i++)
-        {
-            Entry *e = (Entry *)[entries objectAtIndex:i];
-            [scroller addSubview:[self viewForEntry:e
-                                           forFrame:CGRectMake(i*self.view.frame.size.width, 0, scroller.frame.size.width, scroller.frame.size.height)
-                                             forTag:i]];
-        }
-        
-        [scroller setPagingEnabled:YES];
-        scroller.contentSize = CGSizeMake(scroller.frame.size.width * entries.count, scroller.frame.size.height);
-        
-        [self.view addSubview:scroller];
-        
         pageControlBeingUsed = NO;
+        
+        [self loadScroller];
         
         pager = [[UIPageControl alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(scroller.frame), self.view.frame.size.width, 36)];
         [pager setNumberOfPages:entries.count];
         [pager setBackgroundColor:[UIColor clearColor]];
         pager.pageIndicatorTintColor = [UIColor colorWithRed:221.0f/255.0f green:221.0f/255.0f blue:221.0f/255.0f alpha:1.0];
         pager.currentPageIndicatorTintColor = [UIColor whiteColor];
-        [self.view addSubview:pager];
-        
         [pager addTarget:self action:@selector(pageChanged:) forControlEvents:UIControlEventValueChanged];
-        
-        if(index > 0)
-        {
-            CGFloat start = (index * self.view.frame.size.width) + self.view.frame.size.width - 1;
-            [scroller scrollRectToVisible:CGRectMake(start, 1, 1, 1) animated:YES];
-        }
-        
         [pager setCurrentPage:index];
-
+        [self.view addSubview:pager];
     }
     
+}
+
+-(void)loadScroller
+{
+    scroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-85)];
+    [scroller setDelegate:self];
+
+    for(int i = 0;i<entries.count;i++)
+    {
+        Entry *e = (Entry *)[entries objectAtIndex:i];
+        [scroller addSubview:[self viewForEntry:e
+                                       forFrame:CGRectMake(i*self.view.frame.size.width, 0, scroller.frame.size.width, scroller.frame.size.height)
+                                         forTag:i]];
+    }
+    
+    [scroller setPagingEnabled:YES];
+    scroller.contentSize = CGSizeMake(scroller.frame.size.width * entries.count, scroller.frame.size.height);
+    
+    [self.view addSubview:scroller];
+    
+    if(index > 0)
+    {
+        CGFloat start = (index * self.view.frame.size.width) + self.view.frame.size.width - 1;
+        [scroller scrollRectToVisible:CGRectMake(start, 1, 1, 1) animated:YES];
+    }
 }
 
 -(void)pageChanged:(id)sender
@@ -295,7 +296,7 @@
         [pie reloadData];
         return;
     }
-
+    
     NSInteger value = 0;
     
     for(int i = 0;i<entries.count;i++)
