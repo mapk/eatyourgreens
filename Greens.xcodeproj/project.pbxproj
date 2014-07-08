@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3216A7E196880F50006D0DB /* MagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3216A7D196880F50006D0DB /* MagnifierView.m */; };
+		A3216A83196881C70006D0DB /* loupe-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3216A7F196881C70006D0DB /* loupe-hi@2x.png */; };
+		A3216A84196881C70006D0DB /* loupe-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3216A80196881C70006D0DB /* loupe-mask@2x.png */; };
+		A3216A85196881C70006D0DB /* loupe-shadow-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3216A81196881C70006D0DB /* loupe-shadow-hi@2x.png */; };
+		A3216A86196881C70006D0DB /* loupe-shadow-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3216A82196881C70006D0DB /* loupe-shadow-mask@2x.png */; };
 		A32C13C8194AB81C006FA4EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A32C13C7194AB81C006FA4EC /* MobileCoreServices.framework */; };
 		A32C13CB194ABA67006FA4EC /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A32C13CA194ABA67006FA4EC /* XYPieChart.m */; };
 		A32C13CD194ABA74006FA4EC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A32C13CC194ABA74006FA4EC /* QuartzCore.framework */; };
@@ -87,13 +92,18 @@
 		A3E507211948B370006154DB /* splash-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506EA1948B370006154DB /* splash-bg@2x.png */; };
 		A3E507221948B370006154DB /* splash-colorwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506EB1948B370006154DB /* splash-colorwheel.png */; };
 		A3E507231948B370006154DB /* splash-colorwheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506EC1948B370006154DB /* splash-colorwheel@2x.png */; };
-		A3E507241948B370006154DB /* touch-crosshair.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506ED1948B370006154DB /* touch-crosshair.png */; };
-		A3E507251948B370006154DB /* touch-crosshair@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506EE1948B370006154DB /* touch-crosshair@2x.png */; };
+		A3E507241948B370006154DB /* touch-crosshair@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506ED1948B370006154DB /* touch-crosshair@2x.png */; };
 		A3E507261948B370006154DB /* wheel-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506EF1948B370006154DB /* wheel-bg.png */; };
 		A3E507271948B370006154DB /* wheel-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506F01948B370006154DB /* wheel-bg@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A3216A7C196880F50006D0DB /* MagnifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnifierView.h; sourceTree = "<group>"; };
+		A3216A7D196880F50006D0DB /* MagnifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagnifierView.m; sourceTree = "<group>"; };
+		A3216A7F196881C70006D0DB /* loupe-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-hi@2x.png"; sourceTree = "<group>"; };
+		A3216A80196881C70006D0DB /* loupe-mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-mask@2x.png"; sourceTree = "<group>"; };
+		A3216A81196881C70006D0DB /* loupe-shadow-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-shadow-hi@2x.png"; sourceTree = "<group>"; };
+		A3216A82196881C70006D0DB /* loupe-shadow-mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-shadow-mask@2x.png"; sourceTree = "<group>"; };
 		A32C13C7194AB81C006FA4EC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		A32C13C9194ABA67006FA4EC /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
 		A32C13CA194ABA67006FA4EC /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
@@ -195,8 +205,7 @@
 		A3E506EA1948B370006154DB /* splash-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-bg@2x.png"; sourceTree = "<group>"; };
 		A3E506EB1948B370006154DB /* splash-colorwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-colorwheel.png"; sourceTree = "<group>"; };
 		A3E506EC1948B370006154DB /* splash-colorwheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-colorwheel@2x.png"; sourceTree = "<group>"; };
-		A3E506ED1948B370006154DB /* touch-crosshair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touch-crosshair.png"; sourceTree = "<group>"; };
-		A3E506EE1948B370006154DB /* touch-crosshair@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touch-crosshair@2x.png"; sourceTree = "<group>"; };
+		A3E506ED1948B370006154DB /* touch-crosshair@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touch-crosshair@2x.png"; sourceTree = "<group>"; };
 		A3E506EF1948B370006154DB /* wheel-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel-bg.png"; sourceTree = "<group>"; };
 		A3E506F01948B370006154DB /* wheel-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel-bg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -285,6 +294,8 @@
 				A32C13CA194ABA67006FA4EC /* XYPieChart.m */,
 				A32C6740194799C200A4AA93 /* Images.xcassets */,
 				A32C672F194799C200A4AA93 /* Supporting Files */,
+				A3216A7C196880F50006D0DB /* MagnifierView.h */,
+				A3216A7D196880F50006D0DB /* MagnifierView.m */,
 			);
 			path = Greens;
 			sourceTree = "<group>";
@@ -304,6 +315,10 @@
 		A32C675D19479ACD00A4AA93 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A3216A7F196881C70006D0DB /* loupe-hi@2x.png */,
+				A3216A80196881C70006D0DB /* loupe-mask@2x.png */,
+				A3216A81196881C70006D0DB /* loupe-shadow-hi@2x.png */,
+				A3216A82196881C70006D0DB /* loupe-shadow-mask@2x.png */,
 				A38BF75C195B62970047C0EF /* btn-cancel@2x.png */,
 				A38BF75D195B62970047C0EF /* btn-crosshair-new@2x.png */,
 				A38BF75E195B62970047C0EF /* btn-save-photo@2x.png */,
@@ -360,8 +375,7 @@
 				A3E506EB1948B370006154DB /* splash-colorwheel.png */,
 				A3E506EC1948B370006154DB /* splash-colorwheel@2x.png */,
 				A3D71E761949701F0046C5C2 /* tab_bar_background@2x.png */,
-				A3E506ED1948B370006154DB /* touch-crosshair.png */,
-				A3E506EE1948B370006154DB /* touch-crosshair@2x.png */,
+				A3E506ED1948B370006154DB /* touch-crosshair@2x.png */,
 				A3E506EF1948B370006154DB /* wheel-bg.png */,
 				A3E506F01948B370006154DB /* wheel-bg@2x.png */,
 			);
@@ -443,10 +457,12 @@
 				A3DC3A45195DF9FF00E4F8AF /* CloseX.png in Resources */,
 				A3E5070E1948B370006154DB /* EATyourGREENS@2x.png in Resources */,
 				A3E506B61948B343006154DB /* 114x114.png in Resources */,
+				A3216A85196881C70006D0DB /* loupe-shadow-hi@2x.png in Resources */,
 				A3E507061948B370006154DB /* btn-flash@2x.png in Resources */,
 				A3E506F41948B370006154DB /* bar-green@2x.png in Resources */,
 				A3E506F11948B370006154DB /* bar-blue.png in Resources */,
 				A3E507221948B370006154DB /* splash-colorwheel.png in Resources */,
+				A3216A83196881C70006D0DB /* loupe-hi@2x.png in Resources */,
 				A3E506F71948B370006154DB /* bar-red.png in Resources */,
 				A3E506B21948B343006154DB /* 57x57.png in Resources */,
 				A3E506B71948B343006154DB /* 120x120.png in Resources */,
@@ -463,21 +479,22 @@
 				A3D71E861949701F0046C5C2 /* nav-colorwheel@2x.png in Resources */,
 				A3E506F81948B370006154DB /* bar-red@2x.png in Resources */,
 				A3D71E851949701F0046C5C2 /* nav-colorwheel.png in Resources */,
+				A3216A84196881C70006D0DB /* loupe-mask@2x.png in Resources */,
 				A3E506B81948B343006154DB /* 129x129.png in Resources */,
 				A3E506FA1948B370006154DB /* bar-tan@2x.png in Resources */,
 				A3D71E791949701F0046C5C2 /* nav-apple.png in Resources */,
 				A3E507071948B370006154DB /* btn-photo@2x.png in Resources */,
 				A3E507271948B370006154DB /* wheel-bg@2x.png in Resources */,
 				A3E507101948B370006154DB /* home-colorwheel@2x.png in Resources */,
-				A3E507241948B370006154DB /* touch-crosshair.png in Resources */,
+				A3E507241948B370006154DB /* touch-crosshair@2x.png in Resources */,
 				A3D71E7C1949701F0046C5C2 /* nav-book-active@2x.png in Resources */,
 				A3D71E7B1949701F0046C5C2 /* nav-book-active.png in Resources */,
 				A3E507051948B370006154DB /* btn-flash.png in Resources */,
 				A38BF760195B62970047C0EF /* btn-crosshair-new@2x.png in Resources */,
 				A3E506B31948B343006154DB /* 58x58.png in Resources */,
+				A3216A86196881C70006D0DB /* loupe-shadow-mask@2x.png in Resources */,
 				A32C6733194799C200A4AA93 /* InfoPlist.strings in Resources */,
 				A3D71E7E1949701F0046C5C2 /* nav-book@2x.png in Resources */,
-				A3E507251948B370006154DB /* touch-crosshair@2x.png in Resources */,
 				A3D71E781949701F0046C5C2 /* nav-apple-active@2x.png in Resources */,
 				A3D71E831949701F0046C5C2 /* nav-colorwheel-active.png in Resources */,
 				A3E506F91948B370006154DB /* bar-tan.png in Resources */,
@@ -501,6 +518,7 @@
 				A32C673F194799C200A4AA93 /* ViewController.m in Sources */,
 				A3D71E94194A02020046C5C2 /* FoodsTableViewController.m in Sources */,
 				A38BF75A195738690047C0EF /* Entry.m in Sources */,
+				A3216A7E196880F50006D0DB /* MagnifierView.m in Sources */,
 				A3D71E97194A31810046C5C2 /* Utils.m in Sources */,
 				A3D677BA1956468400B07927 /* EntryViewController.m in Sources */,
 				A3D677B4195637F400B07927 /* ImageViewController.m in Sources */,

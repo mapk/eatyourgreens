@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MagnifierView.h"
 
 @protocol ImageViewControllerDelegate;
 @class Entry;
@@ -18,10 +19,17 @@
     NSMutableArray *array;
     
     id <ImageViewControllerDelegate> __unsafe_unretained delegate;
+    
+    
+    
+    NSTimer *touchTimer;
+    MagnifierView *loop;
 }
 
 @property (nonatomic, strong) Entry *entry;
 @property (nonatomic, assign) id <ImageViewControllerDelegate> __unsafe_unretained delegate;
+
+-(void) handleGestureAction:(CGPoint)location;
 
 @end
 

@@ -72,6 +72,10 @@
         }
 
     
+//    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
+//    [self.view addGestureRecognizer:longPressGesture];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -123,6 +127,21 @@
         [imgViewTouch setFrame:CGRectMake(imgViewCrossHair.frame.origin.x, imgViewCrossHair.frame.origin.y, imgTouch.size.width, imgTouch.size.height)];
         [self.view addSubview:imgViewTouch];
         [self.view bringSubviewToFront:imgViewTouch];
+        
+        
+
+        if(loop == nil){
+            loop = [[MagnifierView alloc] init];
+            loop.viewToMagnify = self.view;
+            
+            [self.view.superview addSubview:loop];
+            
+        }
+        
+        loop.touchPoint = viewPoint;
+        [loop setNeedsDisplay];
+        
+        
     }
     else
     {
@@ -146,7 +165,12 @@
 {
     if(imgViewTouch)
         for(UITouch *touch in touches)
+        {
             [imgViewTouch setCenter:[touch locationInView:self.view]];
+            
+            [self handleGestureAction:[touch locationInView:self.view]];
+            
+        }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -164,7 +188,74 @@
         [array addObject:imgViewNewTouch];
         [imgViewTouch removeFromSuperview];
         imgViewTouch = nil;
+        
+        [loop removeFromSuperview];
+        loop=nil;
+        
     }
 }
+
+
+
+/*
+-(void)handleGesture:(UILongPressGestureRecognizer *)longPressGesture
+{
+    
+    CGPoint location = [longPressGesture locationInView:self.view];
+    
+    switch (longPressGesture.state) {
+        case UIGestureRecognizerStateBegan:
+            
+            
+//            touchTimer = [NSTimer scheduledTimerWithTimeInterval:0.5
+//                                                               target:self
+//                                                             selector:@selector(addLoop)
+//                                                             userInfo:nil
+//                                                              repeats:NO];
+            
+            
+            // just create one loop and re-use it.
+            if(loop == nil){
+                loop = [[MagnifierView alloc] init];
+                loop.viewToMagnify = self.view;
+                
+                [self.view.superview addSubview:loop];
+
+            }
+            
+            loop.touchPoint = location;
+            [loop setNeedsDisplay];
+            break;
+            
+        case UIGestureRecognizerStateChanged:
+            [self handleGestureAction:location];
+            break;
+            
+        case UIGestureRecognizerStateEnded:
+//            [touchTimer invalidate];
+//            touchTimer = nil;
+            
+            [loop removeFromSuperview];
+            loop=nil;
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (void)addLoop {
+    // add the loop to the superview.  if we add it to the view it magnifies, it'll magnify itself!
+    [self.view.superview addSubview:loop];
+}
+*/ 
+
+-(void) handleGestureAction:(CGPoint)location
+{
+    loop.touchPoint = location;
+    [loop setNeedsDisplay];
+    
+}
+
 
 @end
