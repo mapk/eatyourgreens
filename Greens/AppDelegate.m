@@ -98,6 +98,37 @@
     
     [tabBarController setViewControllers:@[nav1, nav2, nav3, nav4, nav5]];
     
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, -vc1.view.frame.size.height, vc1.view.frame.size.width, vc1.view.frame.size.height)];
+    [v setTag:999];
+    [v setBackgroundColor:[UIColor colorWithRed:242.0f/255.0f green:242.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+    
+    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 28, v.frame.size.width, 64)];
+    [v addSubview:navBar];
+    
+    UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, navBar.frame.size.width, navBar.frame.size.height - 20)];
+    [lblTitle setFont:[UIFont boldSystemFontOfSize:17.0f]];
+    [lblTitle setTextColor:[UIColor whiteColor]];
+    [lblTitle setBackgroundColor:[UIColor clearColor]];
+    [lblTitle setText:@"Eat Your Greens"];
+    [lblTitle setTextAlignment:NSTextAlignmentCenter];
+    [navBar addSubview:lblTitle];
+    
+    UIImage *img = [UIImage imageNamed:@"home-colorwheel"];
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:img];
+    [imgView setFrame:CGRectMake(v.frame.size.width/2 - img.size.width/2, CGRectGetMaxY(navBar.frame) + 10, img.size.width, img.size.height)];
+    [v addSubview:imgView];
+    
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectZero];
+    [lbl setText:@"Start taking pictures of your food and see what colors you've been eating."];
+    [lbl setTextAlignment:NSTextAlignmentCenter];
+    [lbl setNumberOfLines:2];
+    [lbl setLineBreakMode:NSLineBreakByWordWrapping];
+    [lbl setFrame:CGRectMake(25, CGRectGetMaxY(imgView.frame) + 10, 270, 35)];
+    [lbl setFont:[UIFont systemFontOfSize:14.0f]];
+    [v addSubview:lbl];
+    
+    [tabBarController.tabBar addSubview:v];
+    
     return tabBarController;
 }
 							
@@ -128,10 +159,30 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+-(void)removeView:(UIView *)view
+{
+    [view removeFromSuperview];
+    view = nil;
+}
+
 
 #pragma mark UITabBarControllerDelegate methods
 -(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
+    for(int i = 0;i<tabBarController.tabBar.subviews.count;i++)
+    {
+        UIView *v = (UIView *)[tabBarController.tabBar.subviews objectAtIndex:i];
+        if(v.tag == 999)
+        {
+            [UIView animateWithDuration:.2 animations:^{
+                [v setAlpha:0.0f];
+            } completion:^(BOOL finished){
+                [self removeView:v];
+            }];
+        }
+    }
+    
+    
     BOOL value = YES;
     
     UINavigationController *nav = (UINavigationController *)viewController;

@@ -87,8 +87,7 @@
 		A3E5070B1948B370006154DB /* btn-share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506D41948B370006154DB /* btn-share@2x.png */; };
 		A3E5070D1948B370006154DB /* EATyourGREENS.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506D61948B370006154DB /* EATyourGREENS.png */; };
 		A3E5070E1948B370006154DB /* EATyourGREENS@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506D71948B370006154DB /* EATyourGREENS@2x.png */; };
-		A3E5070F1948B370006154DB /* home-colorwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506D81948B370006154DB /* home-colorwheel.png */; };
-		A3E507101948B370006154DB /* home-colorwheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506D91948B370006154DB /* home-colorwheel@2x.png */; };
+		A3E5070F1948B370006154DB /* home-colorwheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506D81948B370006154DB /* home-colorwheel@2x.png */; };
 		A3E507211948B370006154DB /* splash-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506EA1948B370006154DB /* splash-bg@2x.png */; };
 		A3E507221948B370006154DB /* splash-colorwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506EB1948B370006154DB /* splash-colorwheel.png */; };
 		A3E507231948B370006154DB /* splash-colorwheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506EC1948B370006154DB /* splash-colorwheel@2x.png */; };
@@ -200,8 +199,7 @@
 		A3E506D41948B370006154DB /* btn-share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-share@2x.png"; sourceTree = "<group>"; };
 		A3E506D61948B370006154DB /* EATyourGREENS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EATyourGREENS.png; sourceTree = "<group>"; };
 		A3E506D71948B370006154DB /* EATyourGREENS@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EATyourGREENS@2x.png"; sourceTree = "<group>"; };
-		A3E506D81948B370006154DB /* home-colorwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-colorwheel.png"; sourceTree = "<group>"; };
-		A3E506D91948B370006154DB /* home-colorwheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-colorwheel@2x.png"; sourceTree = "<group>"; };
+		A3E506D81948B370006154DB /* home-colorwheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-colorwheel@2x.png"; sourceTree = "<group>"; };
 		A3E506EA1948B370006154DB /* splash-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-bg@2x.png"; sourceTree = "<group>"; };
 		A3E506EB1948B370006154DB /* splash-colorwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-colorwheel.png"; sourceTree = "<group>"; };
 		A3E506EC1948B370006154DB /* splash-colorwheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-colorwheel@2x.png"; sourceTree = "<group>"; };
@@ -353,8 +351,7 @@
 				A3DC3A44195DF9FF00E4F8AF /* CloseX@2x.png */,
 				A3E506D61948B370006154DB /* EATyourGREENS.png */,
 				A3E506D71948B370006154DB /* EATyourGREENS@2x.png */,
-				A3E506D81948B370006154DB /* home-colorwheel.png */,
-				A3E506D91948B370006154DB /* home-colorwheel@2x.png */,
+				A3E506D81948B370006154DB /* home-colorwheel@2x.png */,
 				A3D71E661949701F0046C5C2 /* nav-apple-active.png */,
 				A3D71E671949701F0046C5C2 /* nav-apple-active@2x.png */,
 				A3D71E681949701F0046C5C2 /* nav-apple.png */,
@@ -475,7 +472,7 @@
 				A38BF761195B62970047C0EF /* btn-save-photo@2x.png in Resources */,
 				A3E506F61948B370006154DB /* bar-orange@2x.png in Resources */,
 				A3E506FC1948B370006154DB /* bg@2x.png in Resources */,
-				A3E5070F1948B370006154DB /* home-colorwheel.png in Resources */,
+				A3E5070F1948B370006154DB /* home-colorwheel@2x.png in Resources */,
 				A3D71E861949701F0046C5C2 /* nav-colorwheel@2x.png in Resources */,
 				A3E506F81948B370006154DB /* bar-red@2x.png in Resources */,
 				A3D71E851949701F0046C5C2 /* nav-colorwheel.png in Resources */,
@@ -485,7 +482,6 @@
 				A3D71E791949701F0046C5C2 /* nav-apple.png in Resources */,
 				A3E507071948B370006154DB /* btn-photo@2x.png in Resources */,
 				A3E507271948B370006154DB /* wheel-bg@2x.png in Resources */,
-				A3E507101948B370006154DB /* home-colorwheel@2x.png in Resources */,
 				A3E507241948B370006154DB /* touch-crosshair@2x.png in Resources */,
 				A3D71E7C1949701F0046C5C2 /* nav-book-active@2x.png in Resources */,
 				A3D71E7B1949701F0046C5C2 /* nav-book-active.png in Resources */,
