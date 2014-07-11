@@ -47,6 +47,13 @@
 {
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self setTitle:@"Food Colors"];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self setTitle:@"Back"];
 }
 
 #pragma mark - Table view data source

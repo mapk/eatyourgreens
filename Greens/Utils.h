@@ -16,6 +16,7 @@
 +(UIImage *)imageWithColor:(UIColor *)color andSize:(CGSize)size;
 +(UIImage*)imageWithImage: (UIImage*) sourceImage scaledToWidth: (float) i_width;
 +(UIImage *)image:(UIImage *)image byScalingAndCroppingForSize:(CGSize)targetSize;
++ (UIImage *) imageWithView:(UIView *)view;
 +(NSString *)createGUID;
 +(CGSize)sizeForLabel:(UILabel *)label forMaxSize:(CGSize)maxSize;
 +(CGSize)sizeForTextView:(UITextView *)label forMaxSize:(CGSize)maxSize;

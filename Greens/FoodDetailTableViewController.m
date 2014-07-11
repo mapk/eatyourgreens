@@ -32,7 +32,6 @@
     [super viewDidLoad];
 
     [self setTitle:@"Food Colors"];
-    [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
 }
 
 - (void)didReceiveMemoryWarning

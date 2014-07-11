@@ -207,8 +207,16 @@
             [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
             [imagePicker setMediaTypes:[NSArray arrayWithObject:(NSString *) kUTTypeImage]];
         }
-
+        
         [self.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
+        
+        
+        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstPhoto"])
+        {
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstPhoto"];
+            [[[UIAlertView alloc] initWithTitle:nil message:@"Use the Target icon to select the colors of your food." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Set Target", nil] show];
+        }
+        
         
         /*
         UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take New Picture", @"Select Picture From Library", nil];
@@ -287,5 +295,17 @@
     EntriesTableViewController *entries = (EntriesTableViewController *)nav.viewControllers.firstObject;
     [entries newEntry:entry];
     [tab setSelectedIndex:1];
+}
+
+#pragma mark UIAlertViewDelegate methods
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == alertView.cancelButtonIndex)
+    {
+        [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+    
+    
 }
 @end

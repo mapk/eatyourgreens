@@ -92,8 +92,7 @@
 		A3E507221948B370006154DB /* splash-colorwheel.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506EB1948B370006154DB /* splash-colorwheel.png */; };
 		A3E507231948B370006154DB /* splash-colorwheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506EC1948B370006154DB /* splash-colorwheel@2x.png */; };
 		A3E507241948B370006154DB /* touch-crosshair@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506ED1948B370006154DB /* touch-crosshair@2x.png */; };
-		A3E507261948B370006154DB /* wheel-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506EF1948B370006154DB /* wheel-bg.png */; };
-		A3E507271948B370006154DB /* wheel-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506F01948B370006154DB /* wheel-bg@2x.png */; };
+		A3E507261948B370006154DB /* wheel-bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3E506EF1948B370006154DB /* wheel-bg@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -204,8 +203,7 @@
 		A3E506EB1948B370006154DB /* splash-colorwheel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-colorwheel.png"; sourceTree = "<group>"; };
 		A3E506EC1948B370006154DB /* splash-colorwheel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash-colorwheel@2x.png"; sourceTree = "<group>"; };
 		A3E506ED1948B370006154DB /* touch-crosshair@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touch-crosshair@2x.png"; sourceTree = "<group>"; };
-		A3E506EF1948B370006154DB /* wheel-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel-bg.png"; sourceTree = "<group>"; };
-		A3E506F01948B370006154DB /* wheel-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel-bg@2x.png"; sourceTree = "<group>"; };
+		A3E506EF1948B370006154DB /* wheel-bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wheel-bg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,9 +255,12 @@
 		A32C672E194799C200A4AA93 /* Greens */ = {
 			isa = PBXGroup;
 			children = (
+				A32C672F194799C200A4AA93 /* Supporting Files */,
 				A32C675D19479ACD00A4AA93 /* Images */,
 				A32C6737194799C200A4AA93 /* AppDelegate.h */,
 				A32C6738194799C200A4AA93 /* AppDelegate.m */,
+				A3DC3A40195DF81100E4F8AF /* DescriptionViewController.h */,
+				A3DC3A41195DF81100E4F8AF /* DescriptionViewController.m */,
 				A3D71E8F194A01EC0046C5C2 /* EntriesTableViewController.h */,
 				A3D71E90194A01EC0046C5C2 /* EntriesTableViewController.m */,
 				A38BF758195738690047C0EF /* Entry.h */,
@@ -272,10 +273,11 @@
 				A3D71E99194A34100046C5C2 /* FoodDetailTableViewController.m */,
 				A3D71E92194A02020046C5C2 /* FoodsTableViewController.h */,
 				A3D71E93194A02020046C5C2 /* FoodsTableViewController.m */,
+				A32C6740194799C200A4AA93 /* Images.xcassets */,
 				A3D677B2195637F400B07927 /* ImageViewController.h */,
 				A3D677B3195637F400B07927 /* ImageViewController.m */,
-				A3DC3A40195DF81100E4F8AF /* DescriptionViewController.h */,
-				A3DC3A41195DF81100E4F8AF /* DescriptionViewController.m */,
+				A3216A7C196880F50006D0DB /* MagnifierView.h */,
+				A3216A7D196880F50006D0DB /* MagnifierView.m */,
 				A3D71E89194A01CD0046C5C2 /* SettingsTableViewController.h */,
 				A3D71E8A194A01CD0046C5C2 /* SettingsTableViewController.m */,
 				A3D71E8C194A01DB0046C5C2 /* TipsTableViewController.h */,
@@ -290,10 +292,6 @@
 				A32C673E194799C200A4AA93 /* ViewController.m */,
 				A32C13C9194ABA67006FA4EC /* XYPieChart.h */,
 				A32C13CA194ABA67006FA4EC /* XYPieChart.m */,
-				A32C6740194799C200A4AA93 /* Images.xcassets */,
-				A32C672F194799C200A4AA93 /* Supporting Files */,
-				A3216A7C196880F50006D0DB /* MagnifierView.h */,
-				A3216A7D196880F50006D0DB /* MagnifierView.m */,
 			);
 			path = Greens;
 			sourceTree = "<group>";
@@ -373,8 +371,7 @@
 				A3E506EC1948B370006154DB /* splash-colorwheel@2x.png */,
 				A3D71E761949701F0046C5C2 /* tab_bar_background@2x.png */,
 				A3E506ED1948B370006154DB /* touch-crosshair@2x.png */,
-				A3E506EF1948B370006154DB /* wheel-bg.png */,
-				A3E506F01948B370006154DB /* wheel-bg@2x.png */,
+				A3E506EF1948B370006154DB /* wheel-bg@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -441,7 +438,7 @@
 				A3E506FD1948B370006154DB /* btn-camera-shoot.png in Resources */,
 				A3E506F31948B370006154DB /* bar-green.png in Resources */,
 				A3E507211948B370006154DB /* splash-bg@2x.png in Resources */,
-				A3E507261948B370006154DB /* wheel-bg.png in Resources */,
+				A3E507261948B370006154DB /* wheel-bg@2x.png in Resources */,
 				A3D71E871949701F0046C5C2 /* tab_bar_background@2x.png in Resources */,
 				A3E506F21948B370006154DB /* bar-blue@2x.png in Resources */,
 				A32C6741194799C200A4AA93 /* Images.xcassets in Resources */,
@@ -481,7 +478,6 @@
 				A3E506FA1948B370006154DB /* bar-tan@2x.png in Resources */,
 				A3D71E791949701F0046C5C2 /* nav-apple.png in Resources */,
 				A3E507071948B370006154DB /* btn-photo@2x.png in Resources */,
-				A3E507271948B370006154DB /* wheel-bg@2x.png in Resources */,
 				A3E507241948B370006154DB /* touch-crosshair@2x.png in Resources */,
 				A3D71E7C1949701F0046C5C2 /* nav-book-active@2x.png in Resources */,
 				A3D71E7B1949701F0046C5C2 /* nav-book-active.png in Resources */,

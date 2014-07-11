@@ -10,6 +10,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "Entry.h"
 #import "DescriptionViewController.h"
+#import "Utils.h"
 
 @interface EntryViewController ()
 
@@ -98,32 +99,41 @@
     [view setTag:999];
     [view setBackgroundColor:[UIColor clearColor]];
     
-    XYPieChart *pie = [[XYPieChart alloc] initWithFrame:CGRectZero Center:CGPointMake(self.view.center.x, 200) Radius:130];
+    UIImage *wheelImage = [UIImage imageNamed:@"wheel-bg"];
+    UIImageView *wheelImageView = [[UIImageView alloc] initWithImage:wheelImage];
+    [wheelImageView setFrame:CGRectMake(frame.size.width/2 - wheelImage.size.width/2, 70, wheelImage.size.width, wheelImage.size.height)];
+    [view addSubview:wheelImageView];
+    
+    
+    XYPieChart *pie = [[XYPieChart alloc] initWithFrame:CGRectZero Center:CGPointMake(wheelImage.size.width/2, wheelImage.size.height/2) Radius:((wheelImageView.frame.size.width/2) - 10)];
     [pie setTag:tag];
     [pie setDataSource:self];
     [pie setDelegate:self];
     [pie setLabelColor:[UIColor clearColor]];
 
-    [view addSubview:pie];
+    [wheelImageView addSubview:pie];
     [pie reloadData];
+     
     
     [pies addObject:pie];
+     
     
-    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 120)];
+    
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     [lbl setText:@" "];
-    [lbl.layer setCornerRadius:60];
+    [lbl.layer setCornerRadius:50];
     [lbl.layer setMasksToBounds:YES];
     [lbl setBackgroundColor:[UIColor whiteColor]];
-    [self.view addSubview:lbl];
-    [self.view bringSubviewToFront:lbl];
-    [lbl setCenter:CGPointMake(self.view.center.x, 200)];
-    [view bringSubviewToFront:lbl];
+    [wheelImageView addSubview:lbl];
+    [wheelImageView bringSubviewToFront:lbl];
+    [lbl setCenter:CGPointMake(wheelImage.size.width/2, wheelImage.size.height/2)];
     
     UIImage *imgShare = [UIImage imageNamed:@"btn-share"];
     UIButton *btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnShare setTag:tag];
     [btnShare setImage:imgShare forState:UIControlStateNormal];
-    [btnShare addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
-    [btnShare setFrame:CGRectMake(self.view.frame.size.width/2 - imgShare.size.width/2, 350, imgShare.size.width, imgShare.size.height)];
+    [btnShare addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
+    [btnShare setFrame:CGRectMake(self.view.frame.size.width/2 - imgShare.size.width/2, 380, imgShare.size.width, imgShare.size.height)];
     [view addSubview:btnShare];
     
     UIImage *imgPhoto = [UIImage imageNamed:@"btn-photo"];
@@ -131,7 +141,7 @@
     [btnPhoto setTag:tag];
     [btnPhoto setImage:imgPhoto forState:UIControlStateNormal];
     [btnPhoto addTarget:self action:@selector(photo:) forControlEvents:UIControlEventTouchUpInside];
-    [btnPhoto setFrame:CGRectMake(CGRectGetMaxX(btnShare.frame) + 5, 330, imgPhoto.size.width, imgPhoto.size.height)];
+    [btnPhoto setFrame:CGRectMake(CGRectGetMaxX(btnShare.frame) + 5, 360, imgPhoto.size.width, imgPhoto.size.height)];
     [view addSubview:btnPhoto];
     
     UIImage *imgEdit = [UIImage imageNamed:@"btn-edit"];
@@ -139,7 +149,7 @@
     [btnEdit setTag:tag];
     [btnEdit setImage:imgEdit forState:UIControlStateNormal];
     [btnEdit addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
-    [btnEdit setFrame:CGRectMake(CGRectGetMaxX(btnPhoto.frame) + 5, 300, imgEdit.size.width, imgEdit.size.height)];
+    [btnEdit setFrame:CGRectMake(CGRectGetMaxX(btnPhoto.frame) + 5, 330, imgEdit.size.width, imgEdit.size.height)];
     [view addSubview:btnEdit];
 
     UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(btnShare.frame) + 10, self.view.frame.size.width, 18)];
@@ -208,11 +218,26 @@
     [self.tabBarController presentViewController:imageViewController animated:YES completion:nil];
 }
 
--(void)share
+-(void)share:(id)sender
 {
+    UIButton *btn = (UIButton *)sender;
+    NSInteger tag = btn.tag;
+    
+    Entry *e = nil;
+    
+    if(entries.count < 2)
+        e = entry;
+    else
+        e = (Entry *)[entries objectAtIndex:tag];
+
+    XYPieChart *pie = (XYPieChart *)[pies objectAtIndex:btn.tag];
+    
+    UIImage *img = [Utils imageWithView:self.view];
+    
+    
     NSString *s = [NSString stringWithFormat:@"Download #Eat Your Greens: http://eatyourgreens.com "];
     
-    NSArray *items  = [NSArray arrayWithObjects:s,nil];
+    NSArray *items  = [NSArray arrayWithObjects:s,img,nil];
     
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {

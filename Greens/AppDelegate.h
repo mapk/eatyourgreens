@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ImageViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, ImageViewControllerDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, ImageViewControllerDelegate, UIAlertViewDelegate>
 {
     ImageViewController *imageViewController;
 }
@@ -22,12 +22,7 @@
 
 /*
 
- home screen - always show that home screen when starting up, then clicking on a tab makes it go away
- splash screen
  food color fonts consistent across screens
- 
- food color screens - line to space out each food item
- change text of back button on sub screen to read “Back”
  
  
  
@@ -36,11 +31,6 @@
  icon match the actual pie chart on the list of meal entries
  
  camera - see if I can remove the navigation bar and add the grid lines
- 
- prompt the user the first time to “use the icon to set the target”  only prompt the first time
- 
- 
- 
  
  
  
