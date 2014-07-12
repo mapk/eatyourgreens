@@ -33,6 +33,9 @@
 {
     [super viewDidLoad];
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+
+    
     [self.view setBackgroundColor:[UIColor colorWithRed:242.0f/255.0f green:242.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     pies = [[NSMutableArray alloc] init];
     
@@ -58,7 +61,7 @@
 
 -(void)loadScroller
 {
-    scroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-85)];
+    scroller = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     [scroller setDelegate:self];
 
     for(int i = 0;i<entries.count;i++)
@@ -101,9 +104,9 @@
     
     UIImage *wheelImage = [UIImage imageNamed:@"wheel-bg"];
     UIImageView *wheelImageView = [[UIImageView alloc] initWithImage:wheelImage];
-    [wheelImageView setFrame:CGRectMake(frame.size.width/2 - wheelImage.size.width/2, 70, wheelImage.size.width, wheelImage.size.height)];
+    [wheelImageView setTag:tag];
+    [wheelImageView setFrame:CGRectMake(frame.size.width/2 - wheelImage.size.width/2, 10, wheelImage.size.width, wheelImage.size.height)];
     [view addSubview:wheelImageView];
-    
     
     XYPieChart *pie = [[XYPieChart alloc] initWithFrame:CGRectZero Center:CGPointMake(wheelImage.size.width/2, wheelImage.size.height/2) Radius:((wheelImageView.frame.size.width/2) - 10)];
     [pie setTag:tag];
@@ -113,12 +116,9 @@
 
     [wheelImageView addSubview:pie];
     [pie reloadData];
-     
     
     [pies addObject:pie];
      
-    
-    
     UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     [lbl setText:@" "];
     [lbl.layer setCornerRadius:50];
@@ -133,7 +133,7 @@
     [btnShare setTag:tag];
     [btnShare setImage:imgShare forState:UIControlStateNormal];
     [btnShare addTarget:self action:@selector(share:) forControlEvents:UIControlEventTouchUpInside];
-    [btnShare setFrame:CGRectMake(self.view.frame.size.width/2 - imgShare.size.width/2, 380, imgShare.size.width, imgShare.size.height)];
+    [btnShare setFrame:CGRectMake(self.view.frame.size.width/2 - imgShare.size.width/2, 300, imgShare.size.width, imgShare.size.height)];
     [view addSubview:btnShare];
     
     UIImage *imgPhoto = [UIImage imageNamed:@"btn-photo"];
@@ -141,7 +141,7 @@
     [btnPhoto setTag:tag];
     [btnPhoto setImage:imgPhoto forState:UIControlStateNormal];
     [btnPhoto addTarget:self action:@selector(photo:) forControlEvents:UIControlEventTouchUpInside];
-    [btnPhoto setFrame:CGRectMake(CGRectGetMaxX(btnShare.frame) + 5, 360, imgPhoto.size.width, imgPhoto.size.height)];
+    [btnPhoto setFrame:CGRectMake(CGRectGetMaxX(btnShare.frame) + 10, 285, imgPhoto.size.width, imgPhoto.size.height)];
     [view addSubview:btnPhoto];
     
     UIImage *imgEdit = [UIImage imageNamed:@"btn-edit"];
@@ -149,15 +149,17 @@
     [btnEdit setTag:tag];
     [btnEdit setImage:imgEdit forState:UIControlStateNormal];
     [btnEdit addTarget:self action:@selector(edit:) forControlEvents:UIControlEventTouchUpInside];
-    [btnEdit setFrame:CGRectMake(CGRectGetMaxX(btnPhoto.frame) + 5, 330, imgEdit.size.width, imgEdit.size.height)];
+    [btnEdit setFrame:CGRectMake(CGRectGetMaxX(btnPhoto.frame) + 5, 250, imgEdit.size.width, imgEdit.size.height)];
     [view addSubview:btnEdit];
 
-    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(btnShare.frame) + 10, self.view.frame.size.width, 18)];
+    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(btnShare.frame) + 5, self.view.frame.size.width, 18)];
+    [lblDate setFont:kStandardFont];
     [lblDate setTextAlignment:NSTextAlignmentCenter];
     [lblDate setText:[e longDate]];
     [view addSubview:lblDate];
 
-    UILabel *lblTime = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lblDate.frame) + 10, self.view.frame.size.width, 18)];
+    UILabel *lblTime = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lblDate.frame), self.view.frame.size.width, 18)];
+    [lblTime setFont:kStandardFont];
     [lblTime setTextAlignment:NSTextAlignmentCenter];
     [lblTime setText:[e shortTime]];
     [view addSubview:lblTime];
@@ -222,17 +224,25 @@
 {
     UIButton *btn = (UIButton *)sender;
     NSInteger tag = btn.tag;
-    
-    Entry *e = nil;
-    
-    if(entries.count < 2)
-        e = entry;
-    else
-        e = (Entry *)[entries objectAtIndex:tag];
 
-    XYPieChart *pie = (XYPieChart *)[pies objectAtIndex:btn.tag];
+    UIView *view = nil;
     
-    UIImage *img = [Utils imageWithView:self.view];
+    if(scroller)
+    {
+        for(UIView *v in scroller.subviews)
+            for(UIView *v1 in v.subviews)
+                if(v1.tag == tag && [v1 isKindOfClass:[UIImageView class]])
+                    view = v1;
+    }
+    else
+    {
+        for(UIView *v in self.view.subviews)
+            for(UIView *v1 in v.subviews)
+                if(v1.tag == tag && [v1 isKindOfClass:[UIImageView class]])
+                    view = v1;
+    }
+    
+    UIImage *img = [Utils imageWithView:view];
     
     
     NSString *s = [NSString stringWithFormat:@"Download #Eat Your Greens: http://eatyourgreens.com "];

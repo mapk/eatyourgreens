@@ -62,7 +62,7 @@
     {
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectZero];
         [lbl setText:food.description];
-        [lbl setFont:[UIFont systemFontOfSize:14.0f]];
+        [lbl setFont:kStandardFont];
         [lbl setLineBreakMode:NSLineBreakByWordWrapping];
         [lbl setNumberOfLines:0];
         
@@ -70,7 +70,7 @@
         value = size.height + 10;
     }
     else
-        value = 20;
+        value = 25;
     
     return value;
 }
@@ -86,7 +86,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    [cell.textLabel setFont:[UIFont systemFontOfSize:17.0f]];
+    [cell.textLabel setFont:kStandardFont];
     
     if(indexPath.row == 0)
     {

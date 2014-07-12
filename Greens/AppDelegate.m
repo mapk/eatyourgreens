@@ -124,7 +124,7 @@
     [lbl setNumberOfLines:2];
     [lbl setLineBreakMode:NSLineBreakByWordWrapping];
     [lbl setFrame:CGRectMake(25, CGRectGetMaxY(imgView.frame) + 10, 270, 35)];
-    [lbl setFont:[UIFont systemFontOfSize:14.0f]];
+    [lbl setFont:kStandardFont];
     [v addSubview:lbl];
     
     [tabBarController.tabBar addSubview:v];

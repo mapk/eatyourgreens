@@ -35,9 +35,6 @@
  
  
  pie chart screen
- -	add white donut hole circle in the middle
- -	add background image behind the pie chart
- - 	when sharing - share out the picture of the pie chart
  
  date and time vertical spacing
  

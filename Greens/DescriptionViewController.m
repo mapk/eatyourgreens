@@ -55,12 +55,14 @@
     UIColor *color = [UIColor colorWithRed:50.0f/255.0f green:50.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
     
     UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, 70, self.view.frame.size.width, 18)];
+    [lblDate setFont:kStandardFont];
     [lblDate setTextAlignment:NSTextAlignmentCenter];
     [lblDate setText:[entry longDate]];
     [lblDate setTextColor:color];
     [v addSubview:lblDate];
     
     UILabel *lblTime = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lblDate.frame) + 10, self.view.frame.size.width, 18)];
+    [lblTime setFont:kStandardFont];
     [lblTime setTextAlignment:NSTextAlignmentCenter];
     [lblTime setText:[entry shortTime]];
     [lblTime setTextColor:color];
