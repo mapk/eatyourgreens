@@ -120,8 +120,7 @@
     [f4 setTextColor:[UIColor whiteColor]];
     [f4 setBackgroundColor:[UIColor colorWithRed:120.0f/255.0f green:190.0f/255.0f blue:77.0f/255.0f alpha:1.0f]];
     [f4 setExamples:@[
-    @"Peas"
-    ,@"Artichokes"
+    @"Artichokes"
     ,@"Arugula"
     ,@"Asparagus"
     ,@"Avocados"

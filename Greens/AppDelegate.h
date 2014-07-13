@@ -22,10 +22,6 @@
 
 /*
 
- food color fonts consistent across screens
- 
- 
- 
  meal entry
  screen search notes
  icon match the actual pie chart on the list of meal entries
@@ -33,14 +29,7 @@
  camera - see if I can remove the navigation bar and add the grid lines
  
  
- 
  pie chart screen
- 
- date and time vertical spacing
- 
- 
- notes page - same font size as everywhere else
- 
  
  
  settings -
