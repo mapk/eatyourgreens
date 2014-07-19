@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TipsTableViewController : UITableViewController
+@interface TipsTableViewController : UITableViewController <UISearchBarDelegate>
+{
+    NSMutableArray *array;
+    NSMutableArray *searchArray;
+}
 
 @end

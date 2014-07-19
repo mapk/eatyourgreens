@@ -68,10 +68,10 @@
 
 -(UIView *)headerView
 {
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 40)];
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 90)];
     
-    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, self.tableView.frame.size.width - 10, 30)];
-    [lbl setText:@"Select the foods you don't like or are allergic too"];
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(36, 10, self.tableView.frame.size.width - 72, 70)];
+    [lbl setText:@"Select the foods you might be allergic to, or any foods you don't like.  We won't send you notifications concerning those specific foods."];
     [lbl setFont:kStandardFont];
     [lbl setBackgroundColor:[UIColor clearColor]];
     [lbl setNumberOfLines:0];
@@ -95,10 +95,26 @@
     return f.examples.count;
 }
 
--(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
+    
     Food *f = (Food *)[foods objectAtIndex:section];
-    return f.title;
+
+    [v setBackgroundColor:f.backgroundColor];
+    
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, v.frame.size.width - 20, 30)];
+    [lbl setBackgroundColor:[UIColor clearColor]];
+    [lbl setText:f.title];
+    [lbl setTextColor:f.textColor];
+    [v addSubview:lbl];
+    
+    return v;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 40;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
