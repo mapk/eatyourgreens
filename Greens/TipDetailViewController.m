@@ -9,6 +9,7 @@
 #import "TipDetailViewController.h"
 #import "Tips.h"
 #import "Food.h"
+#import "Utils.h"
 
 @interface TipDetailViewController ()
 
@@ -33,6 +34,7 @@
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
+    
     NSArray *foods = [Food foods];
     Food *food = nil;
     
@@ -41,13 +43,72 @@
             food = f;
     
     
-    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, self.view.frame.size.width, 30)];
-    [lbl setBackgroundColor:[UIColor clearColor]];
+    
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 70, self.view.frame.size.width - 20, 30)];
+    [lbl setBackgroundColor:food.backgroundColor];
     [lbl setText:food.title];
     [lbl setTextColor:food.textColor];
     [self.view addSubview:lbl];
+    
+
+    UILabel *lblFood = [[UILabel alloc] initWithFrame:CGRectZero];
+    [lblFood setFont:[UIFont systemFontOfSize:14.0f]];
+    [lblFood setBackgroundColor:[UIColor clearColor]];
+    [lblFood setNumberOfLines:0];
+    [lblFood setLineBreakMode:NSLineBreakByWordWrapping];
+    [lblFood setText:tips.food];
+    
+    CGSize szFood = [Utils sizeForLabel:lblFood forMaxSize:CGSizeMake(300, 0)];
+    [lblFood setFrame:CGRectMake(10, CGRectGetMaxY(lbl.frame) + 10, szFood.width, szFood.height)];
+    
+    [self.view addSubview:lblFood];
 
     
+    
+    UILabel *lblHeadline = [[UILabel alloc] initWithFrame:CGRectZero];
+    [lblHeadline setFont:[UIFont systemFontOfSize:14.0f]];
+    [lblHeadline setBackgroundColor:[UIColor clearColor]];
+    [lblHeadline setNumberOfLines:0];
+    [lblHeadline setLineBreakMode:NSLineBreakByWordWrapping];
+    [lblHeadline setText:tips.headline];
+
+    CGSize szHeadline = [Utils sizeForLabel:lblHeadline forMaxSize:CGSizeMake(300, 0)];
+    [lblHeadline setFrame:CGRectMake(10, CGRectGetMaxY(lblFood.frame) + 10, szHeadline.width, szHeadline.height)];
+    
+    [self.view addSubview:lblHeadline];
+
+    
+    
+    
+    
+    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectZero];
+    [lblDate setTextAlignment:NSTextAlignmentRight];
+    [lblDate setBackgroundColor:[UIColor clearColor]];
+    [lblDate setText:[tips dateString]];
+    [lblDate setText:[lblDate.text stringByReplacingOccurrencesOfString:@">" withString:@""]];
+    [lblDate setText:[lblDate.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+    
+    CGSize szDate = [Utils sizeForLabel:lblDate forMaxSize:CGSizeZero];
+    [lblDate setFrame:CGRectMake(10, CGRectGetMaxY(lblHeadline.frame) + 10, szDate.width, szDate.height)];
+    
+    [self.view addSubview:lblDate];
+    
+
+    
+    
+    
+    
+    UILabel *detailTextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+
+    [detailTextLabel setText:tips.message];
+    [detailTextLabel setNumberOfLines:0];
+    [detailTextLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    
+    [self.view addSubview:detailTextLabel];
+    
+    CGSize szDetail = [Utils sizeForLabel:detailTextLabel forMaxSize:CGSizeMake(300, 0)];
+    
+    [detailTextLabel setFrame:CGRectMake(10, CGRectGetMaxY(lblDate.frame) + 10, szDetail.width, szDetail.height)];
 }
 
 - (void)didReceiveMemoryWarning

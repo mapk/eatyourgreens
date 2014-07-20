@@ -100,6 +100,7 @@
 {
     EntryViewController *entryViewController = [[EntryViewController alloc] init];
     [entryViewController setEntry:entry];
+    [entryViewController setIsNew:YES];
     [self.navigationController pushViewController:entryViewController animated:YES];
 }
 

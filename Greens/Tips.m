@@ -7,10 +7,14 @@
 //
 
 #import "Tips.h"
+#import "Entry.h"
 
 @implementation Tips
 
 @synthesize color, headline, message, food, date;
+
+static NSString *fileName = @"SavedTips";
+
 
 -(void)encodeWithCoder:(NSCoder *)coder
 {
@@ -35,6 +39,148 @@
     return self;
 }
 
+
++(void)checkForTip
+{
+    BOOL showNewTip = YES;
+    
+    /*
+    NSArray *tips = [Tips fetchSavedTips];
+    
+    if(tips.count == 0)
+        showNewTip = YES;
+    else
+    {
+        Tips *t = (Tips *)[tips firstObject];
+        
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:t.date];
+        time = ABS(time);
+        if(time > 60*60*24*7)
+            showNewTip = YES;
+    }
+
+    NSMutableArray *last7Days = [[NSMutableArray alloc] init];
+
+    if(showNewTip)
+    {
+        NSArray *entries = [Entry fetchFiles];
+        
+        NSDate *thisWeek  = [[NSDate date] dateByAddingTimeInterval: -604800.0];
+
+        for(Entry *e in entries)
+            if([e.date compare:thisWeek] == NSOrderedAscending)
+                [last7Days addObject:e];
+    }
+     */
+
+    if(showNewTip)
+    {
+    
+        NSMutableArray *allTips = [NSMutableArray arrayWithArray:[Tips data]];
+        NSArray *savedTips = [Tips fetchSavedTips];
+        
+        for(int i = (int)allTips.count-1; i>-1; i--)
+        {
+            BOOL found = NO;
+            Tips *t1 = (Tips *)[allTips objectAtIndex:i];
+            
+            for(Tips *t2 in savedTips)
+                if([t1.color isEqualToString:t2.color] && [t1.headline isEqualToString:t2.headline])
+                {
+                    found = YES;
+                    break;
+                }
+            
+            if(found)
+                [allTips removeObjectAtIndex:i];
+        }
+        
+        //  remember to exclude foods the user has said they don't like
+        
+        
+        
+        
+        if(allTips.count > 0)
+        {
+        
+            NSInteger i = arc4random() % allTips.count;
+            Tips *t = (Tips *)[allTips objectAtIndex:i];
+            [t save];
+    
+            UILocalNotification *localNotification = [[UILocalNotification alloc] init];
+            [localNotification setAlertBody:t.headline];
+            [localNotification setFireDate:[[NSDate date] dateByAddingTimeInterval:30]];
+        //    [localNotification setUserInfo:dict];
+            [localNotification setSoundName:UILocalNotificationDefaultSoundName];
+            
+            [[UIApplication sharedApplication] scheduleLocalNotification:localNotification];
+        }
+    }
+}
+
++(void)clearTips
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *filePath = [DOCUMENTS_FOLDER stringByAppendingPathComponent:fileName];
+    if([fileManager fileExistsAtPath:filePath])
+        [fileManager removeItemAtPath:filePath error:nil];
+}
+
++(NSArray *)fetchSavedTips
+{
+     NSFileManager *fileManager = [NSFileManager defaultManager];
+     NSString *filePath = [DOCUMENTS_FOLDER stringByAppendingPathComponent:fileName];
+     bool success = [fileManager fileExistsAtPath:filePath];
+     
+     if(!success) return nil;
+     
+     NSMutableArray *array = (NSMutableArray *)[NSKeyedUnarchiver unarchiveObjectWithFile:filePath];
+     
+     NSArray *a = [array sortedArrayUsingComparator:^NSComparisonResult(Tips *v1, Tips *v2){
+         return [v2.date compare:v1.date];
+     }];
+    
+    return a;
+    
+}
+
+-(BOOL)save
+{
+     NSMutableArray *array = [NSMutableArray arrayWithArray:[Tips fetchSavedTips]];
+     
+     if(!array)
+         array = [[NSMutableArray alloc] init];
+     
+    
+     BOOL found = NO;
+     
+     if(array.count > 0)
+     {
+         for(int i = 0;i<array.count;i++)
+         {
+             Tips *v = (Tips *)[array objectAtIndex:i];
+     
+             if([v.color isEqualToString:self.color] && [v.headline isEqualToString:self.headline])
+             {
+                 [array removeObjectAtIndex:i];
+                 [array insertObject:self atIndex:i];
+     
+                 found = YES;
+                 break;
+             }
+         }
+     }
+     
+     if(!found)
+         [array addObject:self];
+     
+     [Tips clearTips];
+     
+     NSString *filePath = [DOCUMENTS_FOLDER stringByAppendingPathComponent:fileName];
+     [NSKeyedArchiver archiveRootObject:array toFile:filePath];
+     
+     return YES;
+}
 
 
 -(NSString *)dateString

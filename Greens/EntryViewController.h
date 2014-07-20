@@ -22,10 +22,12 @@
     UIPageControl *pager;
     BOOL pageControlBeingUsed;
     NSMutableArray *pies;
+    
 }
 
 @property (nonatomic, strong) Entry *entry;
 @property (nonatomic, strong) NSArray *entries;
 @property (nonatomic, assign) NSInteger index;
+@property (nonatomic, assign) BOOL isNew;
 
 @end

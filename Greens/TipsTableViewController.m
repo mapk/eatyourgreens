@@ -35,7 +35,7 @@
     
     [self.tableView setTableHeaderView:[self tableHeader]];
     
-    array = [NSMutableArray arrayWithArray:[Tips data]];
+    array = [NSMutableArray arrayWithArray:[Tips fetchSavedTips]];
     
     for(int i = 0;i<array.count;i++)
     {

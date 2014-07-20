@@ -10,6 +10,7 @@
 
 @interface Tips : NSObject <NSCoding>
 
+
 @property (nonatomic, strong) NSString *color;
 @property (nonatomic, strong) NSString *headline;
 @property (nonatomic, strong) NSString *message;
@@ -17,7 +18,11 @@
 @property (nonatomic, strong) NSDate *date;
 
 -(NSString *)dateString;
+-(BOOL)save;
+
++(void)checkForTip;
 +(NSArray *)data;
 +(Tips *)tipWithColor:(NSString *)c withHeadline:(NSString *)h withMessage:(NSString *)m withFood:(NSString *)f;
-
++(NSArray *)fetchSavedTips;
++(void)clearTips;
 @end

@@ -159,6 +159,13 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)application:(UIApplication *)app didReceiveLocalNotification:(UILocalNotification *)notif
+{
+    UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
+    [tab setSelectedIndex:3];
+}
+
+
 -(void)removeView:(UIView *)view
 {
     [view removeFromSuperview];

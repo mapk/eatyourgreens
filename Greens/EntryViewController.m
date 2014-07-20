@@ -11,6 +11,7 @@
 #import "Entry.h"
 #import "DescriptionViewController.h"
 #import "Utils.h"
+#import "Tips.h"
 
 @interface EntryViewController ()
 
@@ -18,7 +19,7 @@
 
 @implementation EntryViewController
 
-@synthesize entry, entries, index;
+@synthesize entry, entries, index, isNew;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,9 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
     self.edgesForExtendedLayout = UIRectEdgeNone;
-
     
     [self.view setBackgroundColor:[UIColor colorWithRed:242.0f/255.0f green:242.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     pies = [[NSMutableArray alloc] init];
@@ -56,6 +55,9 @@
         [pager setCurrentPage:index];
         [self.view addSubview:pager];
     }
+    
+    if(isNew)
+        [Tips checkForTip];
     
 }
 
