@@ -35,8 +35,9 @@
     
     [self.tableView setTableHeaderView:[self tableHeader]];
     
-    array = [NSMutableArray arrayWithArray:[Tips fetchSavedTips]];
+    searchArray = [NSMutableArray arrayWithArray:[Tips fetchSavedTips]];
     
+    /*
     for(int i = 0;i<array.count;i++)
     {
         Tips *t = (Tips *)[array objectAtIndex:i];
@@ -46,8 +47,9 @@
         
         [t setDate:daysAgo];
     }
+    */
     
-    searchArray = [NSMutableArray arrayWithArray:array];
+//    searchArray = [NSMutableArray arrayWithArray:array];
     
 }
 

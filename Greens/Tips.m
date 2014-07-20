@@ -126,6 +126,7 @@ static NSString *fileName = @"SavedTips";
         
             NSInteger i = arc4random() % allTips.count;
             Tips *t = (Tips *)[allTips objectAtIndex:i];
+            [t setDate:[NSDate date]];
             [t save];
     
             UILocalNotification *localNotification = [[UILocalNotification alloc] init];
