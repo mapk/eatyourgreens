@@ -95,10 +95,31 @@ static NSString *fileName = @"SavedTips";
                 [allTips removeObjectAtIndex:i];
         }
         
-        //  remember to exclude foods the user has said they don't like
+        NSMutableArray *disliked = [[NSMutableArray alloc] init];
         
+        NSDictionary *selected =  [NSMutableDictionary dictionaryWithDictionary:(NSDictionary *)[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"selectedFoods"]];
         
+        if(selected)
+        {
+            for(id key in selected)
+            {
+                NSNumber *n = (NSNumber *)[selected objectForKey:key];
+                if(n.boolValue)
+                    [disliked addObject:(NSString *)key];
+            }
+        }
         
+        for(int i = (int)allTips.count-1; i>-1; i--)
+        {
+            Tips *t1 = (Tips *)[allTips objectAtIndex:i];
+            
+            for(NSString *s in disliked)
+                if([s isEqualToString:t1.food])
+                {
+                    [allTips removeObjectAtIndex:i];
+                    break;
+                }
+        }
         
         if(allTips.count > 0)
         {
@@ -109,7 +130,7 @@ static NSString *fileName = @"SavedTips";
     
             UILocalNotification *localNotification = [[UILocalNotification alloc] init];
             [localNotification setAlertBody:t.headline];
-            [localNotification setFireDate:[[NSDate date] dateByAddingTimeInterval:30]];
+            [localNotification setFireDate:[[NSDate date] dateByAddingTimeInterval:120]];
         //    [localNotification setUserInfo:dict];
             [localNotification setSoundName:UILocalNotificationDefaultSoundName];
             
