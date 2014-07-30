@@ -34,6 +34,9 @@ static NSString *fileName = @"SavedTips";
         message = [coder decodeObjectForKey:@"message"];
         food = [coder decodeObjectForKey:@"food"];
         date = [coder decodeObjectForKey:@"date"];
+        
+        if(!date)
+            date = [NSDate date];
     }
     
     return self;
@@ -42,36 +45,106 @@ static NSString *fileName = @"SavedTips";
 
 +(void)checkForTip
 {
-    BOOL showNewTip = YES;
+    NSInteger numOfDays = 1;
     
-    /*
+    BOOL showNewTip = NO;
+    BOOL first = NO;
+    NSDate *dateLastTip = [NSDate dateWithTimeIntervalSince1970:0];
+    
     NSArray *tips = [Tips fetchSavedTips];
     
     if(tips.count == 0)
-        showNewTip = YES;
+        first = YES;
     else
     {
         Tips *t = (Tips *)[tips firstObject];
         
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:t.date];
         time = ABS(time);
-        if(time > 60*60*24*7)
-            showNewTip = YES;
+        if(time > 60*60*24*numOfDays)
+        {
+            first = YES;
+            dateLastTip = t.date;
+        }
     }
+    
+//    first = YES;
 
-    NSMutableArray *last7Days = [[NSMutableArray alloc] init];
+    NSString *lowestColor = @"";
+    NSInteger lowestNumber = 999999;
 
-    if(showNewTip)
+
+    if(first)
     {
+        NSMutableArray *last7Days = [[NSMutableArray alloc] init];
         NSArray *entries = [Entry fetchFiles];
-        
-        NSDate *thisWeek  = [[NSDate date] dateByAddingTimeInterval: -604800.0];
 
         for(Entry *e in entries)
-            if([e.date compare:thisWeek] == NSOrderedAscending)
+            if([e.date compare:dateLastTip] == NSOrderedAscending)
                 [last7Days addObject:e];
+        
+        if(last7Days.count > 0)
+        {
+            showNewTip = YES;
+            
+            NSMutableArray *colors = [[NSMutableArray alloc] init];
+            
+            for(Entry *e in last7Days)
+                for(EntryPoint *ep in e.entryPoints)
+                    [colors addObject:[ep colorText]];
+
+            NSString *sRed = @"Red";
+            NSString *sOrangeYellow = @"Orange/Yellow";
+            NSString *sGreen = @"Green";
+            NSString *sWhiteTan = @"White/Tan";
+            NSString *sBluePurple = @"Blue/Purple";
+
+            NSInteger iRed = 0;
+            NSInteger iOrangeYellow = 0;
+            NSInteger iGreen = 0;
+            NSInteger iWhiteTan = 0;
+            NSInteger iBluePurple = 0;
+
+            for(NSString *s in colors)
+            {
+                if([s isEqualToString:sRed])
+                    iRed++;
+                else if([s isEqualToString:sOrangeYellow])
+                    iOrangeYellow++;
+                else if([s isEqualToString:sGreen])
+                    iGreen++;
+                else if([s isEqualToString:sWhiteTan])
+                    iWhiteTan++;
+                else if([s isEqualToString:sBluePurple])
+                    iBluePurple++;
+            }
+            
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+            [dict setObject:[NSNumber numberWithInteger:iRed] forKey:sRed];
+            [dict setObject:[NSNumber numberWithInteger:iOrangeYellow] forKey:sOrangeYellow];
+            [dict setObject:[NSNumber numberWithInteger:iGreen] forKey:sGreen];
+            [dict setObject:[NSNumber numberWithInteger:iWhiteTan] forKey:sWhiteTan];
+            [dict setObject:[NSNumber numberWithInteger:iBluePurple] forKey:sBluePurple];
+            
+            for(id key in dict)
+            {
+                NSNumber *n = [dict objectForKey:key];
+                if(n.integerValue < lowestNumber)
+                {
+                    lowestNumber = n.integerValue;
+                    lowestColor = (NSString *)key;
+                }
+            }
+        }
     }
-     */
+    
+    
+    
+    
+    
+    
+    
+    
 
     if(showNewTip)
     {
@@ -121,6 +194,14 @@ static NSString *fileName = @"SavedTips";
                 }
         }
         
+        for(int i = (int)allTips.count;i>-1;i--)
+        {
+            Tips *t1 = (Tips *)[allTips objectAtIndex:i];
+            if(![t1.color isEqualToString:lowestColor])
+                [allTips removeObjectAtIndex:i];
+        }
+        
+        
         if(allTips.count > 0)
         {
         
@@ -131,7 +212,7 @@ static NSString *fileName = @"SavedTips";
     
             UILocalNotification *localNotification = [[UILocalNotification alloc] init];
             [localNotification setAlertBody:t.headline];
-            [localNotification setFireDate:[[NSDate date] dateByAddingTimeInterval:120]];
+            [localNotification setFireDate:[[NSDate date] dateByAddingTimeInterval:60*60*2]];
         //    [localNotification setUserInfo:dict];
             [localNotification setSoundName:UILocalNotificationDefaultSoundName];
             
@@ -263,6 +344,7 @@ static NSString *fileName = @"SavedTips";
     [t setHeadline:h];
     [t setMessage:m];
     [t setFood:f];
+    [t setDate:[NSDate date]];
     
     return t;
 }

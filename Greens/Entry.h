@@ -13,6 +13,8 @@
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, assign) CGPoint point;
 
+-(NSString *)colorText;
+
 @end
 
 @interface Entry : NSObject <NSCoding>
@@ -28,5 +30,5 @@
 
 -(NSString *)longDate;
 -(NSString *)shortTime;
-
+-(NSString *)colorText;
 @end

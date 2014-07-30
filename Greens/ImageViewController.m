@@ -9,6 +9,7 @@
 #import "ImageViewController.h"
 #import "UIView+ColorOfPoint.h"
 #import "Entry.h"
+#import "Tips.h"
 
 @interface ImageViewController ()
 
@@ -105,6 +106,17 @@
     
     [entry setEntryPoints:entryPoints];
     [entry save];
+    
+    [Tips checkForTip];
+    
+/*
+    NSMutableString *s = [[NSMutableString alloc] initWithString:@""];
+    
+    for(EntryPoint *ep in entryPoints)
+        [s appendFormat:@"\n%@", [ep colorText]];
+    
+    [[[UIAlertView alloc] initWithTitle:nil message:s delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+*/    
     
     if(delegate && [delegate respondsToSelector:@selector(imageViewController:savedForEntry:)])
         [delegate imageViewController:self savedForEntry:entry];
