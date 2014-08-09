@@ -31,11 +31,13 @@
 
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
-    [self setTitle:@"Tips & Reminders"];
+    [self setTitle:@"Tips"];
     
     [self.tableView setTableHeaderView:[self tableHeader]];
     
-    searchArray = [NSMutableArray arrayWithArray:[Tips fetchSavedTips]];
+//    searchArray = [NSMutableArray arrayWithArray:[Tips fetchSavedTips]];
+    
+    searchArray = [NSMutableArray arrayWithArray:[Tips data]];
     
     /*
     for(int i = 0;i<array.count;i++)
@@ -97,36 +99,47 @@
     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     UILabel *lblHeadline, *lblDate;
+    UIView *vSide;
     
     if (cell == nil)
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
         
         lblHeadline = [[UILabel alloc] initWithFrame:CGRectMake(15, 25, 260, 20)];
-        [lblHeadline setFont:[UIFont systemFontOfSize:14.0f]];
+        [lblHeadline setFont:kStandardFont];
         [lblHeadline setTag:999];
         [lblHeadline setBackgroundColor:[UIColor clearColor]];
         [cell.contentView addSubview:lblHeadline];
         
-        lblDate = [[UILabel alloc] initWithFrame:CGRectMake(220, 5, 95, 20)];
+        lblDate = [[UILabel alloc] initWithFrame:CGRectMake(210, 5, 95, 20)];
         [lblDate setTag:998];
         [lblDate setTextAlignment:NSTextAlignmentRight];
         [lblDate setBackgroundColor:[UIColor clearColor]];
         [lblDate setTextColor:[UIColor lightGrayColor]];
-        [lblDate setFont:[UIFont systemFontOfSize:14.0f]];
+        [lblDate setFont:kStandardFont];
         [cell.contentView addSubview:lblDate];
+        
+        vSide = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 80)];
+        [vSide setTag:997];
+        [cell.contentView addSubview:vSide];
         
     }
     else
     {
         lblHeadline = (UILabel *)[cell.contentView viewWithTag:999];
         lblDate = (UILabel *)[cell.contentView viewWithTag:998];
+        vSide = (UIView *)[cell.contentView viewWithTag:997];
     }
     
+    [cell setBackgroundColor:kColor_Background];
+    
+    
     Tips *t = (Tips *)[searchArray objectAtIndex:indexPath.row];
-    [cell.textLabel setText:[NSString stringWithFormat:@"%@\n ", t.color]];
+    [cell.textLabel setText:[NSString stringWithFormat:@"%@\n ", t.colorText]];
     [cell.textLabel setNumberOfLines:2];
     [cell.textLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:15.0f]];
+    [cell.textLabel setBackgroundColor:[UIColor clearColor]];
     
     [lblHeadline setText:t.headline];
     [lblDate setText:[t dateString]];
@@ -134,6 +147,11 @@
     [cell.detailTextLabel setText:t.message];
     [cell.detailTextLabel setTextColor:[UIColor lightGrayColor]];
     [cell.detailTextLabel setNumberOfLines:2];
+    [cell.detailTextLabel setFont:kStandardFont];
+    [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];
+
+    [vSide setBackgroundColor:t.color];
+
     
     return cell;
 }

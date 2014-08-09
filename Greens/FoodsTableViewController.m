@@ -30,7 +30,7 @@
 {
     [super viewDidLoad];
         
-    [self setTitle:@"Food Colors"];
+    [self setTitle:@"Colors"];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
@@ -47,13 +47,12 @@
 {
     [super viewWillAppear:animated];
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [self setTitle:@"Food Colors"];
+//    [self setTitle:@"Colors"];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self setTitle:@"Back"];
 }
 
 #pragma mark - Table view data source
@@ -99,6 +98,18 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    for(int i = 0;i<self.tabBarController.tabBar.subviews.count;i++)
+    {
+        UIView *v = (UIView *)[self.tabBarController.tabBar.subviews objectAtIndex:i];
+        if(v.tag == 999)
+            return;
+    }
+    
+    
+    
+    
+//    [self setTitle:@"Back"];
+
     Food *f = (Food *)[foods objectAtIndex:indexPath.row];
     FoodDetailTableViewController *detail = [[FoodDetailTableViewController alloc] initWithStyle:UITableViewStylePlain];
     [detail setFood:f];

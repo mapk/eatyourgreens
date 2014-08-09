@@ -55,7 +55,7 @@
 
     UIImage *imgCrosshair = [UIImage imageNamed:@"btn-crosshair-new"];
     imgViewCrossHair = [[UIImageView alloc] initWithImage:imgCrosshair];
-    [imgViewCrossHair setFrame:CGRectMake(self.view.frame.size.width - imgCrosshair.size.width - 10, 25, imgCrosshair.size.width, imgCrosshair.size.height)];
+    [imgViewCrossHair setFrame:CGRectMake(self.view.frame.size.width - imgCrosshair.size.width - 10 , 25 + imgCrosshair.size.height/2, imgCrosshair.size.width, imgCrosshair.size.height)];
     [self.view addSubview:imgViewCrossHair];
     
     if(entry.entryPoints.count > 0)

@@ -105,6 +105,7 @@
     
     UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, v.frame.size.width - 20, 30)];
     [lbl setBackgroundColor:[UIColor clearColor]];
+    [lbl setFont:kStandardFont];
     [lbl setText:f.title];
     [lbl setTextColor:f.textColor];
     [v addSubview:lbl];
@@ -133,13 +134,20 @@
     NSString *s = (NSString *)[f.examples objectAtIndex:indexPath.row];
     
     [cell.textLabel setText:s];
+    [cell.textLabel setFont:kStandardFont];
     
     NSNumber *n = (NSNumber *)[selected objectForKey:s];
     
     if([n boolValue])
+    {
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [cell.textLabel setTextColor:[UIColor lightGrayColor]];
+    }
     else
+    {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell.textLabel setTextColor:[UIColor blackColor]];
+    }
     
     
     return cell;

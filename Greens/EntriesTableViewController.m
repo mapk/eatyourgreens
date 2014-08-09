@@ -29,7 +29,7 @@
 {
     [super viewDidLoad];
 
-    [self setTitle:@"Meal Entries"];
+    [self setTitle:@"Entries"];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 

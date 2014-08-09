@@ -11,18 +11,19 @@
 @interface Tips : NSObject <NSCoding>
 
 
-@property (nonatomic, strong) NSString *color;
+@property (nonatomic, strong) NSString *colorText;
 @property (nonatomic, strong) NSString *headline;
 @property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) NSString *food;
 @property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) UIColor *color;
 
 -(NSString *)dateString;
 -(BOOL)save;
 
 +(void)checkForTip;
 +(NSArray *)data;
-+(Tips *)tipWithColor:(NSString *)c withHeadline:(NSString *)h withMessage:(NSString *)m withFood:(NSString *)f;
++(Tips *)tipWithColorText:(NSString *)c withHeadline:(NSString *)h withMessage:(NSString *)m withFood:(NSString *)f withColor:(UIColor *)color;
 +(NSArray *)fetchSavedTips;
 +(void)clearTips;
 @end

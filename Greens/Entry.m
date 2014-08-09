@@ -177,7 +177,7 @@
         }
     
     return [array sortedArrayUsingComparator:^NSComparisonResult(Entry *e1, Entry *e2){
-        return [e1.date compare:e2.date];
+        return [e2.date compare:e1.date];
     }];
 
 }

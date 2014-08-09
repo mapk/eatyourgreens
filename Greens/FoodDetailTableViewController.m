@@ -97,7 +97,7 @@
     else
     {
         [cell.textLabel setTextColor:[UIColor colorWithRed:80.0f/255.0f green:84.0f/255.0f blue:93.0f/255.0f alpha:1.0f]];
-        [cell setBackgroundColor:[UIColor colorWithRed:243.0f/255.0f green:243.0f/255.0f blue:243.0f/255.0f alpha:1.0f]];
+        [cell setBackgroundColor:kColor_Background];
 
         if(indexPath.row == 1)
         {

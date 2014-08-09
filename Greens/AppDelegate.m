@@ -38,7 +38,7 @@
     TipsTableViewController *vc4 = [[TipsTableViewController alloc] init];
     SettingsTableViewController *vc5 = [[SettingsTableViewController alloc] init];
     
-    UITabBarItem *tb1 = [[UITabBarItem alloc] initWithTitle:@"Foods" image:[UIImage imageNamed:@"nav-apple"] selectedImage:[UIImage imageNamed:@"nav-apple-active"]];
+    UITabBarItem *tb1 = [[UITabBarItem alloc] initWithTitle:@"Colors" image:[UIImage imageNamed:@"nav-apple"] selectedImage:[UIImage imageNamed:@"nav-apple-active"]];
     UITabBarItem *tb2 = [[UITabBarItem alloc] initWithTitle:@"Entries" image:[UIImage imageNamed:@"nav-colorwheel"] selectedImage:[UIImage imageNamed:@"nav-colorwheel-active"]];
     UITabBarItem *tb3 = [[UITabBarItem alloc] initWithTitle:@"Camera" image:[UIImage imageNamed:@"nav-camera"] tag:999];
     UITabBarItem *tb4 = [[UITabBarItem alloc] initWithTitle:@"Tips" image:[UIImage imageNamed:@"nav-book"] selectedImage:[UIImage imageNamed:@"nav-book-active"]];
