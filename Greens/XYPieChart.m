@@ -475,6 +475,9 @@ static CGPathRef CGPathCreateArc(CGPoint center, CGFloat radius, CGFloat startAn
     if ([_animations count] == 0) {
         [_animationTimer invalidate];
         _animationTimer = nil;
+        
+        if ([_delegate respondsToSelector:@selector(animationCompleteForPieChart:)])
+            [_delegate animationCompleteForPieChart:self];
     }
 }
 

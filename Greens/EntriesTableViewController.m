@@ -148,7 +148,8 @@
     [df setTimeStyle:NSDateFormatterShortStyle];
     
     [cell.detailTextLabel setText:[df stringFromDate:entry.date]];
-    [cell.imageView setImage:[UIImage imageNamed:@"nav-colorwheel-active"]];
+    [cell.imageView setImage:entry.icon];
+//    [cell.imageView setImage:[UIImage imageNamed:@"nav-colorwheel-active"]];
     
     return cell;
 }

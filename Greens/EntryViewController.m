@@ -115,6 +115,8 @@
     [pie setDataSource:self];
     [pie setDelegate:self];
     [pie setLabelColor:[UIColor clearColor]];
+    
+    
 
     [wheelImageView addSubview:pie];
     [pie reloadData];
@@ -222,10 +224,8 @@
     [self.tabBarController presentViewController:imageViewController animated:YES completion:nil];
 }
 
--(void)share:(id)sender
+-(UIImage *)imageForPieForTag:(NSInteger)tag
 {
-    UIButton *btn = (UIButton *)sender;
-    NSInteger tag = btn.tag;
 
     UIView *view = nil;
     
@@ -244,10 +244,18 @@
                     view = v1;
     }
     
-    UIImage *img = [Utils imageWithView:view];
+    return [Utils imageWithView:view];
+
+}
+
+-(void)share:(id)sender
+{
+    UIButton *btn = (UIButton *)sender;
+    NSInteger tag = btn.tag;
+
+    UIImage *img = [self imageForPieForTag:tag];
     
-    
-    NSString *s = [NSString stringWithFormat:@"Download #Eat Your Greens: http://eatyourgreens.com "];
+    NSString *s = [NSString stringWithFormat:@"Download #Eat Your Greens: http://eatyourgreensapp.com"];
     
     NSArray *items  = [NSArray arrayWithObjects:s,img,nil];
     
@@ -262,6 +270,12 @@
                                                        UIActivityTypeAddToReadingList,
                                                        UIActivityTypeAssignToContact,
                                                        UIActivityTypePrint];
+    
+    
+    NSAttributedString *as = [[NSAttributedString alloc] initWithString:@"Cancel" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:65.f/255.0f green:70.f/255.0f blue:80.f/255.0f alpha:1.0f]}];
+    [[UIButton appearanceWhenContainedIn:[UIActivityViewController class], nil] setAttributedTitle:as forState:UIControlStateNormal];
+    
+    
     
     [self presentViewController:activityViewController animated:YES completion:nil];
 
@@ -321,6 +335,16 @@
 -(void)pieChart:(XYPieChart *)pieChart willSelectSliceAtIndex:(NSUInteger)index
 {}
 
+-(void)animationCompleteForPieChart:(XYPieChart *)pieChart
+{
+    if(!entry.iconPath)
+    {
+        UIImage *image = [self imageForPieForTag:pieChart.tag];
+        image = [Utils image:image byScalingAndCroppingForSize:CGSizeMake(60, 60)];
+        [entry setIcon:image];
+        [entry save];
+    }
+}
 
 #pragma mark ImageViewControllerDelegate methods
 -(void)imageViewController:(ImageViewController *)imageViewController savedForEntry:(Entry *)ent

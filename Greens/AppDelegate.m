@@ -123,7 +123,7 @@
     [lbl setTextAlignment:NSTextAlignmentCenter];
     [lbl setNumberOfLines:2];
     [lbl setLineBreakMode:NSLineBreakByWordWrapping];
-    [lbl setFrame:CGRectMake(25, CGRectGetMaxY(imgView.frame) + 10, 270, 35)];
+    [lbl setFrame:CGRectMake(25, v.frame.size.height - 60, 270, 35)];
     [lbl setFont:kStandardFont];
     [v addSubview:lbl];
     
@@ -265,6 +265,8 @@
 #pragma mark UIImagePickerControllerDelegate methods
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
+    loadingWindow = [Utils showLoadingScreen];
+    
     [self.window.rootViewController dismissViewControllerAnimated:YES completion:^{
     
         if([info objectForKey:UIImagePickerControllerOriginalImage])
@@ -284,7 +286,9 @@
             imageViewController = [[ImageViewController alloc] init];
             [imageViewController setDelegate:self];
             [imageViewController setEntry:entry];
-            [self.window.rootViewController presentViewController:imageViewController animated:YES completion:nil];
+            [self.window.rootViewController presentViewController:imageViewController animated:YES completion:^{
+                [Utils dismissLoadingWindow:loadingWindow];
+            }];
         }
     }];
 }
@@ -292,7 +296,11 @@
 #pragma mark ImageViewControllerDelegate methods
 -(void)imageViewController:(ImageViewController *)imageViewController savedForEntry:(Entry *)entry
 {
-    [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
+    loadingWindow = [Utils showLoadingScreen];
+    
+    [self.window.rootViewController dismissViewControllerAnimated:YES completion:^{
+        [Utils dismissLoadingWindow:loadingWindow];
+    }];
     
     UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
     

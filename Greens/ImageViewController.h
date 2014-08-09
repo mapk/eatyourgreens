@@ -20,7 +20,7 @@
     
     id <ImageViewControllerDelegate> __unsafe_unretained delegate;
     
-    
+    UIImageView *imageView;
     
     NSTimer *touchTimer;
     MagnifierView *loop;

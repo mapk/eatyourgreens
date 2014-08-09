@@ -23,6 +23,10 @@
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSArray *entryPoints;
 @property (nonatomic, strong) NSString *description;
+@property (nonatomic, strong) NSString *imgPath;
+@property (nonatomic, strong) UIImage *icon;
+@property (nonatomic, strong) NSString *iconPath;
+
 
 -(void)save;
 -(void)remove;
@@ -30,5 +34,5 @@
 
 -(NSString *)longDate;
 -(NSString *)shortTime;
--(NSString *)colorText;
+//-(NSString *)colorText;
 @end

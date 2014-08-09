@@ -34,15 +34,12 @@
     
     [self.view setBackgroundColor:kColor_Background];
     
-    
     NSArray *foods = [Food foods];
     Food *food = nil;
     
     for(Food *f in foods)
-        if([f.title isEqualToString:tips.color])
+        if([f.title isEqualToString:tips.colorText])
             food = f;
-    
-    
     
     UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, 40)];
     [lbl setBackgroundColor:food.backgroundColor];
@@ -50,7 +47,6 @@
     [lbl setTextColor:food.textColor];
     [lbl setFont:kStandardFont];
     [self.view addSubview:lbl];
-    
     
     UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectZero];
     [lblDate setFont:kStandardFont];
@@ -65,8 +61,6 @@
     
     [self.view addSubview:lblDate];
 
-    
-
     UILabel *lblFood = [[UILabel alloc] initWithFrame:CGRectZero];
     [lblFood setFont:kStandardFont];
     [lblFood setBackgroundColor:[UIColor clearColor]];
@@ -78,8 +72,6 @@
     [lblFood setFrame:CGRectMake(10, CGRectGetMaxY(lblDate.frame) + 10, szFood.width, szFood.height)];
     
     [self.view addSubview:lblFood];
-
-    
     
     UILabel *lblHeadline = [[UILabel alloc] initWithFrame:CGRectZero];
     [lblHeadline setFont:kStandardFont];
@@ -92,16 +84,6 @@
     [lblHeadline setFrame:CGRectMake(10, CGRectGetMaxY(lblFood.frame) + 10, szHeadline.width, szHeadline.height)];
     
     [self.view addSubview:lblHeadline];
-
-    
-    
-    
-    
-    
-
-    
-    
-    
     
     UILabel *detailTextLabel = [[UILabel alloc] initWithFrame:CGRectZero];
 

@@ -22,6 +22,8 @@
 +(CGSize)sizeForTextView:(UITextView *)label forMaxSize:(CGSize)maxSize;
 
 
++(id)showLoadingScreen;
++(void)dismissLoadingWindow:(id)window;
 
 
 +(UIImage *)mergeImage:(UIImage *)imageA withImage:(UIImage *)imageB;

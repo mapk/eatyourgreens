@@ -10,6 +10,7 @@
 #import "UIView+ColorOfPoint.h"
 #import "Entry.h"
 #import "Tips.h"
+#import "Utils.h"
 
 @interface ImageViewController ()
 
@@ -32,12 +33,11 @@
 {
     [super viewDidLoad];
 
-    array = [[NSMutableArray alloc] init];
+    [self.view setBackgroundColor:[UIColor blackColor]];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:entry.image];
-    [imageView setUserInteractionEnabled:YES];
-    [imageView setFrame:self.view.frame];
-    [self setView:imageView];
+    array = [[NSMutableArray alloc] init];
+  
+    
     
     UIImage *imgSave = [UIImage imageNamed:@"btn-save-photo"];
     UIButton *btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -79,6 +79,22 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    UIImage *img = [Utils imageWithImage:entry.image scaledToWidth:self.view.frame.size.width*2];
+    
+    imageView = [[UIImageView alloc] initWithImage:img];
+    [imageView setUserInteractionEnabled:YES];
+    
+    [imageView setFrame:CGRectMake(self.view.frame.size.width/2 - img.size.width/4, self.view.frame.size.height/2 - img.size.height/4, img.size.width/2, img.size.height/2)];
+    
+    [self.view addSubview:imageView];
+    [self.view sendSubviewToBack:imageView];
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -96,11 +112,11 @@
     
     NSMutableArray *entryPoints = [[NSMutableArray alloc] init];
     
-    for(UIImageView *imageView in array)
+    for(UIImageView *iv in array)
     {
         EntryPoint *ep = [[EntryPoint alloc] init];
-        [ep setColor:[self.view colorOfPoint:imageView.center]];
-        [ep setPoint:imageView.center];
+        [ep setColor:[self.view colorOfPoint:iv.center]];
+        [ep setPoint:iv.center];
         [entryPoints addObject:ep];
     }
     

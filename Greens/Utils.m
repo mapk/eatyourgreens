@@ -208,4 +208,58 @@
 }
 
 
++(id)showLoadingScreen
+{
+    UIWindow *window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    [window setWindowLevel:UIWindowLevelAlert];
+    [window setBackgroundColor:[UIColor clearColor]];
+    [window setTag:999];
+    
+    UIView *backView = [[UIView alloc] initWithFrame:window.frame];
+    [backView setTag:-1];
+    [backView setBackgroundColor:[UIColor clearColor]];
+    [window addSubview:backView];
+    
+    UIView *view = [[UIView alloc] initWithFrame:window.frame];
+    [view setTag:1000];
+    [view setBackgroundColor:[UIColor blackColor]];
+    [view setCenter:window.center];
+    [view setAlpha:.7f];
+    
+    
+    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [activity startAnimating];
+    [activity setCenter:view.center];
+    [view addSubview:activity];
+    
+    [window addSubview:view];
+    
+    [window addSubview:backView];
+    [window makeKeyAndVisible];
+    
+    return window;
+}
+
++(void)dismissLoadingWindow:(id)window
+{
+    if(window==nil) return;
+    
+    for(NSObject *window in [UIApplication sharedApplication].windows)
+    {
+        if([window isKindOfClass:[UIWindow class]])
+        {
+            UIWindow *win = (UIWindow *)window;
+            if(win.windowLevel == UIWindowLevelNormal)
+                [win makeKeyWindow];
+            else if (win.windowLevel == UIWindowLevelAlert && win.tag == 999)
+            {
+                [win setHidden:YES];
+                [win removeFromSuperview];
+                win = nil;
+            }
+        }
+    }
+}
+
 @end

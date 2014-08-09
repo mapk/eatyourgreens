@@ -7,6 +7,7 @@
 //
 
 #import "Entry.h"
+#import "Utils.h"
 
 @implementation EntryPoint
 
@@ -111,27 +112,56 @@
 
 @implementation Entry
 
-@synthesize image, date, entryPoints, description;
+@synthesize image, date, entryPoints, description, imgPath, icon, iconPath;
 
 -(void)encodeWithCoder:(NSCoder *)coder
 {
-    [coder encodeObject:image forKey:@"image"];
+//    [coder encodeObject:image forKey:@"image"];
     [coder encodeObject:date forKey:@"date"];
     [coder encodeObject:entryPoints forKey:@"entryPoints"];
     [coder encodeObject:description forKey:@"description"];
+    [coder encodeObject:imgPath forKey:@"imgPath"];
+    [coder encodeObject:iconPath forKey:@"iconPath"];
+    
 }
 
 -(id)initWithCoder:(NSCoder *)coder
 {
     if(self = [self init])
     {
-        image = [coder decodeObjectForKey:@"image"];
+//        image = [coder decodeObjectForKey:@"image"];
         date = [coder decodeObjectForKey:@"date"];
         entryPoints = [coder decodeObjectForKey:@"entryPoints"];
         description = [coder decodeObjectForKey:@"description"];
+        imgPath = [coder decodeObjectForKey:@"imgPath"];
+        iconPath = [coder decodeObjectForKey:@"iconPath"];
+        
+        if(imgPath)
+            image = [UIImage imageWithContentsOfFile:imgPath];
+        
+        if(iconPath)
+            icon = [UIImage imageWithContentsOfFile:iconPath];
     }
     
     return self;
+}
+
+-(void)setImage:(UIImage *)img
+{
+    NSString *fileName = [NSString stringWithFormat:@"%@\%@.png", DOCUMENTS_FOLDER, [Utils createGUID]];
+    [self setImgPath:fileName];
+    [UIImagePNGRepresentation(img) writeToFile:fileName atomically:YES];
+    
+    image = img;
+}
+
+-(void)setIcon:(UIImage *)img
+{
+    NSString *fileName = [NSString stringWithFormat:@"%@\%@.png", DOCUMENTS_FOLDER, [Utils createGUID]];
+    [self setIconPath:fileName];
+    [UIImagePNGRepresentation(img) writeToFile:fileName atomically:YES];
+    
+    icon = img;
 }
 
 
