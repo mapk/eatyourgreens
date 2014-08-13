@@ -72,13 +72,14 @@
     [line setBackgroundColor:color];
     [v addSubview:line];
     
-    txtViewDescription = [[UITextView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame) + 5, self.view.frame.size.width, 100)];
+    txtViewDescription = [[UIPlaceHolderTextView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(line.frame) + 5, self.view.frame.size.width, 100)];
     [txtViewDescription setBackgroundColor:[UIColor clearColor]];
     [txtViewDescription setTextColor:color];
     [txtViewDescription setText:entry.description];
     [txtViewDescription setEditable:YES];
     [txtViewDescription setScrollEnabled:YES];
     [txtViewDescription setFont:kStandardFont];
+    [txtViewDescription setPlaceholder:@"Record what you ate, or anything else you'd like to note."];
     [v addSubview:txtViewDescription];
     
     [txtViewDescription becomeFirstResponder];
@@ -105,10 +106,12 @@
         [viewController.view drawViewHierarchyInRect:viewController.view.bounds afterScreenUpdates:NO];
         UIImage *blurImg = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        blurImg = [blurImg applyDarkEffect];
+        
+//        blurImg = [blurImg applyDarkEffect];
+        blurImg = [blurImg applyBlurWithRadius:5 tintColor:[UIColor colorWithWhite:1.0f alpha:0.3f] saturationDeltaFactor:1.0f maskImage:nil];
         
         UIImageView *iv = [[UIImageView alloc] initWithImage:blurImg];
-        [iv setFrame:CGRectMake(0, 0, blurImg.size.width, blurImg.size.height)];
+        [iv setFrame:CGRectMake(0, 64, blurImg.size.width, blurImg.size.height)];
         [self.view addSubview:iv];
         
         [self.view bringSubviewToFront:v];

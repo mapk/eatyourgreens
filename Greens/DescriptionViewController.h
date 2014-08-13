@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIPlaceHolderTextView.h"
 
 @class Entry;
 
 @interface DescriptionViewController : UIViewController <UITextViewDelegate>
 {
-    UITextView *txtViewDescription;
+    UIPlaceHolderTextView *txtViewDescription;
 }
 
 @property (nonatomic, strong) UIViewController *viewController;

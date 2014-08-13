@@ -35,9 +35,9 @@
     
     [self.tableView setTableHeaderView:[self tableHeader]];
     
-//    searchArray = [NSMutableArray arrayWithArray:[Tips fetchSavedTips]];
+    searchArray = [NSMutableArray arrayWithArray:[Tips fetchSavedTips]];
     
-    searchArray = [NSMutableArray arrayWithArray:[Tips data]];
+//    searchArray = [NSMutableArray arrayWithArray:[Tips data]];
     
     /*
     for(int i = 0;i<array.count;i++)

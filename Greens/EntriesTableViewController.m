@@ -9,6 +9,7 @@
 #import "EntriesTableViewController.h"
 #import "EntryViewController.h"
 #import "Entry.h"
+#import "Utils.h"
 
 @interface EntriesTableViewController ()
 
@@ -144,6 +145,10 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:CellIdentifier];
     }
+    else
+        for(UIView *v in cell.contentView.subviews)
+            if(v.tag == 999)
+                [v removeFromSuperview];
     
     NSArray *array = (NSArray *)[entrySections objectAtIndex:indexPath.section];
     Entry *entry = (Entry *)[array objectAtIndex:indexPath.row];
@@ -153,8 +158,15 @@
     [df setTimeStyle:NSDateFormatterShortStyle];
     
     [cell.detailTextLabel setText:[df stringFromDate:entry.date]];
-    [cell.imageView setImage:entry.icon];
+    
+    UIImage *img = [Utils imageWithColor:[UIColor clearColor] andSize:CGSizeMake(40, 40)];
+    [cell.imageView setImage:img];
 //    [cell.imageView setImage:[UIImage imageNamed:@"nav-colorwheel-active"]];
+    
+    UIImageView *iv = [[UIImageView alloc] initWithImage:entry.icon];
+    [iv setFrame:CGRectMake(10, 5, 40, 40)];
+    [iv setTag:999];
+    [cell.contentView addSubview:iv];
     
     return cell;
 }

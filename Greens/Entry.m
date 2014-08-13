@@ -148,7 +148,7 @@
 
 -(void)setImage:(UIImage *)img
 {
-    NSString *fileName = [NSString stringWithFormat:@"%@\%@.png", DOCUMENTS_FOLDER, [Utils createGUID]];
+    NSString *fileName = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, [Utils createGUID]];
     [self setImgPath:fileName];
     [UIImagePNGRepresentation(img) writeToFile:fileName atomically:YES];
     
@@ -157,13 +157,20 @@
 
 -(void)setIcon:(UIImage *)img
 {
-    NSString *fileName = [NSString stringWithFormat:@"%@\%@.png", DOCUMENTS_FOLDER, [Utils createGUID]];
+    NSString *fileName = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, [Utils createGUID]];
     [self setIconPath:fileName];
     [UIImagePNGRepresentation(img) writeToFile:fileName atomically:YES];
     
     icon = img;
 }
 
+-(UIImage *)icon
+{
+    if(!icon && iconPath)
+        icon = [UIImage imageWithContentsOfFile:iconPath];
+    
+    return icon;
+}
 
 -(void)save
 {

@@ -25,6 +25,7 @@
 		A32C6741194799C200A4AA93 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A32C6740194799C200A4AA93 /* Images.xcassets */; };
 		A35E00F9197AD33C002610BD /* Tips.m in Sources */ = {isa = PBXBuildFile; fileRef = A35E00F8197AD33C002610BD /* Tips.m */; };
 		A35E00FC197AFBD9002610BD /* TipDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35E00FB197AFBD9002610BD /* TipDetailViewController.m */; };
+		A3724BE9199BFFA700293B3C /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3724BE8199BFFA700293B3C /* UIPlaceHolderTextView.m */; };
 		A38BF75A195738690047C0EF /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = A38BF759195738690047C0EF /* Entry.m */; };
 		A38BF75F195B62970047C0EF /* btn-cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A38BF75C195B62970047C0EF /* btn-cancel@2x.png */; };
 		A38BF760195B62970047C0EF /* btn-crosshair-new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A38BF75D195B62970047C0EF /* btn-crosshair-new@2x.png */; };
@@ -126,6 +127,8 @@
 		A35E00F8197AD33C002610BD /* Tips.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tips.m; sourceTree = "<group>"; };
 		A35E00FA197AFBD9002610BD /* TipDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TipDetailViewController.h; sourceTree = "<group>"; };
 		A35E00FB197AFBD9002610BD /* TipDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipDetailViewController.m; sourceTree = "<group>"; };
+		A3724BE7199BFFA700293B3C /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
+		A3724BE8199BFFA700293B3C /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
 		A38BF758195738690047C0EF /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		A38BF759195738690047C0EF /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
 		A38BF75B195944400047C0EF /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstants.h; sourceTree = "<group>"; };
@@ -294,6 +297,8 @@
 				A3D71E8D194A01DB0046C5C2 /* TipsTableViewController.m */,
 				A3DC3A3D195DF80100E4F8AF /* UIImage+ImageEffects.h */,
 				A3DC3A3E195DF80100E4F8AF /* UIImage+ImageEffects.m */,
+				A3724BE7199BFFA700293B3C /* UIPlaceHolderTextView.h */,
+				A3724BE8199BFFA700293B3C /* UIPlaceHolderTextView.m */,
 				A3D677B51956412500B07927 /* UIView+ColorOfPoint.h */,
 				A3D677B61956412500B07927 /* UIView+ColorOfPoint.m */,
 				A3D71E95194A31810046C5C2 /* Utils.h */,
@@ -521,6 +526,7 @@
 				A3D71E94194A02020046C5C2 /* FoodsTableViewController.m in Sources */,
 				A38BF75A195738690047C0EF /* Entry.m in Sources */,
 				A3216A7E196880F50006D0DB /* MagnifierView.m in Sources */,
+				A3724BE9199BFFA700293B3C /* UIPlaceHolderTextView.m in Sources */,
 				A3D71E97194A31810046C5C2 /* Utils.m in Sources */,
 				A3D677BA1956468400B07927 /* EntryViewController.m in Sources */,
 				A3D677B4195637F400B07927 /* ImageViewController.m in Sources */,
@@ -687,7 +693,7 @@
 				GCC_PREFIX_HEADER = "Greens/Greens-Prefix.pch";
 				INFOPLIST_FILE = "Greens/Greens-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "69CA209C-102F-401B-BF9F-B648B436FB10";
+				PROVISIONING_PROFILE = "4da8bab7-942d-4d5f-a7ef-c3f5c25e1506";
 				WRAPPER_EXTENSION = app;
 			};
 			name = AdHoc;
