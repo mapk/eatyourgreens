@@ -68,9 +68,9 @@
 
 -(UIView *)headerView
 {
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 90)];
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 100)];
     
-    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(36, 10, self.tableView.frame.size.width - 72, 70)];
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, self.tableView.frame.size.width - 40, 80)];
     [lbl setText:@"Select the foods you might be allergic to, or any foods you don't like.  We won't send you notifications concerning those specific foods."];
     [lbl setFont:kStandardFont];
     [lbl setBackgroundColor:[UIColor clearColor]];
@@ -105,8 +105,8 @@
     
     UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, v.frame.size.width - 20, 30)];
     [lbl setBackgroundColor:[UIColor clearColor]];
-    [lbl setFont:kStandardFont];
-    [lbl setText:f.title];
+    [lbl setFont:[UIFont systemFontOfSize:17.0f]];
+    [lbl setText:[NSString stringWithFormat:@" %@",f.title]];
     [lbl setTextColor:f.textColor];
     [v addSubview:lbl];
     

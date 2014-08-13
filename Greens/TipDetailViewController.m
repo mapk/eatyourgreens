@@ -43,9 +43,9 @@
     
     UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, 40)];
     [lbl setBackgroundColor:food.backgroundColor];
-    [lbl setText:[NSString stringWithFormat:@"    %@", food.title]];
+    [lbl setText:[NSString stringWithFormat:@"  %@", food.title]];
     [lbl setTextColor:food.textColor];
-    [lbl setFont:kStandardFont];
+    [lbl setFont:[UIFont systemFontOfSize:17.0f]];
     [self.view addSubview:lbl];
     
     UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectZero];

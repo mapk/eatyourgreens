@@ -62,15 +62,15 @@
     {
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectZero];
         [lbl setText:food.description];
-        [lbl setFont:kStandardFont];
+        [lbl setFont:[UIFont systemFontOfSize:17.0f]];
         [lbl setLineBreakMode:NSLineBreakByWordWrapping];
         [lbl setNumberOfLines:0];
         
-        CGSize size = [Utils sizeForLabel:lbl forMaxSize:CGSizeMake(260, 0)];
-        value = size.height + 10;
+        CGSize size = [Utils sizeForLabel:lbl forMaxSize:CGSizeMake(280, 0)];
+        value = size.height;
     }
     else
-        value = 25;
+        value = 35;
     
     return value;
 }
@@ -86,13 +86,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    [cell.textLabel setFont:kStandardFont];
     
     if(indexPath.row == 0)
     {
         [cell setBackgroundColor:food.backgroundColor];
         [cell.textLabel setTextColor:food.textColor];
         [cell.textLabel setText:food.title];
+        [cell.textLabel setFont:[UIFont systemFontOfSize:17.0f]];
     }
     else
     {
@@ -103,18 +103,20 @@
         {
             [cell.textLabel setText:food.description];
             [cell.textLabel setNumberOfLines:0];
-            [cell.textLabel setFont:[UIFont systemFontOfSize:14.0f]];
+            [cell.textLabel setFont:kStandardFont];
             [cell.textLabel setLineBreakMode:NSLineBreakByWordWrapping];
         }
         else
         {
+            [cell.textLabel setFont:kStandardFont];
             [cell.textLabel setText:(NSString *)[food.examples objectAtIndex:indexPath.row - 2]];
             [cell.textLabel setNumberOfLines:1];
         }
 
     }
     
-    
+    [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+
     
     
     return cell;

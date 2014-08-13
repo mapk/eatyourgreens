@@ -340,7 +340,7 @@
     if(!entry.iconPath)
     {
         UIImage *image = [self imageForPieForTag:pieChart.tag];
-        image = [Utils image:image byScalingAndCroppingForSize:CGSizeMake(60, 60)];
+        image = [Utils image:image byScalingAndCroppingForSize:CGSizeMake(40, 40)];
         [entry setIcon:image];
         [entry save];
     }

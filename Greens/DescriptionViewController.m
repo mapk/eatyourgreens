@@ -78,6 +78,7 @@
     [txtViewDescription setText:entry.description];
     [txtViewDescription setEditable:YES];
     [txtViewDescription setScrollEnabled:YES];
+    [txtViewDescription setFont:kStandardFont];
     [v addSubview:txtViewDescription];
     
     [txtViewDescription becomeFirstResponder];

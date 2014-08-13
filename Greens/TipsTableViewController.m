@@ -88,7 +88,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 90;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -119,7 +119,7 @@
         [lblDate setFont:kStandardFont];
         [cell.contentView addSubview:lblDate];
         
-        vSide = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 80)];
+        vSide = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 10, 90)];
         [vSide setTag:997];
         [cell.contentView addSubview:vSide];
         
@@ -138,7 +138,7 @@
     [cell.textLabel setText:[NSString stringWithFormat:@"%@\n ", t.colorText]];
     [cell.textLabel setNumberOfLines:2];
     [cell.textLabel setLineBreakMode:NSLineBreakByWordWrapping];
-    [cell.textLabel setFont:[UIFont systemFontOfSize:15.0f]];
+    [cell.textLabel setFont:[UIFont systemFontOfSize:17.0f]];
     [cell.textLabel setBackgroundColor:[UIColor clearColor]];
     
     [lblHeadline setText:t.headline];
