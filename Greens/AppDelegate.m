@@ -123,9 +123,15 @@
     [lbl setTextAlignment:NSTextAlignmentCenter];
     [lbl setNumberOfLines:2];
     [lbl setLineBreakMode:NSLineBreakByWordWrapping];
-    [lbl setFrame:CGRectMake(25, v.frame.size.height - 60, 270, 35)];
+    [lbl setFrame:CGRectMake(15, v.frame.size.height - 60, 290, 50)];
     [lbl setFont:kStandardFont];
+    [lbl setTextColor:kColor_Text];
     [v addSubview:lbl];
+    
+    UIImageView *imgViewLogo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    [imgViewLogo setFrame:CGRectMake(v.frame.size.width/2 - imgViewLogo.image.size.width/2, lbl.frame.origin.y - 10 - imgViewLogo.image.size.height, imgViewLogo.image.size.width, imgViewLogo.image.size.height)];
+    [v addSubview:imgViewLogo];
+    
     
     [tabBarController.tabBar addSubview:v];
     
@@ -163,6 +169,12 @@
 {
     UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
     [tab setSelectedIndex:3];
+    
+    UINavigationController *nav = (UINavigationController *)[[tab viewControllers] objectAtIndex:3];
+    [nav popToRootViewControllerAnimated:NO];
+    TipsTableViewController *tips = (TipsTableViewController *)[nav.viewControllers firstObject];
+    
+    [tips showAlert:notif.alertBody];
 }
 
 

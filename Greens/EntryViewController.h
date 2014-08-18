@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "XYPieChart.h"
 #import "ImageViewController.h"
+#import "DescriptionViewController.h"
 
 @class EntryPoint, Entry;
 
-@interface EntryViewController : UIViewController <XYPieChartDataSource, XYPieChartDelegate, ImageViewControllerDelegate, UIScrollViewDelegate>
+@interface EntryViewController : UIViewController <XYPieChartDataSource, XYPieChartDelegate, ImageViewControllerDelegate, UIScrollViewDelegate, DescriptionViewControllerDelegate>
 {
 //    XYPieChart *pie;
     
@@ -22,6 +23,8 @@
     UIPageControl *pager;
     BOOL pageControlBeingUsed;
     NSMutableArray *pies;
+    
+    DescriptionViewController *descriptionViewController;
     
 }
 

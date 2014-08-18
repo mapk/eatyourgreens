@@ -74,6 +74,26 @@
     return searchBar;
 }
 
+-(void)showAlert:(NSString *)alertBody;
+{
+    Tips *t = nil;
+    
+    if(!searchArray)
+        searchArray = [NSMutableArray arrayWithArray:[Tips fetchSavedTips]];
+
+    
+    for(Tips *t1 in searchArray)
+        if([alertBody isEqualToString:t1.headline])
+            t = t1;
+    
+    if(t)
+    {
+        TipDetailViewController *detail = [[TipDetailViewController alloc] init];
+        [detail setTips:t];
+        [self.navigationController pushViewController:detail animated:YES];
+    }
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

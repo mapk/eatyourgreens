@@ -82,7 +82,7 @@ static NSString *fileName = @"SavedTips";
         NSArray *entries = [Entry fetchFiles];
 
         for(Entry *e in entries)
-            if([e.date compare:dateLastTip] == NSOrderedAscending)
+            if([e.date compare:dateLastTip] == NSOrderedDescending)
                 [last7Days addObject:e];
         
         if(last7Days.count > 0)
@@ -196,7 +196,7 @@ static NSString *fileName = @"SavedTips";
                 }
         }
         
-        for(int i = (int)allTips.count;i>-1;i--)
+        for(int i = (int)allTips.count-1;i>-1;i--)
         {
             Tips *t1 = (Tips *)[allTips objectAtIndex:i];
             if(![t1.colorText isEqualToString:lowestColor])

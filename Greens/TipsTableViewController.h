@@ -14,4 +14,6 @@
     NSMutableArray *searchArray;
 }
 
+-(void)showAlert:(NSString *)alertBody;
+
 @end

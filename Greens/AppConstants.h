@@ -13,3 +13,6 @@
 #define kColor_OrangeYellow [UIColor colorWithRed:246.0f/255.0f green:149.0f/255.0f blue:34.0f/255.0f alpha:1.0f]
 #define kColor_WhiteTan     [UIColor colorWithRed:241.0f/255.0f green:231.0f/255.0f blue:219.0f/255.0f alpha:1.0f]
 #define kColor_Red          [UIColor colorWithRed:236.0f/255.0f green:33.0f/255.0f blue:39.0f/255.0f alpha:1.0f]
+
+
+#define kColor_Text          [UIColor colorWithRed:55.0f/255.0f green:61.0f/255.0f blue:72.0f/255.0f alpha:1.0f]

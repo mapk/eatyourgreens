@@ -26,6 +26,8 @@
 		A35E00F9197AD33C002610BD /* Tips.m in Sources */ = {isa = PBXBuildFile; fileRef = A35E00F8197AD33C002610BD /* Tips.m */; };
 		A35E00FC197AFBD9002610BD /* TipDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35E00FB197AFBD9002610BD /* TipDetailViewController.m */; };
 		A3724BE9199BFFA700293B3C /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3724BE8199BFFA700293B3C /* UIPlaceHolderTextView.m */; };
+		A3724BEC199E92B500293B3C /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = A3724BEB199E92B500293B3C /* UIView+Toast.m */; };
+		A3724BEE199EBB5900293B3C /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3724BED199EBB5900293B3C /* logo@2x.png */; };
 		A38BF75A195738690047C0EF /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = A38BF759195738690047C0EF /* Entry.m */; };
 		A38BF75F195B62970047C0EF /* btn-cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A38BF75C195B62970047C0EF /* btn-cancel@2x.png */; };
 		A38BF760195B62970047C0EF /* btn-crosshair-new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A38BF75D195B62970047C0EF /* btn-crosshair-new@2x.png */; };
@@ -129,6 +131,9 @@
 		A35E00FB197AFBD9002610BD /* TipDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TipDetailViewController.m; sourceTree = "<group>"; };
 		A3724BE7199BFFA700293B3C /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		A3724BE8199BFFA700293B3C /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		A3724BEA199E92B500293B3C /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
+		A3724BEB199E92B500293B3C /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		A3724BED199EBB5900293B3C /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		A38BF758195738690047C0EF /* Entry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entry.h; sourceTree = "<group>"; };
 		A38BF759195738690047C0EF /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
 		A38BF75B195944400047C0EF /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstants.h; sourceTree = "<group>"; };
@@ -301,6 +306,8 @@
 				A3724BE8199BFFA700293B3C /* UIPlaceHolderTextView.m */,
 				A3D677B51956412500B07927 /* UIView+ColorOfPoint.h */,
 				A3D677B61956412500B07927 /* UIView+ColorOfPoint.m */,
+				A3724BEA199E92B500293B3C /* UIView+Toast.h */,
+				A3724BEB199E92B500293B3C /* UIView+Toast.m */,
 				A3D71E95194A31810046C5C2 /* Utils.h */,
 				A3D71E96194A31810046C5C2 /* Utils.m */,
 				A32C673D194799C200A4AA93 /* ViewController.h */,
@@ -326,13 +333,6 @@
 		A32C675D19479ACD00A4AA93 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				A3216A7F196881C70006D0DB /* loupe-hi@2x.png */,
-				A3216A80196881C70006D0DB /* loupe-mask@2x.png */,
-				A3216A81196881C70006D0DB /* loupe-shadow-hi@2x.png */,
-				A3216A82196881C70006D0DB /* loupe-shadow-mask@2x.png */,
-				A38BF75C195B62970047C0EF /* btn-cancel@2x.png */,
-				A38BF75D195B62970047C0EF /* btn-crosshair-new@2x.png */,
-				A38BF75E195B62970047C0EF /* btn-save-photo@2x.png */,
 				A3E506AE1948B343006154DB /* 114x114.png */,
 				A3E506AF1948B343006154DB /* 120x120.png */,
 				A3E506B01948B343006154DB /* 129x129.png */,
@@ -355,16 +355,24 @@
 				A3E506C51948B370006154DB /* bg@2x.png */,
 				A3E506C61948B370006154DB /* btn-camera-shoot.png */,
 				A3E506C71948B370006154DB /* btn-camera-shoot@2x.png */,
+				A38BF75C195B62970047C0EF /* btn-cancel@2x.png */,
+				A38BF75D195B62970047C0EF /* btn-crosshair-new@2x.png */,
 				A3E506CC1948B370006154DB /* btn-edit@2x.png */,
 				A3E506CE1948B370006154DB /* btn-flash.png */,
 				A3E506CF1948B370006154DB /* btn-flash@2x.png */,
 				A3E506D01948B370006154DB /* btn-photo@2x.png */,
+				A38BF75E195B62970047C0EF /* btn-save-photo@2x.png */,
 				A3E506D41948B370006154DB /* btn-share@2x.png */,
 				A3DC3A43195DF9FF00E4F8AF /* CloseX.png */,
 				A3DC3A44195DF9FF00E4F8AF /* CloseX@2x.png */,
 				A3E506D61948B370006154DB /* EATyourGREENS.png */,
 				A3E506D71948B370006154DB /* EATyourGREENS@2x.png */,
 				A3E506D81948B370006154DB /* home-colorwheel@2x.png */,
+				A3724BED199EBB5900293B3C /* logo@2x.png */,
+				A3216A7F196881C70006D0DB /* loupe-hi@2x.png */,
+				A3216A80196881C70006D0DB /* loupe-mask@2x.png */,
+				A3216A81196881C70006D0DB /* loupe-shadow-hi@2x.png */,
+				A3216A82196881C70006D0DB /* loupe-shadow-mask@2x.png */,
 				A3D71E661949701F0046C5C2 /* nav-apple-active.png */,
 				A3D71E671949701F0046C5C2 /* nav-apple-active@2x.png */,
 				A3D71E681949701F0046C5C2 /* nav-apple.png */,
@@ -468,6 +476,7 @@
 				A3E506B61948B343006154DB /* 114x114.png in Resources */,
 				A3216A85196881C70006D0DB /* loupe-shadow-hi@2x.png in Resources */,
 				A3E507061948B370006154DB /* btn-flash@2x.png in Resources */,
+				A3724BEE199EBB5900293B3C /* logo@2x.png in Resources */,
 				A3E506F41948B370006154DB /* bar-green@2x.png in Resources */,
 				A3E506F11948B370006154DB /* bar-blue.png in Resources */,
 				A3E507221948B370006154DB /* splash-colorwheel.png in Resources */,
@@ -532,6 +541,7 @@
 				A3D677B4195637F400B07927 /* ImageViewController.m in Sources */,
 				A3D71E9D194A34280046C5C2 /* Food.m in Sources */,
 				A32C6739194799C200A4AA93 /* AppDelegate.m in Sources */,
+				A3724BEC199E92B500293B3C /* UIView+Toast.m in Sources */,
 				A35E00FC197AFBD9002610BD /* TipDetailViewController.m in Sources */,
 				A3D71E8E194A01DB0046C5C2 /* TipsTableViewController.m in Sources */,
 				A3D71E91194A01EC0046C5C2 /* EntriesTableViewController.m in Sources */,

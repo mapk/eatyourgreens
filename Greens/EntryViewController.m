@@ -9,9 +9,9 @@
 #import "EntryViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "Entry.h"
-#import "DescriptionViewController.h"
 #import "Utils.h"
 #import "Tips.h"
+#import "UIView+Toast.h"
 
 @interface EntryViewController ()
 
@@ -189,11 +189,18 @@
     else
         e = (Entry *)[entries objectAtIndex:tag];
     
-    DescriptionViewController *menu = [[DescriptionViewController alloc] init];
-    [menu setViewController:self];
-    [menu setEntry:e];
+    if(descriptionViewController)
+    {
+        [descriptionViewController setDelegate:nil];
+        descriptionViewController = nil;
+    }
     
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:menu];
+    descriptionViewController = [[DescriptionViewController alloc] init];
+    [descriptionViewController setViewController:self];
+    [descriptionViewController setEntry:e];
+    [descriptionViewController setDelegate:self];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:descriptionViewController];
     [nav.navigationBar setTintColor:[UIColor whiteColor]];
     
     [self.tabBarController setModalPresentationStyle:UIModalPresentationCurrentContext];
@@ -409,6 +416,12 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     pageControlBeingUsed = NO;
     
+}
+
+#pragma mark DescriptionViewControllerDelegate methods
+-(void)descriptionViewControllerCompleted:(DescriptionViewController *)vc
+{
+    [self.view makeToast:@"Description Saved"];
 }
 
 @end

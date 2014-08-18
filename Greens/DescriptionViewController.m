@@ -11,6 +11,7 @@
 #import "Utils.h"
 #import "UIImage+ImageEffects.h"
 #import "Entry.h"
+#import "Utils.h"
 
 @interface DescriptionViewController ()
 
@@ -18,7 +19,7 @@
 
 @implementation DescriptionViewController
 
-@synthesize viewController, entry;
+@synthesize viewController, entry, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -126,6 +127,21 @@
 
 -(void)close
 {
+    loadingWindow = [Utils showLoadingScreen];
+    [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(finishClose) userInfo:nil repeats:NO];
+}
+
+-(void)finishClose
+{
+    
+    if(entry.description.length == 0 && txtViewDescription.text.length > 0)
+        saved = YES;
+    else if(entry.description.length > 0 && txtViewDescription.text.length == 0)
+        saved = YES;
+    else
+        saved = ![entry.description isEqualToString:txtViewDescription.text];
+    
+    
     [entry setDescription:txtViewDescription.text];
     [entry save];
     
@@ -134,7 +150,15 @@
     [UIView animateWithDuration:.3 animations:^{
         [v setAlpha:0];
     } completion:^(BOOL finished){
-        [self dismissViewControllerAnimated:NO completion:nil];
+        
+        [self dismissViewControllerAnimated:NO completion:^{
+           
+            [Utils dismissLoadingWindow:loadingWindow];
+            
+            if(saved && delegate && [delegate respondsToSelector:@selector(descriptionViewControllerCompleted:)])
+                [delegate descriptionViewControllerCompleted:self];
+                        
+        }];
     }];
 
     
