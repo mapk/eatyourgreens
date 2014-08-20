@@ -70,7 +70,7 @@
         value = size.height;
     }
     else
-        value = 35;
+        value = 44;
     
     return value;
 }

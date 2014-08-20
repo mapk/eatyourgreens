@@ -12,6 +12,7 @@
 		A3216A84196881C70006D0DB /* loupe-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3216A80196881C70006D0DB /* loupe-mask@2x.png */; };
 		A3216A85196881C70006D0DB /* loupe-shadow-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3216A81196881C70006D0DB /* loupe-shadow-hi@2x.png */; };
 		A3216A86196881C70006D0DB /* loupe-shadow-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3216A82196881C70006D0DB /* loupe-shadow-mask@2x.png */; };
+		A322F4DD19A544DC00DD0859 /* icon-no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A322F4DC19A544DC00DD0859 /* icon-no@2x.png */; };
 		A32C13C8194AB81C006FA4EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A32C13C7194AB81C006FA4EC /* MobileCoreServices.framework */; };
 		A32C13CB194ABA67006FA4EC /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A32C13CA194ABA67006FA4EC /* XYPieChart.m */; };
 		A32C13CD194ABA74006FA4EC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A32C13CC194ABA74006FA4EC /* QuartzCore.framework */; };
@@ -107,6 +108,7 @@
 		A3216A80196881C70006D0DB /* loupe-mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-mask@2x.png"; sourceTree = "<group>"; };
 		A3216A81196881C70006D0DB /* loupe-shadow-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-shadow-hi@2x.png"; sourceTree = "<group>"; };
 		A3216A82196881C70006D0DB /* loupe-shadow-mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-shadow-mask@2x.png"; sourceTree = "<group>"; };
+		A322F4DC19A544DC00DD0859 /* icon-no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-no@2x.png"; sourceTree = "<group>"; };
 		A32C13C7194AB81C006FA4EC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		A32C13C9194ABA67006FA4EC /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
 		A32C13CA194ABA67006FA4EC /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 		A32C675D19479ACD00A4AA93 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A322F4DC19A544DC00DD0859 /* icon-no@2x.png */,
 				A3E506AE1948B343006154DB /* 114x114.png */,
 				A3E506AF1948B343006154DB /* 120x120.png */,
 				A3E506B01948B343006154DB /* 129x129.png */,
@@ -475,6 +478,7 @@
 				A3E5070E1948B370006154DB /* EATyourGREENS@2x.png in Resources */,
 				A3E506B61948B343006154DB /* 114x114.png in Resources */,
 				A3216A85196881C70006D0DB /* loupe-shadow-hi@2x.png in Resources */,
+				A322F4DD19A544DC00DD0859 /* icon-no@2x.png in Resources */,
 				A3E507061948B370006154DB /* btn-flash@2x.png in Resources */,
 				A3724BEE199EBB5900293B3C /* logo@2x.png in Resources */,
 				A3E506F41948B370006154DB /* bar-green@2x.png in Resources */,

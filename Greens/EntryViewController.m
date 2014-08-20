@@ -226,6 +226,7 @@
         e = (Entry *)[entries objectAtIndex:tag];
     
     imageViewController = [[ImageViewController alloc] init];
+    [imageViewController setReadOnly:YES];
     [imageViewController setEntry:e];
     [imageViewController setDelegate:self];
     [self.tabBarController presentViewController:imageViewController animated:YES completion:nil];
@@ -262,7 +263,7 @@
 
     UIImage *img = [self imageForPieForTag:tag];
     
-    NSString *s = [NSString stringWithFormat:@"Download #Eat Your Greens: http://eatyourgreensapp.com"];
+    NSString *s = [NSString stringWithFormat:@"I'm eating a variety of color with the help of the mobile app, Eat Your Greens. Check out my color wheel of foods. http://EatYourGreensApp.com"];
     
     NSArray *items  = [NSArray arrayWithObjects:s,img,nil];
     

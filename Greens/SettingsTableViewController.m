@@ -69,6 +69,8 @@
 -(UIView *)headerView
 {
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frame.size.width, 100)];
+    [v setBackgroundColor:kColor_Background];
+
     
     UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(20, 10, self.tableView.frame.size.width - 40, 80)];
     [lbl setText:@"Select the foods you might be allergic to, or any foods you don't like.  We won't send you notifications concerning those specific foods."];
@@ -97,13 +99,13 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 40)];
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 50)];
     
     Food *f = (Food *)[foods objectAtIndex:section];
 
     [v setBackgroundColor:f.backgroundColor];
     
-    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, v.frame.size.width - 20, 30)];
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, v.frame.size.width - 20, 30)];
     [lbl setBackgroundColor:[UIColor clearColor]];
     [lbl setFont:[UIFont systemFontOfSize:17.0f]];
     [lbl setText:[NSString stringWithFormat:@" %@",f.title]];
@@ -115,7 +117,7 @@
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 40;
+    return 50;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,6 +131,9 @@
     }
 
     [cell setSelectionStyle:UITableViewCellSelectionStyleDefault];
+    [cell setBackgroundColor:kColor_Background];
+//    [cell setAccessoryType:UITableViewCellAccessoryNone];
+
     
     Food *f = (Food *)[foods objectAtIndex:indexPath.section];
     NSString *s = (NSString *)[f.examples objectAtIndex:indexPath.row];
@@ -140,12 +145,14 @@
     
     if([n boolValue])
     {
-        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+//        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        [cell setAccessoryView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon-no"]]];
         [cell.textLabel setTextColor:[UIColor lightGrayColor]];
     }
     else
     {
-        [cell setAccessoryType:UITableViewCellAccessoryNone];
+//        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell setAccessoryView:nil];
         [cell.textLabel setTextColor:[UIColor blackColor]];
     }
     
@@ -162,10 +169,10 @@
     
     NSNumber *n = nil;
     
-    if(cell.accessoryType == UITableViewCellAccessoryNone)
-        n = [NSNumber numberWithBool:YES];
-    else
+    if(cell.accessoryView)  //Type == UITableViewCellAccessoryNone)
         n = [NSNumber numberWithBool:NO];
+    else
+        n = [NSNumber numberWithBool:YES];
     
     [selected removeObjectForKey:s];
     [selected setObject:n forKey:s];

@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) Entry *entry;
 @property (nonatomic, assign) id <ImageViewControllerDelegate> __unsafe_unretained delegate;
+@property (nonatomic, assign) BOOL readOnly;
 
 -(void) handleGestureAction:(CGPoint)location;
 

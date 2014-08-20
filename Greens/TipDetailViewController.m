@@ -41,7 +41,7 @@
         if([f.title isEqualToString:tips.colorText])
             food = f;
     
-    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, 40)];
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height + [UIApplication sharedApplication].statusBarFrame.size.height, self.view.frame.size.width, 50)];
     [lbl setBackgroundColor:food.backgroundColor];
     [lbl setText:[NSString stringWithFormat:@"  %@", food.title]];
     [lbl setTextColor:food.textColor];

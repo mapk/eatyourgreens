@@ -18,7 +18,7 @@
 
 @implementation ImageViewController
 
-@synthesize entry, delegate;
+@synthesize entry, delegate, readOnly;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,25 +38,33 @@
     array = [[NSMutableArray alloc] init];
   
     
-    
     UIImage *imgSave = [UIImage imageNamed:@"btn-save-photo"];
     UIButton *btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnSave setImage:imgSave forState:UIControlStateNormal];
     [btnSave setFrame:CGRectMake(self.view.frame.size.width/2 - imgSave.size.width/2, self.view.frame.size.height - imgSave.size.height - 20, imgSave.size.width, imgSave.size.height)];
     [btnSave addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btnSave];
+    
+    if(!readOnly)
+        [self.view addSubview:btnSave];
 
     UIImage *imgCancel = [UIImage imageNamed:@"btn-cancel"];
     UIButton *btnCancel = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnCancel setImage:imgCancel forState:UIControlStateNormal];
-    [btnCancel setFrame:CGRectMake(20, self.view.frame.size.height - imgSave.size.height - 20, imgSave.size.width, imgSave.size.height)];
+    
+    if(readOnly)
+        [btnCancel setFrame:CGRectMake(self.view.frame.size.width - imgCancel.size.width - 20, 25, imgSave.size.width, imgSave.size.height)];
+    else
+        [btnCancel setFrame:CGRectMake(20, self.view.frame.size.height - imgSave.size.height - 20, imgSave.size.width, imgSave.size.height)];
+    
     [btnCancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnCancel];
 
     UIImage *imgCrosshair = [UIImage imageNamed:@"btn-crosshair-new"];
     imgViewCrossHair = [[UIImageView alloc] initWithImage:imgCrosshair];
     [imgViewCrossHair setFrame:CGRectMake(self.view.frame.size.width - imgCrosshair.size.width - 10 , 25 + imgCrosshair.size.height/2, imgCrosshair.size.width, imgCrosshair.size.height)];
-    [self.view addSubview:imgViewCrossHair];
+    
+    if(!readOnly)
+        [self.view addSubview:imgViewCrossHair];
     
     if(entry.entryPoints.count > 0)
         for(int i = 0;i<entry.entryPoints.count;i++)
@@ -146,6 +154,9 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
+    if(readOnly)
+        return;
+    
     CGPoint viewPoint = [imgViewCrossHair convertPoint:[[touches anyObject] locationInView:self.view] fromView:self.view];
     
     if ([imgViewCrossHair pointInside:viewPoint withEvent:event])
