@@ -12,7 +12,7 @@
 @protocol ImageViewControllerDelegate;
 @class Entry;
 
-@interface ImageViewController : UIViewController
+@interface ImageViewController : UIViewController <UIAlertViewDelegate>
 {
     UIImageView *imgViewCrossHair;
     UIImageView *imgViewTouch;

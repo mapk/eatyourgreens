@@ -150,7 +150,7 @@
 {
     NSString *fileName = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, [Utils createGUID]];
     [self setImgPath:fileName];
-    [UIImagePNGRepresentation(img) writeToFile:fileName atomically:YES];
+    [UIImageJPEGRepresentation(img,.9) writeToFile:fileName atomically:YES];
     
     image = img;
 }
@@ -159,7 +159,7 @@
 {
     NSString *fileName = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, [Utils createGUID]];
     [self setIconPath:fileName];
-    [UIImagePNGRepresentation(img) writeToFile:fileName atomically:YES];
+    [UIImageJPEGRepresentation(img,.9) writeToFile:fileName atomically:YES];
     
     icon = img;
 }

@@ -85,6 +85,13 @@
 //    [self.view addGestureRecognizer:longPressGesture];
     
     
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstPhoto"])
+    {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstPhoto"];
+        [[[UIAlertView alloc] initWithTitle:nil message:@"Use the Target icon to select the colors of your food." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Set Target", nil] show];
+    }
+
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -296,5 +303,16 @@
     
 }
 
+#pragma mark UIAlertViewDelegate methods
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == alertView.cancelButtonIndex)
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        return;
+    }
+    
+    
+}
 
 @end

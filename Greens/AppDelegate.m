@@ -40,7 +40,7 @@
     
     UITabBarItem *tb1 = [[UITabBarItem alloc] initWithTitle:@"Colors" image:[UIImage imageNamed:@"nav-apple"] selectedImage:[UIImage imageNamed:@"nav-apple-active"]];
     UITabBarItem *tb2 = [[UITabBarItem alloc] initWithTitle:@"Entries" image:[UIImage imageNamed:@"nav-colorwheel"] selectedImage:[UIImage imageNamed:@"nav-colorwheel-active"]];
-    UITabBarItem *tb3 = [[UITabBarItem alloc] initWithTitle:@"Camera" image:[UIImage imageNamed:@"nav-camera"] tag:999];
+    UITabBarItem *tb3 = [[UITabBarItem alloc] initWithTitle:@"Camera" image:[UIImage imageNamed:@"nav-apple"] tag:999];
     UITabBarItem *tb4 = [[UITabBarItem alloc] initWithTitle:@"Tips" image:[UIImage imageNamed:@"nav-book"] selectedImage:[UIImage imageNamed:@"nav-book-active"]];
     UITabBarItem *tb5 = [[UITabBarItem alloc] initWithTitle:@"Settings" image:[UIImage imageNamed:@"nav-cog"] selectedImage:[UIImage imageNamed:@"nav-cog"]];
 
@@ -92,15 +92,83 @@
     [tb3 setTitleTextAttributes:tabTextAttributesSelected forState:UIControlStateSelected];
     [tb4 setTitleTextAttributes:tabTextAttributesSelected forState:UIControlStateSelected];
     */
+
+    
+    UIImage *imgColors = [UIImage imageNamed:@"nav-colors"];
+    UIButton *btnColors = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnColors setImage:imgColors forState:UIControlStateNormal];
+    
+    UIImage *imgEntries = [UIImage imageNamed:@"nav-entries"];
+    UIButton *btnEntries = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnEntries setImage:imgEntries forState:UIControlStateNormal];
+    
+    UIImage *imgCamera = [UIImage imageNamed:@"nav-camera"];
+    UIButton *btnCamera = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnCamera setImage:imgCamera forState:UIControlStateNormal];
+    
+    UIImage *imgTips = [UIImage imageNamed:@"nav-tips"];
+    UIButton *btnTips = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnTips setImage:imgTips forState:UIControlStateNormal];
+    
+    UIImage *imgSettings = [UIImage imageNamed:@"nav-settings"];
+    UIButton *btnSettings = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnSettings setImage:imgSettings forState:UIControlStateNormal];
+    
+    
     
     
     [tabBarController.tabBar setBackgroundImage:[UIImage imageNamed:@"tab_bar_background"]];
-    
     [tabBarController setViewControllers:@[nav1, nav2, nav3, nav4, nav5]];
+    
+    
+    
+    [btnColors addTarget:self action:@selector(selectColors:) forControlEvents:UIControlEventTouchUpInside];
+    [btnEntries addTarget:self action:@selector(selectEntries:) forControlEvents:UIControlEventTouchUpInside];
+    [btnCamera addTarget:self action:@selector(selectCamera:) forControlEvents:UIControlEventTouchUpInside];
+    [btnTips addTarget:self action:@selector(selectTips:) forControlEvents:UIControlEventTouchUpInside];
+    [btnSettings addTarget:self action:@selector(selectSettings:) forControlEvents:UIControlEventTouchUpInside];
+    
+    CGFloat v1 = (tabBarController.tabBar.frame.size.width/tabBarController.viewControllers.count) / 2;
+    
+    CGFloat s1 = v1 - imgColors.size.width/2;
+    CGFloat s2 = v1 + v1*2 - imgEntries.size.width/2;
+    CGFloat s3 = v1 + v1*4 - imgCamera.size.width/2;
+    CGFloat s4 = v1 + v1*6 - imgTips.size.width/2;
+    CGFloat s5 = v1 + v1*8 - imgSettings.size.width/2;
+    
+    [btnColors setFrame:CGRectMake(s1, 5, imgColors.size.width, imgColors.size.height)];
+    [btnEntries setFrame:CGRectMake(s2, 5, imgEntries.size.width, imgEntries.size.height)];
+    [btnCamera setFrame:CGRectMake(s3, 5, imgCamera.size.width, imgCamera.size.height)];
+    [btnTips setFrame:CGRectMake(s4, 5, imgTips.size.width, imgTips.size.height)];
+    [btnSettings setFrame:CGRectMake(s5, 5, imgSettings.size.width, imgSettings.size.height)];
+    
+    
+    [tabBarController.tabBar addSubview:btnColors];
+    [tabBarController.tabBar addSubview:btnEntries];
+    [tabBarController.tabBar addSubview:btnCamera];
+    [tabBarController.tabBar addSubview:btnTips];
+    [tabBarController.tabBar addSubview:btnSettings];
+    
+    [btnColors setTag:998];
+    [btnEntries setTag:997];
+    [btnCamera setTag:996];
+    [btnTips setTag:995];
+    [btnSettings setTag:994];
+    
+    [tabBarController.tabBar.layer setBorderColor:[UIColor clearColor].CGColor];
+    [[UITabBar appearance] setShadowImage:[Utils imageWithColor:[UIColor clearColor] andSize:CGSizeMake(320, 1)]];
+    
+    
+    
+    
+    
+    
+    
     
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, -vc1.view.frame.size.height, vc1.view.frame.size.width, vc1.view.frame.size.height)];
     [v setTag:999];
     [v setBackgroundColor:[UIColor colorWithRed:242.0f/255.0f green:242.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+    
     
     UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 28, v.frame.size.width, 64)];
     [v addSubview:navBar];
@@ -230,11 +298,6 @@
         [self.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
         
         
-        if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstPhoto"])
-        {
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstPhoto"];
-            [[[UIAlertView alloc] initWithTitle:nil message:@"Use the Target icon to select the colors of your food." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:@"Set Target", nil] show];
-        }
         
         
         /*
@@ -324,6 +387,7 @@
     [tab setSelectedIndex:1];
 }
 
+/*
 #pragma mark UIAlertViewDelegate methods
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -335,4 +399,120 @@
     
     
 }
+ */
+
+
+
+
+-(void)selectColors:(id)sender
+{
+    UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
+    
+    
+    if(!sender)
+        sender = [self.tabBarController.tabBar viewWithTag:998];
+    
+    UIButton *btn = (UIButton *)sender;
+    [btn setImage:[UIImage imageNamed:@"nav-colors-active"] forState:UIControlStateNormal];
+    
+    UIButton *btnInvite = (UIButton *)[tab.tabBar viewWithTag:997];
+    UIButton *btnComments = (UIButton *)[tab.tabBar viewWithTag:995];
+    UIButton *btnUsers = (UIButton *)[tab.tabBar viewWithTag:994];
+    
+    [btnInvite setImage:[UIImage imageNamed:@"nav-entries"] forState:UIControlStateNormal];
+    [btnComments setImage:[UIImage imageNamed:@"nav-tips"] forState:UIControlStateNormal];
+    [btnUsers setImage:[UIImage imageNamed:@"nav-settings"] forState:UIControlStateNormal];
+    
+    BOOL value = [self tabBarController:tab shouldSelectViewController:[tab.viewControllers objectAtIndex:0]];
+    if(value)
+        [tab setSelectedIndex:0];
+}
+
+-(void)selectEntries:(id)sender
+{
+    UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
+
+    if(!sender)
+        sender = [self.tabBarController.tabBar viewWithTag:997];
+    
+    UIButton *btn = (UIButton *)sender;
+    [btn setImage:[UIImage imageNamed:@"nav-entries-active"] forState:UIControlStateNormal];
+    
+    UIButton *btnHome = (UIButton *)[tab.tabBar viewWithTag:998];
+    UIButton *btnComments = (UIButton *)[tab.tabBar viewWithTag:995];
+    UIButton *btnUsers = (UIButton *)[tab.tabBar viewWithTag:994];
+    
+    [btnHome setImage:[UIImage imageNamed:@"nav-colors"] forState:UIControlStateNormal];
+    [btnComments setImage:[UIImage imageNamed:@"nav-tips"] forState:UIControlStateNormal];
+    [btnUsers setImage:[UIImage imageNamed:@"nav-settings"] forState:UIControlStateNormal];
+
+    BOOL value = [self tabBarController:tab shouldSelectViewController:[tab.viewControllers objectAtIndex:1]];
+    if(value)
+        [tab setSelectedIndex:1];
+}
+
+-(void)selectCamera:(id)sender
+{
+    UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
+
+    UIButton *btnHome = (UIButton *)[tab.tabBar viewWithTag:998];
+    UIButton *btnInvite = (UIButton *)[tab.tabBar viewWithTag:997];
+    UIButton *btnComments = (UIButton *)[tab.tabBar viewWithTag:995];
+    UIButton *btnUsers = (UIButton *)[tab.tabBar viewWithTag:994];
+    
+    [btnHome setImage:[UIImage imageNamed:@"nav-colors"] forState:UIControlStateNormal];
+    [btnInvite setImage:[UIImage imageNamed:@"nav-entries"] forState:UIControlStateNormal];
+    [btnComments setImage:[UIImage imageNamed:@"nav-tips"] forState:UIControlStateNormal];
+    [btnUsers setImage:[UIImage imageNamed:@"nav-settings"] forState:UIControlStateNormal];
+    
+    BOOL value = [self tabBarController:tab shouldSelectViewController:[tab.viewControllers objectAtIndex:2]];
+}
+
+-(void)selectTips:(id)sender
+{
+    UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
+
+    if(!sender)
+        sender = [self.tabBarController.tabBar viewWithTag:995];
+    
+    UIButton *btn = (UIButton *)sender;
+    [btn setImage:[UIImage imageNamed:@"nav-tips-active"] forState:UIControlStateNormal];
+    
+    UIButton *btnHome = (UIButton *)[tab.tabBar viewWithTag:998];
+    UIButton *btnInvite = (UIButton *)[tab.tabBar viewWithTag:997];
+    UIButton *btnUsers = (UIButton *)[tab.tabBar viewWithTag:994];
+    
+    [btnHome setImage:[UIImage imageNamed:@"nav-colors"] forState:UIControlStateNormal];
+    [btnInvite setImage:[UIImage imageNamed:@"nav-entries"] forState:UIControlStateNormal];
+    [btnUsers setImage:[UIImage imageNamed:@"nav-settings"] forState:UIControlStateNormal];
+
+    BOOL value = [self tabBarController:tab shouldSelectViewController:[tab.viewControllers objectAtIndex:3]];
+    if(value)
+        [tab setSelectedIndex:3];
+}
+
+-(void)selectSettings:(id)sender
+{
+    UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
+
+    if(!sender)
+        sender = [self.tabBarController.tabBar viewWithTag:994];
+    
+    UIButton *btn = (UIButton *)sender;
+    [btn setImage:[UIImage imageNamed:@"nav-settings-active"] forState:UIControlStateNormal];
+    
+    UIButton *btnHome = (UIButton *)[tab.tabBar viewWithTag:998];
+    UIButton *btnInvite = (UIButton *)[tab.tabBar viewWithTag:997];
+    UIButton *btnComments = (UIButton *)[tab.tabBar viewWithTag:995];
+    
+    [btnHome setImage:[UIImage imageNamed:@"nav-colors"] forState:UIControlStateNormal];
+    [btnInvite setImage:[UIImage imageNamed:@"nav-entries"] forState:UIControlStateNormal];
+    [btnComments setImage:[UIImage imageNamed:@"nav-tips"] forState:UIControlStateNormal];
+
+    BOOL value = [self tabBarController:tab shouldSelectViewController:[tab.viewControllers objectAtIndex:4]];
+    if(value)
+        [tab setSelectedIndex:4];
+}
+
+
 @end
