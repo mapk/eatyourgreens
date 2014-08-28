@@ -32,6 +32,8 @@
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.tableView setSeparatorInset:UIEdgeInsetsZero];
     [self setTitle:@"Tips"];
+    [self.view setBackgroundColor:kColor_Background];
+    [self.tableView setBackgroundColor:self.view.backgroundColor];
     
     [self.tableView setTableHeaderView:[self tableHeader]];
     

@@ -32,6 +32,8 @@
     [super viewDidLoad];
 
     [self setTitle:@"Food Colors"];
+    [self.view setBackgroundColor:kColor_Background];
+    [self.tableView setBackgroundColor:self.view.backgroundColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,6 +88,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    [cell setBackgroundColor:tableView.backgroundColor];
     
     if(indexPath.row == 0)
     {

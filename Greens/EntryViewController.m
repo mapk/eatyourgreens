@@ -35,7 +35,7 @@
     [super viewDidLoad];
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-    [self.view setBackgroundColor:[UIColor colorWithRed:242.0f/255.0f green:242.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
+    [self.view setBackgroundColor:kColor_Background];
     pies = [[NSMutableArray alloc] init];
     
     if(entries.count < 2)

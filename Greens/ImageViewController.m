@@ -43,18 +43,26 @@
     [btnSave setImage:imgSave forState:UIControlStateNormal];
     [btnSave setFrame:CGRectMake(self.view.frame.size.width/2 - imgSave.size.width/2, self.view.frame.size.height - imgSave.size.height - 20, imgSave.size.width, imgSave.size.height)];
     [btnSave addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
+
+    UIButton *btnCancel = nil;
     
     if(!readOnly)
+    {
         [self.view addSubview:btnSave];
 
-    UIImage *imgCancel = [UIImage imageNamed:@"btn-cancel"];
-    UIButton *btnCancel = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btnCancel setImage:imgCancel forState:UIControlStateNormal];
-    
-    if(readOnly)
-        [btnCancel setFrame:CGRectMake(self.view.frame.size.width - imgCancel.size.width - 20, 25, imgSave.size.width, imgSave.size.height)];
-    else
+        UIImage *imgCancel = [UIImage imageNamed:@"btn-cancel"];
+        btnCancel = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btnCancel setImage:imgCancel forState:UIControlStateNormal];
         [btnCancel setFrame:CGRectMake(20, self.view.frame.size.height - imgSave.size.height - 20, imgSave.size.width, imgSave.size.height)];
+    }
+    else
+    {
+        btnCancel = [UIButton buttonWithType:UIButtonTypeSystem];
+        [btnCancel setTitle:@"Close" forState:UIControlStateNormal];
+        [btnCancel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btnCancel setFrame:CGRectMake(self.view.frame.size.width - 70, 31, 75, 25)];
+        [btnCancel.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
+    }
     
     [btnCancel addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btnCancel];

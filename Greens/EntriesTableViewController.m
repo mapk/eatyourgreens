@@ -32,6 +32,8 @@
 
     [self setTitle:@"Entries"];
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [self.view setBackgroundColor:kColor_Background];
+    [self.tableView setBackgroundColor:self.view.backgroundColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -149,6 +151,8 @@
         for(UIView *v in cell.contentView.subviews)
             if(v.tag == 999)
                 [v removeFromSuperview];
+    
+    [cell setBackgroundColor:tableView.backgroundColor];
     
     NSArray *array = (NSArray *)[entrySections objectAtIndex:indexPath.section];
     Entry *entry = (Entry *)[array objectAtIndex:indexPath.row];

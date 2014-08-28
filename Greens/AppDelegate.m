@@ -136,11 +136,11 @@
     CGFloat s4 = v1 + v1*6 - imgTips.size.width/2;
     CGFloat s5 = v1 + v1*8 - imgSettings.size.width/2;
     
-    [btnColors setFrame:CGRectMake(s1, 5, imgColors.size.width, imgColors.size.height)];
-    [btnEntries setFrame:CGRectMake(s2, 5, imgEntries.size.width, imgEntries.size.height)];
-    [btnCamera setFrame:CGRectMake(s3, 5, imgCamera.size.width, imgCamera.size.height)];
-    [btnTips setFrame:CGRectMake(s4, 5, imgTips.size.width, imgTips.size.height)];
-    [btnSettings setFrame:CGRectMake(s5, 5, imgSettings.size.width, imgSettings.size.height)];
+    [btnColors setFrame:CGRectMake(0, 0, imgColors.size.width, imgColors.size.height)];
+    [btnEntries setFrame:CGRectMake(s2, 0, imgEntries.size.width, imgEntries.size.height)];
+    [btnCamera setFrame:CGRectMake(s3, 0, imgCamera.size.width, imgCamera.size.height)];
+    [btnTips setFrame:CGRectMake(s4 + 1, 0, imgTips.size.width, imgTips.size.height)];
+    [btnSettings setFrame:CGRectMake(s5 + 1, 0, imgSettings.size.width, imgSettings.size.height)];
     
     
     [tabBarController.tabBar addSubview:btnColors];
