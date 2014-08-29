@@ -10,6 +10,7 @@
 #import "Utils.h"
 #import "Food.h"
 #import "FoodDetailTableViewController.h"
+#import "AppDelegate.h"
 
 @interface FoodsTableViewController ()
 
@@ -35,6 +36,15 @@
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     
     foods = [Food foods];
+    
+    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-home"] style:UIBarButtonItemStylePlain target:self action:@selector(showHome)];
+    [self.navigationItem setRightBarButtonItem:btn];
+}
+
+-(void)showHome
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate showHomeScreen];
 }
 
 - (void)didReceiveMemoryWarning

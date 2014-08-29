@@ -9,6 +9,7 @@
 #import "TipsTableViewController.h"
 #import "Tips.h"
 #import "TipDetailViewController.h"
+#import "AppDelegate.h"
 
 @interface TipsTableViewController ()
 
@@ -55,6 +56,14 @@
     
 //    searchArray = [NSMutableArray arrayWithArray:array];
     
+    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-home"] style:UIBarButtonItemStylePlain target:self action:@selector(showHome)];
+    [self.navigationItem setRightBarButtonItem:btn];
+}
+
+-(void)showHome
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate showHomeScreen];
 }
 
 - (void)didReceiveMemoryWarning

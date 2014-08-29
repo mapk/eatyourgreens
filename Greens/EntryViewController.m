@@ -299,7 +299,12 @@
     else
         e = (Entry *)[entries objectAtIndex:pieChart.tag];
     
-    return e.entryPoints.count;
+    NSUInteger value = e.entryPoints.count;
+    
+    if(value > 1)
+        value = value + value;
+        
+    return value;
 }
 
 - (CGFloat)pieChart:(XYPieChart *)pieChart valueForSliceAtIndex:(NSUInteger)i
@@ -311,7 +316,17 @@
     else
         e = (Entry *)[entries objectAtIndex:pieChart.tag];
 
-    return (CGFloat)1/e.entryPoints.count;
+    CGFloat value = (CGFloat)1/e.entryPoints.count;
+  
+    if(e.entryPoints.count > 1)
+    {
+        if(i % 2 == 1)
+            value = .005;
+        else
+            value = value - .005;
+    }
+    
+    return value;
 }
 
 - (UIColor *)pieChart:(XYPieChart *)pieChart colorForSliceAtIndex:(NSUInteger)i
@@ -323,9 +338,24 @@
     else
         e = (Entry *)[entries objectAtIndex:pieChart.tag];
 
-    EntryPoint *entryPoint = (EntryPoint *)[e.entryPoints objectAtIndex:i];
+    EntryPoint *entryPoint = nil;
+    UIColor *color = [UIColor clearColor];
     
-    return entryPoint.color;
+    if(e.entryPoints.count == 1)
+    {
+        entryPoint = (EntryPoint *)[e.entryPoints objectAtIndex:i];
+        color = entryPoint.color;
+    }
+    else
+    {
+        if(i % 2 == 0)
+        {
+            entryPoint = (EntryPoint *)[e.entryPoints objectAtIndex:i/2];
+            color = entryPoint.color;
+        }
+    }
+    
+    return color;
 }
 
 

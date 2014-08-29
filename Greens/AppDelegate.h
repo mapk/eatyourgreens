@@ -17,6 +17,8 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+-(void)showHomeScreen;
+
 @end
 
 

@@ -8,7 +8,7 @@
 
 #import "SettingsTableViewController.h"
 #import "Food.h"
-
+#import "AppDelegate.h"
 
 @interface SettingsTableViewController ()
 
@@ -52,7 +52,18 @@
     [self.tableView setTableHeaderView:[self headerView]];
     
     [self setTitle:@"Settings"];
+
+    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-home"] style:UIBarButtonItemStylePlain target:self action:@selector(showHome)];
+    [self.navigationItem setRightBarButtonItem:btn];
 }
+
+-(void)showHome
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate showHomeScreen];
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

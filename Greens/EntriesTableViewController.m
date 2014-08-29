@@ -10,6 +10,7 @@
 #import "EntryViewController.h"
 #import "Entry.h"
 #import "Utils.h"
+#import "AppDelegate.h"
 
 @interface EntriesTableViewController ()
 
@@ -34,6 +35,15 @@
     [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
     [self.view setBackgroundColor:kColor_Background];
     [self.tableView setBackgroundColor:self.view.backgroundColor];
+
+    UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-home"] style:UIBarButtonItemStylePlain target:self action:@selector(showHome)];
+    [self.navigationItem setRightBarButtonItem:btn];
+}
+
+-(void)showHome
+{
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [appDelegate showHomeScreen];
 }
 
 - (void)didReceiveMemoryWarning

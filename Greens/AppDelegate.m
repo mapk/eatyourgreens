@@ -24,6 +24,9 @@
     [self.window setRootViewController:[self tabBarController]];
     [self.window makeKeyAndVisible];
     
+    [self showHomeScreen];
+
+    
     return YES;
 }
 
@@ -44,7 +47,7 @@
     UITabBarItem *tb4 = [[UITabBarItem alloc] initWithTitle:@"Tips" image:[UIImage imageNamed:@"nav-book"] selectedImage:[UIImage imageNamed:@"nav-book-active"]];
     UITabBarItem *tb5 = [[UITabBarItem alloc] initWithTitle:@"Settings" image:[UIImage imageNamed:@"nav-cog"] selectedImage:[UIImage imageNamed:@"nav-cog"]];
 
-    UIColor *navColor = [UIColor colorWithRed:54.0f/255.0f green:59.0f/255.0f blue:71.0f/255.0f alpha:1.0];
+    UIColor *navColor = [UIColor colorWithRed:55.0f/255.0f green:61.0f/255.0f blue:72.0f/255.0f alpha:1.0];
     [[UINavigationBar appearance] setBarTintColor:navColor];
 
     UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:vc1];
@@ -52,6 +55,12 @@
     UINavigationController *nav3 = [[UINavigationController alloc] initWithRootViewController:vc3];
     UINavigationController *nav4 = [[UINavigationController alloc] initWithRootViewController:vc4];
     UINavigationController *nav5 = [[UINavigationController alloc] initWithRootViewController:vc5];
+    
+    [nav1.navigationBar setTranslucent:NO];
+    [nav2.navigationBar setTranslucent:NO];
+    [nav3.navigationBar setTranslucent:NO];
+    [nav4.navigationBar setTranslucent:NO];
+    [nav5.navigationBar setTranslucent:NO];
     
     [nav1.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [nav2.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -157,21 +166,28 @@
     
     [tabBarController.tabBar.layer setBorderColor:[UIColor clearColor].CGColor];
     [[UITabBar appearance] setShadowImage:[Utils imageWithColor:[UIColor clearColor] andSize:CGSizeMake(320, 1)]];
-    
-    
-    
-    
-    
-    
-    
-    
+
+    return tabBarController;
+}
+
+-(void)showHomeScreen
+{
+    UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
+    UINavigationController *nav = (UINavigationController *)[tab.viewControllers firstObject];
+    UIViewController *vc1 = (UIViewController *)[nav.viewControllers firstObject];
+
     UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, -vc1.view.frame.size.height, vc1.view.frame.size.width, vc1.view.frame.size.height)];
     [v setTag:999];
     [v setBackgroundColor:[UIColor colorWithRed:242.0f/255.0f green:242.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     
     
-    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 28, v.frame.size.width, 64)];
+    UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, -64, v.frame.size.width, 64)];
     [v addSubview:navBar];
+    
+    UIColor *navColor = [UIColor colorWithRed:55.0f/255.0f green:61.0f/255.0f blue:72.0f/255.0f alpha:1.0];
+    [[UINavigationBar appearance] setBarTintColor:navColor];
+    [navBar setBackgroundColor:navColor];
+    [navBar setTranslucent:NO];
     
     UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, navBar.frame.size.width, navBar.frame.size.height - 20)];
     [lblTitle setFont:[UIFont boldSystemFontOfSize:17.0f]];
@@ -200,10 +216,7 @@
     [imgViewLogo setFrame:CGRectMake(v.frame.size.width/2 - imgViewLogo.image.size.width/2, lbl.frame.origin.y - 10 - imgViewLogo.image.size.height, imgViewLogo.image.size.width, imgViewLogo.image.size.height)];
     [v addSubview:imgViewLogo];
     
-    
-    [tabBarController.tabBar addSubview:v];
-    
-    return tabBarController;
+    [tab.tabBar addSubview:v];
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

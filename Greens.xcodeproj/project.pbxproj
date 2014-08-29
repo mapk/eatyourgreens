@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3054FEB19B0261B00339127 /* icon-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3054FEA19B0261B00339127 /* icon-home@2x.png */; };
 		A3216A7E196880F50006D0DB /* MagnifierView.m in Sources */ = {isa = PBXBuildFile; fileRef = A3216A7D196880F50006D0DB /* MagnifierView.m */; };
 		A3216A83196881C70006D0DB /* loupe-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3216A7F196881C70006D0DB /* loupe-hi@2x.png */; };
 		A3216A84196881C70006D0DB /* loupe-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3216A80196881C70006D0DB /* loupe-mask@2x.png */; };
@@ -111,6 +112,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A3054FEA19B0261B00339127 /* icon-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-home@2x.png"; sourceTree = "<group>"; };
 		A3216A7C196880F50006D0DB /* MagnifierView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnifierView.h; sourceTree = "<group>"; };
 		A3216A7D196880F50006D0DB /* MagnifierView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagnifierView.m; sourceTree = "<group>"; };
 		A3216A7F196881C70006D0DB /* loupe-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-hi@2x.png"; sourceTree = "<group>"; };
@@ -353,6 +355,7 @@
 		A32C675D19479ACD00A4AA93 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A3054FEA19B0261B00339127 /* icon-home@2x.png */,
 				A3E506AE1948B343006154DB /* 114x114.png */,
 				A3E506AF1948B343006154DB /* 120x120.png */,
 				A3E506B01948B343006154DB /* 129x129.png */,
@@ -510,6 +513,7 @@
 				A3216A85196881C70006D0DB /* loupe-shadow-hi@2x.png in Resources */,
 				A322F4DD19A544DC00DD0859 /* icon-no@2x.png in Resources */,
 				A3E507061948B370006154DB /* btn-flash@2x.png in Resources */,
+				A3054FEB19B0261B00339127 /* icon-home@2x.png in Resources */,
 				A3724BEE199EBB5900293B3C /* logo@2x.png in Resources */,
 				A3E506F41948B370006154DB /* bar-green@2x.png in Resources */,
 				A3E506F11948B370006154DB /* bar-blue.png in Resources */,
