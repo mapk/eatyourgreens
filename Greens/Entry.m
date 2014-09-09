@@ -11,13 +11,14 @@
 
 @implementation EntryPoint
 
-@synthesize color, point;
+@synthesize color, point, hue;
 
 -(void)encodeWithCoder:(NSCoder *)coder
 {
     [coder encodeObject:color forKey:@"color"];
     [coder encodeFloat:point.x forKey:@"x"];
     [coder encodeFloat:point.y forKey:@"y"];
+    [coder encodeFloat:hue forKey:@"hue"];
 }
 
 -(id)initWithCoder:(NSCoder *)coder
@@ -27,9 +28,24 @@
         color = [coder decodeObjectForKey:@"color"];
         point.x = [coder decodeFloatForKey:@"x"];
         point.y = [coder decodeFloatForKey:@"y"];
+        hue = [coder decodeFloatForKey:@"hue"];
     }
     
     return self;
+}
+
+-(void)setColor:(UIColor *)c
+{
+    color = c;
+    
+    CGFloat _hue;
+    CGFloat saturation;
+    CGFloat brightness;
+    CGFloat alpha;
+    BOOL success = [color getHue:&_hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    
+    if(success)
+        [self setHue:_hue];
 }
 
 -(NSString *)colorText
@@ -42,6 +58,7 @@
     NSString *sWhiteTan = @"White/Tan";
     NSString *sBluePurple = @"Blue/Purple";
     
+    /*
     long count = CGColorGetNumberOfComponents(self.color.CGColor);
     
     if(count == 4)
@@ -80,8 +97,10 @@
 //        NSLog(@"Red = %f, Green = %f, Blue = %f", red, green, blue);
 //        NSLog(@"%@", s);
     }
+     */
     
-    CGFloat hue;
+    
+    CGFloat _hue;
     CGFloat saturation;
     CGFloat brightness;
     CGFloat alpha;
@@ -89,7 +108,7 @@
 //    NSLog(@"success: %i hue: %0.2f, saturation: %0.2f, brightness: %0.2f, alpha: %0.2f", success, hue, saturation, brightness, alpha);
     
     
-    CGFloat hueValue = hue * 360;
+    CGFloat hueValue = _hue * 360;
     
     if(hueValue <= 59 && saturation < .1)
         s = sWhiteTan;

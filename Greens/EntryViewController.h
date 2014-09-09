@@ -11,9 +11,19 @@
 #import "ImageViewController.h"
 #import "DescriptionViewController.h"
 
+
+typedef enum
+{
+    ExpansionLevelEntry
+    ,ExpansionLevelDay
+    ,ExpansionLevelWeek
+    ,ExpansionLevel30Days
+} ExpansionLevel;
+
+
 @class EntryPoint, Entry;
 
-@interface EntryViewController : UIViewController <XYPieChartDataSource, XYPieChartDelegate, ImageViewControllerDelegate, UIScrollViewDelegate, DescriptionViewControllerDelegate>
+@interface EntryViewController : UIViewController <XYPieChartDataSource, XYPieChartDelegate, ImageViewControllerDelegate, UIScrollViewDelegate, DescriptionViewControllerDelegate, UIGestureRecognizerDelegate>
 {
 //    XYPieChart *pie;
     
@@ -26,6 +36,11 @@
     
     DescriptionViewController *descriptionViewController;
     
+    UIPinchGestureRecognizer *pinchRecognizer;
+
+    ExpansionLevel expansionLevel;
+    
+    NSMutableArray *filteredEntries, *filteredEntryPoints;
 }
 
 @property (nonatomic, strong) Entry *entry;

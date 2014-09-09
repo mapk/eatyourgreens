@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, assign) CGPoint point;
+@property (nonatomic, assign) CGFloat hue;
 
 -(NSString *)colorText;
 

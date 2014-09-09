@@ -41,7 +41,7 @@
     UIImage *imgSave = [UIImage imageNamed:@"btn-save-photo"];
     UIButton *btnSave = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnSave setImage:imgSave forState:UIControlStateNormal];
-    [btnSave setFrame:CGRectMake(self.view.frame.size.width/2 - imgSave.size.width/2, self.view.frame.size.height - imgSave.size.height - 20, imgSave.size.width, imgSave.size.height)];
+    [btnSave setFrame:CGRectMake(self.view.frame.size.width/2 - imgSave.size.width/2, self.view.frame.size.height - imgSave.size.height - 10, imgSave.size.width, imgSave.size.height)];
     [btnSave addTarget:self action:@selector(save) forControlEvents:UIControlEventTouchUpInside];
 
     UIButton *btnCancel = nil;
@@ -50,10 +50,13 @@
     {
         [self.view addSubview:btnSave];
 
-        UIImage *imgCancel = [UIImage imageNamed:@"btn-cancel"];
-        btnCancel = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btnCancel setImage:imgCancel forState:UIControlStateNormal];
-        [btnCancel setFrame:CGRectMake(20, self.view.frame.size.height - imgSave.size.height - 20, imgSave.size.width, imgSave.size.height)];
+//        UIImage *imgCancel = [UIImage imageNamed:@"btn-cancel"];
+        btnCancel = [UIButton buttonWithType:UIButtonTypeSystem];
+//        [btnCancel setImage:imgCancel forState:UIControlStateNormal];
+        [btnCancel setTitle:@"Close" forState:UIControlStateNormal];
+        [btnCancel setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btnCancel.titleLabel setFont:[UIFont systemFontOfSize:18.0f]];
+        [btnCancel setFrame:CGRectMake(20, self.view.frame.size.height - 75, imgSave.size.width, imgSave.size.height)];
     }
     else
     {
@@ -69,7 +72,7 @@
 
     UIImage *imgCrosshair = [UIImage imageNamed:@"btn-crosshair-new"];
     imgViewCrossHair = [[UIImageView alloc] initWithImage:imgCrosshair];
-    [imgViewCrossHair setFrame:CGRectMake(self.view.frame.size.width - imgCrosshair.size.width - 10 , 25 + imgCrosshair.size.height/2, imgCrosshair.size.width, imgCrosshair.size.height)];
+    [imgViewCrossHair setFrame:CGRectMake(self.view.frame.size.width - imgCrosshair.size.width - 20 , self.view.frame.size.height - 60, imgCrosshair.size.width, imgCrosshair.size.height)];
     
     if(!readOnly)
         [self.view addSubview:imgViewCrossHair];

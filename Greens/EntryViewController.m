@@ -12,6 +12,7 @@
 #import "Utils.h"
 #import "Tips.h"
 #import "UIView+Toast.h"
+#import "UIImage+ImageEffects.h"
 
 @interface EntryViewController ()
 
@@ -37,6 +38,31 @@
     
     [self.view setBackgroundColor:kColor_Background];
     pies = [[NSMutableArray alloc] init];
+    expansionLevel = ExpansionLevelEntry;
+    
+    
+    for(int i = 0;i<entries.count;i++)
+    {
+        Entry *e = (Entry *)[entries objectAtIndex:i];
+        for(int j = 0;j<e.entryPoints.count;j++)
+        {
+            EntryPoint *ep = (EntryPoint *)[e.entryPoints objectAtIndex:j];
+            if(ep.hue == (CGFloat)0)
+                [ep setColor:ep.color];
+        }
+        
+        e.entryPoints = [e.entryPoints sortedArrayUsingComparator:^NSComparisonResult(EntryPoint *p1, EntryPoint *p2){
+            return [[NSNumber numberWithFloat:p1.hue] compare:[NSNumber numberWithFloat:p2.hue]];
+        }];
+        
+        for(int j = 0;j<e.entryPoints.count;j++)
+        {
+            EntryPoint *ep = (EntryPoint *)[e.entryPoints objectAtIndex:j];
+//            NSLog(@"Hue: %f", ep.hue);
+        }
+        
+    }
+    
     
     if(entries.count < 2)
         [self.view addSubview:[self viewForEntry:entry forFrame:self.view.frame forTag:0]];
@@ -59,6 +85,212 @@
     if(isNew)
         [Tips checkForTip];
     
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    pinchRecognizer =[[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(pinch:)];
+    [pinchRecognizer setDelegate:self];
+    [self.view addGestureRecognizer:pinchRecognizer];
+    
+}
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [self.view removeGestureRecognizer:pinchRecognizer];
+}
+
+-(void)pinch:(id)sender {
+
+    if(pinchRecognizer)
+    {
+        if(pinchRecognizer.scale > 1.4)
+        {
+            pinchRecognizer.scale = 1.0;
+            [self addExpandedGraph];
+        }
+        else if (pinchRecognizer.scale < .6)
+        {
+            pinchRecognizer.scale = 1.0;
+            [self removeExpandedGraph];
+        }
+    }
+    
+}
+
+-(void)addExpandedGraph
+{
+    if(expansionLevel == ExpansionLevelEntry)
+        expansionLevel = ExpansionLevelDay;
+    else if (expansionLevel == ExpansionLevelDay)
+        expansionLevel = ExpansionLevelWeek;
+    else if (expansionLevel == ExpansionLevelWeek)
+        expansionLevel = ExpansionLevel30Days;
+    else if (expansionLevel == ExpansionLevel30Days)
+        return;
+    
+    NSArray *graphEntries = [Entry fetchFiles];
+    NSTimeInterval time = 60 * 60 * 24 * -1;
+    
+    if(expansionLevel == ExpansionLevelWeek)
+        time = time * 7;
+    else if (expansionLevel == ExpansionLevel30Days)
+        time = time * 30;
+    
+    NSDate *startDate = nil;
+    Entry *e = nil;
+    
+    if(entries.count < 2)
+        e = entry;
+    else
+        e = (Entry *)[entries objectAtIndex:pager.currentPage];
+    
+    startDate = [e.date dateByAddingTimeInterval:time];
+
+    if(filteredEntries)
+    {
+        [filteredEntries removeAllObjects];
+        filteredEntries = nil;
+    }
+
+    if(filteredEntryPoints)
+    {
+        [filteredEntryPoints removeAllObjects];
+        filteredEntryPoints = nil;
+    }
+    
+    filteredEntries = [[NSMutableArray alloc] init];
+    
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateStyle:NSDateFormatterShortStyle];
+    [df setTimeStyle:NSDateFormatterShortStyle];
+
+    
+    
+    for(int i = (int)graphEntries.count-1;i>-1;i--)
+    {
+        Entry *ent = (Entry *)[graphEntries objectAtIndex:i];
+        
+//        NSLog(@"Start: %@, Ent: %@, E: %@", [df stringFromDate:startDate], [df stringFromDate:ent.date], [df stringFromDate:e.date]);
+        
+        if(([ent.date compare:startDate] == NSOrderedDescending
+           && [ent.date compare:e.date] == NSOrderedAscending) || [ent.date compare:e.date] == NSOrderedSame)
+        {
+            [filteredEntries addObject:ent];
+        }
+    }
+    
+    if(filteredEntries.count == 0)
+        return;
+    
+    filteredEntryPoints = [[NSMutableArray alloc] init];
+    for(Entry *e in filteredEntries)
+        [filteredEntryPoints addObjectsFromArray:e.entryPoints];
+
+    for(int i = 0;i<filteredEntryPoints.count;i++)
+    {
+        EntryPoint *ep = (EntryPoint *)[filteredEntryPoints objectAtIndex:i];
+        if(ep.hue == 0)
+            [ep setColor:ep.color];
+        
+//        NSLog(@"%f", ep.hue);
+    }
+    
+    
+    NSArray *a = [filteredEntryPoints sortedArrayUsingComparator:^NSComparisonResult(EntryPoint *ep1, EntryPoint *ep2){
+        return [[NSNumber numberWithFloat:ep1.hue] compare:[NSNumber numberWithFloat:ep2.hue]];
+    }];
+    
+    filteredEntryPoints = [NSMutableArray arrayWithArray:a];
+
+    /*
+    for(int i = 0;i<filteredEntryPoints.count;i++)
+    {
+        EntryPoint *ep = (EntryPoint *)[filteredEntryPoints objectAtIndex:i];
+        NSLog(@"%f", ep.hue);
+    }
+    */
+    
+    UIView *v = [[UIView alloc] initWithFrame:self.view.bounds];
+    [v setTag:101 + expansionLevel];
+    [v setBackgroundColor:[UIColor whiteColor]];
+    
+    UIImage *wheelImage = [UIImage imageNamed:@"wheel-bg"];
+    UIImageView *wheelImageView = [[UIImageView alloc] initWithImage:wheelImage];
+    [wheelImageView setFrame:CGRectMake(v.frame.size.width/2 - wheelImage.size.width/2, 10, wheelImage.size.width, wheelImage.size.height)];
+    [v addSubview:wheelImageView];
+
+    XYPieChart *pie = [[XYPieChart alloc] initWithFrame:CGRectZero Center:CGPointMake(wheelImage.size.width/2, wheelImage.size.height/2) Radius:((wheelImageView.frame.size.width/2) - 15)];
+    [pie setDataSource:self];
+    [pie setDelegate:self];
+    [pie setLabelColor:[UIColor clearColor]];
+    
+    [wheelImageView addSubview:pie];
+    [pie reloadData];
+    
+    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    [lbl setText:@" "];
+    [lbl.layer setCornerRadius:50];
+    [lbl.layer setMasksToBounds:YES];
+    [lbl setBackgroundColor:[UIColor whiteColor]];
+    [wheelImageView addSubview:lbl];
+    [wheelImageView bringSubviewToFront:lbl];
+    [lbl setCenter:CGPointMake(wheelImage.size.width/2, wheelImage.size.height/2)];
+    
+    
+    NSString *sDate = [NSString stringWithFormat:@"From: %@\nTo: %@", [df stringFromDate:startDate], [df stringFromDate:e.date]];
+    
+    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, v.frame.size.height - 60, self.view.frame.size.width, 40)];
+    [lblDate setFont:kStandardFont];
+    [lblDate setTextAlignment:NSTextAlignmentCenter];
+    [lblDate setText:sDate];
+    [lblDate setNumberOfLines:0];
+    [lblDate setLineBreakMode:NSLineBreakByWordWrapping];
+    [v setAlpha:0.0];
+    [v addSubview:lblDate];
+    
+    [self.view addSubview:v];
+    
+    [UIView animateWithDuration:.3 animations:^{[v setAlpha:1.0f];}];
+    
+}
+
+-(void)removeExpandedGraph
+{
+    UIView *v = nil;
+    
+    if(expansionLevel == ExpansionLevel30Days)
+    {
+        expansionLevel = ExpansionLevelWeek;
+        v = [self.view viewWithTag:101 + ExpansionLevel30Days];
+    }
+    else if (expansionLevel == ExpansionLevelWeek)
+    {
+        expansionLevel = ExpansionLevelDay;
+        
+        v = [self.view viewWithTag:101 + ExpansionLevelWeek];
+    }
+    else if (expansionLevel == ExpansionLevelDay)
+    {
+        expansionLevel = ExpansionLevelEntry;
+        [filteredEntries removeAllObjects];
+        
+        v = [self.view viewWithTag:101 + ExpansionLevelDay];
+    }
+    
+    if(v)
+    {
+        [UIView animateWithDuration:.3 animations:^{
+            [v setAlpha:0.0f];
+        } completion:^(BOOL finished){
+            [v removeFromSuperview];
+        }];
+    }
 }
 
 -(void)loadScroller
@@ -110,7 +342,7 @@
     [wheelImageView setFrame:CGRectMake(frame.size.width/2 - wheelImage.size.width/2, 10, wheelImage.size.width, wheelImage.size.height)];
     [view addSubview:wheelImageView];
     
-    XYPieChart *pie = [[XYPieChart alloc] initWithFrame:CGRectZero Center:CGPointMake(wheelImage.size.width/2, wheelImage.size.height/2) Radius:((wheelImageView.frame.size.width/2) - 10)];
+    XYPieChart *pie = [[XYPieChart alloc] initWithFrame:CGRectZero Center:CGPointMake(wheelImage.size.width/2, wheelImage.size.height/2) Radius:((wheelImageView.frame.size.width/2) - 15)];
     [pie setTag:tag];
     [pie setDataSource:self];
     [pie setDelegate:self];
@@ -156,7 +388,9 @@
     [btnEdit setFrame:CGRectMake(CGRectGetMaxX(btnPhoto.frame) + 5, 250, imgEdit.size.width, imgEdit.size.height)];
     [view addSubview:btnEdit];
 
-    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(btnShare.frame) + 5, self.view.frame.size.width, 18)];
+    CGFloat height = [UIScreen mainScreen].bounds.size.height - self.navigationController.navigationBar.frame.size.height - [UIApplication sharedApplication].statusBarFrame.size.height - self.tabBarController.tabBar.frame.size.height - 50;
+    
+    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, height, self.view.frame.size.width, 18)];
     [lblDate setFont:kStandardFont];
     [lblDate setTextAlignment:NSTextAlignmentCenter];
     [lblDate setText:[e longDate]];
@@ -258,6 +492,24 @@
 
 -(void)share:(id)sender
 {
+    
+    
+    UIGraphicsBeginImageContext(self.view.bounds.size);
+    [self.view drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:NO];
+    UIImage *blurImg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    blurImg = [blurImg applyBlurWithRadius:5 tintColor:[UIColor colorWithWhite:1.0f alpha:0.3f] saturationDeltaFactor:1.0f maskImage:nil];
+    
+    UIImageView *iv = [[UIImageView alloc] initWithImage:blurImg];
+    [iv setTag:9999];
+    [iv setFrame:CGRectMake(0, 0, blurImg.size.width, blurImg.size.height)];
+    [self.view addSubview:iv];
+        
+    
+    
+        
+    
     UIButton *btn = (UIButton *)sender;
     NSInteger tag = btn.tag;
 
@@ -269,6 +521,9 @@
     
     UIActivityViewController *activityViewController = [[UIActivityViewController alloc] initWithActivityItems:items applicationActivities:nil];
     [activityViewController setCompletionHandler:^(NSString *activityType, BOOL completed) {
+        
+        UIView *v = [self.view viewWithTag:9999];
+        [v removeFromSuperview];
         
     }];
     
@@ -292,6 +547,18 @@
 #pragma mark XYPieChartDataSource methods
 - (NSUInteger)numberOfSlicesInPieChart:(XYPieChart *)pieChart
 {
+    if(filteredEntries.count > 0)
+    {
+        NSInteger count = 0;
+        
+        for(Entry *e in filteredEntries)
+            count = count + e.entryPoints.count;
+        
+        return count;
+    }
+    
+    
+    
     Entry *e = nil;
     
     if(entries.count < 2)
@@ -301,14 +568,26 @@
     
     NSUInteger value = e.entryPoints.count;
     
-    if(value > 1)
-        value = value + value;
+//    if(value > 1)
+//        value = value + value;
         
     return value;
 }
 
 - (CGFloat)pieChart:(XYPieChart *)pieChart valueForSliceAtIndex:(NSUInteger)i
 {
+    
+    if(filteredEntries.count > 0)
+    {
+        NSInteger count = 0;
+        
+        for(Entry *e in filteredEntries)
+            count = count + e.entryPoints.count;
+        
+        return (CGFloat)1/count;
+    }
+    
+    
     Entry *e = nil;
     
     if(entries.count < 2)
@@ -318,6 +597,7 @@
 
     CGFloat value = (CGFloat)1/e.entryPoints.count;
   
+    /*
     if(e.entryPoints.count > 1)
     {
         if(i % 2 == 1)
@@ -325,12 +605,21 @@
         else
             value = value - .005;
     }
+     */
     
     return value;
 }
 
 - (UIColor *)pieChart:(XYPieChart *)pieChart colorForSliceAtIndex:(NSUInteger)i
 {
+    if(filteredEntries.count > 0)
+    {
+        EntryPoint *ep = (EntryPoint *)[filteredEntryPoints objectAtIndex:i];
+        return ep.color;
+    }
+
+    
+    
     Entry *e = nil;
     
     if(entries.count < 2)
@@ -340,7 +629,11 @@
 
     EntryPoint *entryPoint = nil;
     UIColor *color = [UIColor clearColor];
+
+    entryPoint = (EntryPoint *)[e.entryPoints objectAtIndex:i];
+    color = entryPoint.color;
     
+/*
     if(e.entryPoints.count == 1)
     {
         entryPoint = (EntryPoint *)[e.entryPoints objectAtIndex:i];
@@ -354,6 +647,7 @@
             color = entryPoint.color;
         }
     }
+ */
     
     return color;
 }
@@ -375,6 +669,9 @@
 
 -(void)animationCompleteForPieChart:(XYPieChart *)pieChart
 {
+    if(filteredEntries.count > 0)
+        return;
+    
     if(!entry.iconPath)
     {
         UIImage *image = [self imageForPieForTag:pieChart.tag];

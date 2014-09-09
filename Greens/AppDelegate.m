@@ -355,7 +355,7 @@
 {
     loadingWindow = [Utils showLoadingScreen];
     
-    [self.window.rootViewController dismissViewControllerAnimated:YES completion:^{
+    [self.window.rootViewController dismissViewControllerAnimated:NO completion:^{
     
         if([info objectForKey:UIImagePickerControllerOriginalImage])
         {
