@@ -172,11 +172,19 @@
 
 -(void)showHomeScreen
 {
+    
+    
     UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
     UINavigationController *nav = (UINavigationController *)[tab.viewControllers firstObject];
     UIViewController *vc1 = (UIViewController *)[nav.viewControllers firstObject];
 
-    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, -vc1.view.frame.size.height, vc1.view.frame.size.width, vc1.view.frame.size.height)];
+    
+    CGFloat height = -vc1.view.frame.size.height;
+    if(vc1.view.frame.origin.y == 20)
+        height = height + 93;
+    
+    
+    UIView *v = [[UIView alloc] initWithFrame:CGRectMake(0, height, vc1.view.frame.size.width, height * -1)];
     [v setTag:999];
     [v setBackgroundColor:[UIColor colorWithRed:242.0f/255.0f green:242.0f/255.0f blue:242.0f/255.0f alpha:1.0f]];
     
@@ -207,7 +215,7 @@
     [lbl setTextAlignment:NSTextAlignmentCenter];
     [lbl setNumberOfLines:2];
     [lbl setLineBreakMode:NSLineBreakByWordWrapping];
-    [lbl setFrame:CGRectMake(15, v.frame.size.height - 60, 290, 50)];
+    [lbl setFrame:CGRectMake(15, v.frame.size.height - 83, 290, 50)];
     [lbl setFont:kStandardFont];
     [lbl setTextColor:kColor_Text];
     [v addSubview:lbl];

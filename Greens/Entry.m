@@ -156,10 +156,16 @@
         iconPath = [coder decodeObjectForKey:@"iconPath"];
         
         if(imgPath)
-            image = [UIImage imageWithContentsOfFile:imgPath];
+        {
+            NSString *fileName = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, imgPath];
+            image = [UIImage imageWithContentsOfFile:fileName];
+        }
         
         if(iconPath)
-            icon = [UIImage imageWithContentsOfFile:iconPath];
+        {
+            NSString *fileName = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, iconPath];
+            icon = [UIImage imageWithContentsOfFile:fileName];
+        }
     }
     
     return self;
@@ -167,18 +173,22 @@
 
 -(void)setImage:(UIImage *)img
 {
-    NSString *fileName = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, [Utils createGUID]];
-    [self setImgPath:fileName];
-    [UIImageJPEGRepresentation(img,.9) writeToFile:fileName atomically:YES];
+    NSString *file = [Utils createGUID];
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, file];
+    [self setImgPath:file];
+    BOOL value = [UIImageJPEGRepresentation(img,.9) writeToFile:fileName atomically:YES];
     
     image = img;
 }
 
 -(void)setIcon:(UIImage *)img
 {
-    NSString *fileName = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, [Utils createGUID]];
-    [self setIconPath:fileName];
-    [UIImageJPEGRepresentation(img,.9) writeToFile:fileName atomically:YES];
+    NSString *file = [Utils createGUID];
+
+    NSString *fileName = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, file];
+    [self setIconPath:file];
+    BOOL value = [UIImageJPEGRepresentation(img,.9) writeToFile:fileName atomically:YES];
     
     icon = img;
 }
@@ -186,7 +196,11 @@
 -(UIImage *)icon
 {
     if(!icon && iconPath)
-        icon = [UIImage imageWithContentsOfFile:iconPath];
+    {
+        NSString *fileName = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, iconPath];
+
+        icon = [UIImage imageWithContentsOfFile:fileName];
+    }
     
     return icon;
 }
@@ -256,5 +270,16 @@
     return [tf stringFromDate:self.date];
 }
 
++(UIColor *)averageColor
+{
+    NSArray *array = [Entry fetchFiles];
+    NSMutableArray *colors = [[NSMutableArray alloc] init];
+    
+    for(Entry *e in array)
+        for(EntryPoint *ep in e.entryPoints)
+            [colors addObject:ep.color];
+    
+    return [UIColor clearColor];
+}
 
 @end

@@ -10,29 +10,29 @@
 	<string>Greens</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>3DBC68E6-4565-4FCD-BCFB-4B510C2E5390</key>
+		<key>B7F7D6B298CF8FFFA740006176134C26A5530D4D</key>
 		<string>ssh://github.com/mapk/eatyourgreens.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Greens.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>3DBC68E6-4565-4FCD-BCFB-4B510C2E5390</key>
+		<key>B7F7D6B298CF8FFFA740006176134C26A5530D4D</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/mapk/eatyourgreens.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>3DBC68E6-4565-4FCD-BCFB-4B510C2E5390</string>
+	<string>B7F7D6B298CF8FFFA740006176134C26A5530D4D</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>3DBC68E6-4565-4FCD-BCFB-4B510C2E5390</string>
+			<string>B7F7D6B298CF8FFFA740006176134C26A5530D4D</string>
 			<key>IDESourceControlWCCName</key>
 			<string>EatYourGreens</string>
 		</dict>

@@ -218,7 +218,7 @@
     
     UIView *v = [[UIView alloc] initWithFrame:self.view.bounds];
     [v setTag:101 + expansionLevel];
-    [v setBackgroundColor:[UIColor whiteColor]];
+    [v setBackgroundColor:kColor_Background];
     
     UIImage *wheelImage = [UIImage imageNamed:@"wheel-bg"];
     UIImageView *wheelImageView = [[UIImageView alloc] initWithImage:wheelImage];
@@ -388,9 +388,9 @@
     [btnEdit setFrame:CGRectMake(CGRectGetMaxX(btnPhoto.frame) + 5, 250, imgEdit.size.width, imgEdit.size.height)];
     [view addSubview:btnEdit];
 
-    CGFloat height = [UIScreen mainScreen].bounds.size.height - self.navigationController.navigationBar.frame.size.height - [UIApplication sharedApplication].statusBarFrame.size.height - self.tabBarController.tabBar.frame.size.height - 50;
+//    CGFloat height = [UIScreen mainScreen].bounds.size.height - self.navigationController.navigationBar.frame.size.height - [UIApplication sharedApplication].statusBarFrame.size.height - self.tabBarController.tabBar.frame.size.height - 70;
     
-    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, height, self.view.frame.size.width, 18)];
+    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(btnShare.frame) + 25, self.view.frame.size.width, 18)];
     [lblDate setFont:kStandardFont];
     [lblDate setTextAlignment:NSTextAlignmentCenter];
     [lblDate setText:[e longDate]];

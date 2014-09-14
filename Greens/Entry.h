@@ -35,5 +35,6 @@
 
 -(NSString *)longDate;
 -(NSString *)shortTime;
++(UIColor *)averageColor;
 //-(NSString *)colorText;
 @end
