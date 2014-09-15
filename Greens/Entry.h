@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, assign) CGPoint point;
 @property (nonatomic, assign) CGFloat hue;
+@property (nonatomic, strong) NSString *text;
 
 -(NSString *)colorText;
 
@@ -35,6 +36,6 @@
 
 -(NSString *)longDate;
 -(NSString *)shortTime;
-+(UIColor *)averageColor;
++(NSString *)averageColor;
 //-(NSString *)colorText;
 @end

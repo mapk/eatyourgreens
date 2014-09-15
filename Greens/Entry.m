@@ -11,7 +11,7 @@
 
 @implementation EntryPoint
 
-@synthesize color, point, hue;
+@synthesize color, point, hue, text;
 
 -(void)encodeWithCoder:(NSCoder *)coder
 {
@@ -19,6 +19,7 @@
     [coder encodeFloat:point.x forKey:@"x"];
     [coder encodeFloat:point.y forKey:@"y"];
     [coder encodeFloat:hue forKey:@"hue"];
+    [coder encodeObject:text forKey:@"text"];
 }
 
 -(id)initWithCoder:(NSCoder *)coder
@@ -29,6 +30,7 @@
         point.x = [coder decodeFloatForKey:@"x"];
         point.y = [coder decodeFloatForKey:@"y"];
         hue = [coder decodeFloatForKey:@"hue"];
+        text = [coder decodeObjectForKey:@"text"];
     }
     
     return self;
@@ -122,6 +124,8 @@
         s = sBluePurple;
     else if(hueValue > 324)
         s = sRed;
+    
+    [self setText:s];
     
     return s;
 }
@@ -270,16 +274,83 @@
     return [tf stringFromDate:self.date];
 }
 
-+(UIColor *)averageColor
++(NSString *)averageColor
 {
     NSArray *array = [Entry fetchFiles];
     NSMutableArray *colors = [[NSMutableArray alloc] init];
     
     for(Entry *e in array)
         for(EntryPoint *ep in e.entryPoints)
-            [colors addObject:ep.color];
+        {
+            if(ep.text.length == 0)
+                [ep colorText];
+            
+            [colors addObject:ep.text];
+        }
     
-    return [UIColor clearColor];
+    
+    NSString *sRed = @"Red";
+    NSString *sOrangeYellow = @"Orange/Yellow";
+    NSString *sGreen = @"Green";
+    NSString *sWhiteTan = @"White/Tan";
+    NSString *sBluePurple = @"Blue/Purple";
+
+    NSInteger iRed, iOrange, iGreen, iWhite, iBlue;
+    
+    iRed = 0;
+    iOrange = 0;
+    iGreen = 0;
+    iWhite = 0;
+    iBlue = 0;
+    
+    NSString *result = @"";
+    
+    for(NSString *s in colors)
+    {
+        if([s isEqualToString:sRed])
+            iRed++;
+        else if([s isEqualToString:sOrangeYellow])
+            iOrange++;
+        else if([s isEqualToString:sGreen])
+            iGreen++;
+        else if([s isEqualToString:sWhiteTan])
+            iWhite++;
+        else if([s isEqualToString:sBluePurple])
+            iBlue++;
+    }
+    
+    if(iRed > iOrange
+       && iRed > iGreen
+       && iRed > iWhite
+       && iRed > iBlue
+       )
+        result = sRed;
+    else if(iOrange > iRed
+            && iOrange > iGreen
+            && iOrange > iWhite
+            && iOrange > iBlue
+            )
+        result = sOrangeYellow;
+    else if(iGreen > iRed
+            && iGreen > iOrange
+            && iGreen > iWhite
+            && iGreen > iBlue
+            )
+        result = sGreen;
+    else if(iWhite > iRed
+            && iWhite > iOrange
+            && iWhite > iGreen
+            && iWhite > iBlue
+            )
+        result = sWhiteTan;
+    else if(iBlue > iRed
+            && iBlue > iGreen
+            && iBlue > iWhite
+            && iBlue > iOrange
+            )
+        result = sBluePurple;
+    
+    return result;
 }
 
 @end

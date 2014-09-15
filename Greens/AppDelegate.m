@@ -24,7 +24,7 @@
     [self.window setRootViewController:[self tabBarController]];
     [self.window makeKeyAndVisible];
     
-    [self showHomeScreen];
+    [self showHomeScreenForColor:NO];
 
     
     return YES;
@@ -170,9 +170,8 @@
     return tabBarController;
 }
 
--(void)showHomeScreen
+-(void)showHomeScreenForColor:(BOOL)showColor
 {
-    
     
     UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
     UINavigationController *nav = (UINavigationController *)[tab.viewControllers firstObject];
@@ -210,19 +209,61 @@
     [imgView setFrame:CGRectMake(v.frame.size.width/2 - img.size.width/2, CGRectGetMaxY(navBar.frame) + 10, img.size.width, img.size.height)];
     [v addSubview:imgView];
     
-    UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectZero];
-    [lbl setText:@"Start taking pictures of your food and see what colors you've been eating."];
-    [lbl setTextAlignment:NSTextAlignmentCenter];
-    [lbl setNumberOfLines:2];
-    [lbl setLineBreakMode:NSLineBreakByWordWrapping];
-    [lbl setFrame:CGRectMake(15, v.frame.size.height - 83, 290, 50)];
-    [lbl setFont:kStandardFont];
-    [lbl setTextColor:kColor_Text];
-    [v addSubview:lbl];
+    NSString *color = [Entry averageColor];
     
-    UIImageView *imgViewLogo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
-    [imgViewLogo setFrame:CGRectMake(v.frame.size.width/2 - imgViewLogo.image.size.width/2, lbl.frame.origin.y - 10 - imgViewLogo.image.size.height, imgViewLogo.image.size.width, imgViewLogo.image.size.height)];
-    [v addSubview:imgViewLogo];
+    if(showColor && color.length > 0)
+    {
+        UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectZero];
+        [lbl setText:@"Boy, do you enjoy eating the color:"];
+        [lbl setTextAlignment:NSTextAlignmentCenter];
+        [lbl setFrame:CGRectMake(15, v.frame.size.height - 83, 290, 20)];
+        [lbl setFont:kStandardFont];
+        [lbl setTextColor:kColor_Text];
+        [v addSubview:lbl];
+        
+        UILabel *lblColor = [[UILabel alloc] initWithFrame:CGRectZero];
+        [lblColor setText:color];
+        [lblColor setTextAlignment:NSTextAlignmentCenter];
+        [lblColor setFrame:CGRectMake(15, CGRectGetMaxY(lbl.frame) + 5, 290, 20)];
+        [lblColor setFont:kStandardFont];
+        [v addSubview:lblColor];
+        
+        NSString *sRed = @"Red";
+        NSString *sOrangeYellow = @"Orange/Yellow";
+        NSString *sGreen = @"Green";
+        NSString *sWhiteTan = @"White/Tan";
+        NSString *sBluePurple = @"Blue/Purple";
+
+        
+        if([color isEqualToString:sRed])
+            [lblColor setTextColor:kColor_Red];
+        else if([color isEqualToString:sOrangeYellow])
+            [lblColor setTextColor:kColor_OrangeYellow];
+        else if([color isEqualToString:sGreen])
+            [lblColor setTextColor:kColor_Green];
+        else if([color isEqualToString:sWhiteTan])
+            [lblColor setTextColor:kColor_WhiteTan];
+        else if([color isEqualToString:sBluePurple])
+            [lblColor setTextColor:kColor_BluePurple];
+        
+        
+    }
+    else
+    {
+        UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectZero];
+        [lbl setText:@"Start taking pictures of your food and see what colors you've been eating."];
+        [lbl setTextAlignment:NSTextAlignmentCenter];
+        [lbl setNumberOfLines:2];
+        [lbl setLineBreakMode:NSLineBreakByWordWrapping];
+        [lbl setFrame:CGRectMake(15, v.frame.size.height - 83, 290, 50)];
+        [lbl setFont:kStandardFont];
+        [lbl setTextColor:kColor_Text];
+        [v addSubview:lbl];
+        
+        UIImageView *imgViewLogo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+        [imgViewLogo setFrame:CGRectMake(v.frame.size.width/2 - imgViewLogo.image.size.width/2, lbl.frame.origin.y - 10 - imgViewLogo.image.size.height, imgViewLogo.image.size.width, imgViewLogo.image.size.height)];
+        [v addSubview:imgViewLogo];
+    }
     
     [tab.tabBar addSubview:v];
 }

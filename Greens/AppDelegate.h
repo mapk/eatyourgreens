@@ -17,7 +17,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
--(void)showHomeScreen;
+-(void)showHomeScreenForColor:(BOOL)showColor;
 
 @end
 

@@ -60,7 +60,7 @@
 -(void)showHome
 {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [appDelegate showHomeScreen];
+    [appDelegate showHomeScreenForColor:YES];
 }
 
 
