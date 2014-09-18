@@ -22,3 +22,31 @@
 @end
 
 
+
+/*
+ 
+ Breakdown by page
+ Avg. time spent in app
+ Photos taken overall
+ Meals shared overall
+ Overall shares
+ Breakdown per channel
+ Overall foods marked as allergic on settings page
+ Most common color eaten overall
+ Overall notes entered
+ Most common first-action after app opens
+ 
+ Per user analytics
+ App visits per user
+ Page visits per user
+ Breakdown by page
+ Avg. time spent in app per user
+ Photos taken per user
+ Meals shared per user
+ Shares per user
+ Breakdown per channel
+ Foods marked as allergic on settings page per user
+ Most common color eaten per user
+ Notes entered per user
+ 
+*/

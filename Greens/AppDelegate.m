@@ -20,6 +20,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [GAI sharedInstance].trackUncaughtExceptions = YES;
+    [[GAI sharedInstance] trackerWithTrackingId:@"UA-54070427-2"];
+    
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     [self.window setRootViewController:[self tabBarController]];
     [self.window makeKeyAndVisible];
@@ -172,6 +175,17 @@
 
 -(void)showHomeScreenForColor:(BOOL)showColor
 {
+    NSString *s = @"";
+    
+    if(showColor)
+        s = @"Show color";
+    else
+        s = @"Show logo";
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Homescreen"
+                                                                                        action:s
+                                                                                         label:nil
+                                                                                         value:nil] build]];
     
     UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
     UINavigationController *nav = (UINavigationController *)[tab.viewControllers firstObject];

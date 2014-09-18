@@ -106,7 +106,7 @@
     CGFloat saturation;
     CGFloat brightness;
     CGFloat alpha;
-    BOOL success = [self.color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
+    [self.color getHue:&hue saturation:&saturation brightness:&brightness alpha:&alpha];
 //    NSLog(@"success: %i hue: %0.2f, saturation: %0.2f, brightness: %0.2f, alpha: %0.2f", success, hue, saturation, brightness, alpha);
     
     
@@ -126,6 +126,8 @@
         s = sRed;
     
     [self setText:s];
+    
+    NSLog(@"%@", s);
     
     return s;
 }
