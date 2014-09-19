@@ -6,6 +6,7 @@
 
 #import <Availability.h>
 #import "GAI.h"
+#import "GAIFields.h"
 #import "GAIDictionaryBuilder.h"
 
 #ifndef __IPHONE_5_0

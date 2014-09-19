@@ -64,6 +64,9 @@
                                                                                         action:@"View"
                                                                                          label:@"Tips"
                                                                                          value:nil] build]];
+    
+    [[[GAI sharedInstance] defaultTracker] set:kGAIScreenName value:@"Tips"];
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createScreenView] build]];
 
 }
 

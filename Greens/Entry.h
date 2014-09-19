@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+@interface ColorCount : NSObject
+
+@property (nonatomic, strong) NSString *text;
+@property (nonatomic, strong) NSNumber *count;
+
++(ColorCount *)colorCountWithText:(NSString *)t withCount:(NSInteger)c;
+
+@end
+
 @interface EntryPoint : NSObject <NSCoding>
 
 @property (nonatomic, strong) UIColor *color;

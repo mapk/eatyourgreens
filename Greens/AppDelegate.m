@@ -593,9 +593,6 @@
                                                                                          value:nil] build]];
     
     
-    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createScreenView] build]];
-    
-    
     UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
 
     if(!sender)

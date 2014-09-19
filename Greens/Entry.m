@@ -9,6 +9,20 @@
 #import "Entry.h"
 #import "Utils.h"
 
+@implementation ColorCount
+
+@synthesize text, count;
+
++(ColorCount *)colorCountWithText:(NSString *)t withCount:(NSInteger)c
+{
+    ColorCount *cc = [[ColorCount alloc] init];
+    [cc setText:t];
+    [cc setCount:[NSNumber numberWithInteger:c]];
+    return cc;
+}
+
+@end
+
 @implementation EntryPoint
 
 @synthesize color, point, hue, text;
@@ -205,7 +219,7 @@
     
     [self setText:s];
     
-    NSLog(@"%@", s);
+//    NSLog(@"%@", s);
     
     return s;
 }
@@ -399,36 +413,23 @@
             iBlue++;
     }
     
-    if(iRed > iOrange
-       && iRed > iGreen
-       && iRed > iWhite
-       && iRed > iBlue
-       )
-        result = sRed;
-    else if(iOrange > iRed
-            && iOrange > iGreen
-            && iOrange > iWhite
-            && iOrange > iBlue
-            )
-        result = sOrangeYellow;
-    else if(iGreen > iRed
-            && iGreen > iOrange
-            && iGreen > iWhite
-            && iGreen > iBlue
-            )
-        result = sGreen;
-    else if(iWhite > iRed
-            && iWhite > iOrange
-            && iWhite > iGreen
-            && iWhite > iBlue
-            )
-        result = sWhiteTan;
-    else if(iBlue > iRed
-            && iBlue > iGreen
-            && iBlue > iWhite
-            && iBlue > iOrange
-            )
-        result = sBluePurple;
+    if(colors.count > 0)
+    {
+        NSMutableArray *counts = [[NSMutableArray alloc] init];
+        [counts addObject:[ColorCount colorCountWithText:sRed withCount:iRed]];
+        [counts addObject:[ColorCount colorCountWithText:sOrangeYellow withCount:iOrange]];
+        [counts addObject:[ColorCount colorCountWithText:sGreen withCount:iGreen]];
+        [counts addObject:[ColorCount colorCountWithText:sWhiteTan withCount:iWhite]];
+        [counts addObject:[ColorCount colorCountWithText:sBluePurple withCount:iBlue]];
+
+        NSArray *newArray = [counts sortedArrayUsingComparator:^NSComparisonResult(ColorCount *cc1, ColorCount *cc2) {
+            return [cc2.count compare:cc1.count];
+        }];
+        
+        ColorCount *cc = [newArray firstObject];
+        result = cc.text;
+    }
+    
     
     return result;
 }
