@@ -13,6 +13,7 @@
 		A3216A85196881C70006D0DB /* loupe-shadow-hi@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3216A81196881C70006D0DB /* loupe-shadow-hi@2x.png */; };
 		A3216A86196881C70006D0DB /* loupe-shadow-mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3216A82196881C70006D0DB /* loupe-shadow-mask@2x.png */; };
 		A322F4DD19A544DC00DD0859 /* icon-no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A322F4DC19A544DC00DD0859 /* icon-no@2x.png */; };
+		A326FD4019CC892F00147612 /* btn-crosshair-new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A326FD3F19CC892F00147612 /* btn-crosshair-new@2x.png */; };
 		A32C13C8194AB81C006FA4EC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A32C13C7194AB81C006FA4EC /* MobileCoreServices.framework */; };
 		A32C13CB194ABA67006FA4EC /* XYPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = A32C13CA194ABA67006FA4EC /* XYPieChart.m */; };
 		A32C13CD194ABA74006FA4EC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A32C13CC194ABA74006FA4EC /* QuartzCore.framework */; };
@@ -48,7 +49,6 @@
 		A3724BEE199EBB5900293B3C /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A3724BED199EBB5900293B3C /* logo@2x.png */; };
 		A38BF75A195738690047C0EF /* Entry.m in Sources */ = {isa = PBXBuildFile; fileRef = A38BF759195738690047C0EF /* Entry.m */; };
 		A38BF75F195B62970047C0EF /* btn-cancel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A38BF75C195B62970047C0EF /* btn-cancel@2x.png */; };
-		A38BF760195B62970047C0EF /* btn-crosshair-new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A38BF75D195B62970047C0EF /* btn-crosshair-new@2x.png */; };
 		A38BF761195B62970047C0EF /* btn-save-photo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A38BF75E195B62970047C0EF /* btn-save-photo@2x.png */; };
 		A39D2EDD19C0D99500307E46 /* icon-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A39D2EDC19C0D99400307E46 /* icon-home@2x.png */; };
 		A3D677B4195637F400B07927 /* ImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D677B3195637F400B07927 /* ImageViewController.m */; };
@@ -124,6 +124,7 @@
 		A3216A81196881C70006D0DB /* loupe-shadow-hi@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-shadow-hi@2x.png"; sourceTree = "<group>"; };
 		A3216A82196881C70006D0DB /* loupe-shadow-mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "loupe-shadow-mask@2x.png"; sourceTree = "<group>"; };
 		A322F4DC19A544DC00DD0859 /* icon-no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-no@2x.png"; sourceTree = "<group>"; };
+		A326FD3F19CC892F00147612 /* btn-crosshair-new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-crosshair-new@2x.png"; sourceTree = "<group>"; };
 		A32C13C7194AB81C006FA4EC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		A32C13C9194ABA67006FA4EC /* XYPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYPieChart.h; sourceTree = "<group>"; };
 		A32C13CA194ABA67006FA4EC /* XYPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYPieChart.m; sourceTree = "<group>"; };
@@ -182,7 +183,6 @@
 		A38BF759195738690047C0EF /* Entry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Entry.m; sourceTree = "<group>"; };
 		A38BF75B195944400047C0EF /* AppConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstants.h; sourceTree = "<group>"; };
 		A38BF75C195B62970047C0EF /* btn-cancel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-cancel@2x.png"; sourceTree = "<group>"; };
-		A38BF75D195B62970047C0EF /* btn-crosshair-new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-crosshair-new@2x.png"; sourceTree = "<group>"; };
 		A38BF75E195B62970047C0EF /* btn-save-photo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn-save-photo@2x.png"; sourceTree = "<group>"; };
 		A39D2EDC19C0D99400307E46 /* icon-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-home@2x.png"; sourceTree = "<group>"; };
 		A3D677B2195637F400B07927 /* ImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageViewController.h; sourceTree = "<group>"; };
@@ -408,7 +408,7 @@
 				A3E506C61948B370006154DB /* btn-camera-shoot.png */,
 				A3E506C71948B370006154DB /* btn-camera-shoot@2x.png */,
 				A38BF75C195B62970047C0EF /* btn-cancel@2x.png */,
-				A38BF75D195B62970047C0EF /* btn-crosshair-new@2x.png */,
+				A326FD3F19CC892F00147612 /* btn-crosshair-new@2x.png */,
 				A3E506CC1948B370006154DB /* btn-edit@2x.png */,
 				A3E506CE1948B370006154DB /* btn-flash.png */,
 				A3E506CF1948B370006154DB /* btn-flash@2x.png */,
@@ -549,6 +549,7 @@
 				A38BF75F195B62970047C0EF /* btn-cancel@2x.png in Resources */,
 				A3E506B51948B343006154DB /* 80x80.png in Resources */,
 				A3E506FD1948B370006154DB /* btn-camera-shoot.png in Resources */,
+				A326FD4019CC892F00147612 /* btn-crosshair-new@2x.png in Resources */,
 				A3E506F31948B370006154DB /* bar-green.png in Resources */,
 				A34B9A5619AE63F1000245C3 /* nav-camera@2x.png in Resources */,
 				A3E507211948B370006154DB /* splash-bg@2x.png in Resources */,
@@ -604,7 +605,6 @@
 				A3D71E7C1949701F0046C5C2 /* nav-book-active@2x.png in Resources */,
 				A3D71E7B1949701F0046C5C2 /* nav-book-active.png in Resources */,
 				A3E507051948B370006154DB /* btn-flash.png in Resources */,
-				A38BF760195B62970047C0EF /* btn-crosshair-new@2x.png in Resources */,
 				A3E506B31948B343006154DB /* 58x58.png in Resources */,
 				A3216A86196881C70006D0DB /* loupe-shadow-mask@2x.png in Resources */,
 				A32C6733194799C200A4AA93 /* InfoPlist.strings in Resources */,

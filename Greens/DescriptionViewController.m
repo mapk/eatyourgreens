@@ -84,6 +84,13 @@
     [v addSubview:txtViewDescription];
     
     [txtViewDescription becomeFirstResponder];
+    
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Screen"
+                                                                                        action:@"View"
+                                                                                         label:@"Notes"
+                                                                                         value:nil] build]];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -133,13 +140,24 @@
 
 -(void)finishClose
 {
-    
     if(entry.description.length == 0 && txtViewDescription.text.length > 0)
         saved = YES;
     else if(entry.description.length > 0 && txtViewDescription.text.length == 0)
         saved = YES;
     else
         saved = ![entry.description isEqualToString:txtViewDescription.text];
+    
+    if(saved)
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Notes"
+                                                                                            action:@"Closed"
+                                                                                             label:@"Changes Saved"
+                                                                                             value:nil] build]];
+    else
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Notes"
+                                                                                            action:@"Closed"
+                                                                                             label:@"No Changes"
+                                                                                             value:nil] build]];
+
     
     
     [entry setDescription:txtViewDescription.text];

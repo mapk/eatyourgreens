@@ -58,6 +58,13 @@
     
     UIBarButtonItem *btn = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"icon-home"] style:UIBarButtonItemStylePlain target:self action:@selector(showHome)];
     [self.navigationItem setRightBarButtonItem:btn];
+    
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Screen"
+                                                                                        action:@"View"
+                                                                                         label:@"Tips"
+                                                                                         value:nil] build]];
+
 }
 
 -(void)showHome

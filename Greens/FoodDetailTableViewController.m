@@ -34,6 +34,12 @@
     [self setTitle:@"Food Colors"];
     [self.view setBackgroundColor:kColor_Background];
     [self.tableView setBackgroundColor:self.view.backgroundColor];
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Screen"
+                                                                                        action:@"View"
+                                                                                         label:[NSString stringWithFormat:@"Food color: %@", food.title]
+                                                                                         value:nil] build]];
+    
 }
 
 - (void)didReceiveMemoryWarning

@@ -97,6 +97,13 @@
     CGSize szDetail = [Utils sizeForLabel:detailTextLabel forMaxSize:CGSizeMake(300, 0)];
     
     [detailTextLabel setFrame:CGRectMake(10, CGRectGetMaxY(lblHeadline.frame) + 10, szDetail.width, szDetail.height)];
+    
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Screen"
+                                                                                        action:@"View"
+                                                                                         label:[NSString stringWithFormat:@"Tip detail: %@", tips.headline]
+                                                                                         value:nil] build]];
+
 }
 
 - (void)didReceiveMemoryWarning

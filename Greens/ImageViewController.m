@@ -151,13 +151,18 @@
     
     [Tips checkForTip];
     
-
+/*
     NSMutableString *s = [[NSMutableString alloc] initWithString:@""];
     
     for(EntryPoint *ep in entryPoints)
         [s appendFormat:@"\n%@", [ep colorText]];
     
     [[[UIAlertView alloc] initWithTitle:nil message:s delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] show];
+*/
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Image"
+                                                                                        action:@"Create"
+                                                                                         label:[NSString stringWithFormat:@"Number of points: %d", (int)array.count]
+                                                                                         value:nil] build]];
     
     
     if(delegate && [delegate respondsToSelector:@selector(imageViewController:savedForEntry:)])
@@ -168,6 +173,12 @@
 -(void)cancel
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Screen"
+                                                                                        action:@"View Image"
+                                                                                         label:@"Closed"
+                                                                                         value:nil] build]];
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -249,6 +260,11 @@
         [loop removeFromSuperview];
         loop=nil;
         
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Color Point"
+                                                                                            action:@"Selected"
+                                                                                             label:[NSString stringWithFormat:@"Count for this image: %d", (int)array.count]
+                                                                                             value:nil] build]];
+
     }
 }
 

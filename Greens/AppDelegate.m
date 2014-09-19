@@ -175,17 +175,6 @@
 
 -(void)showHomeScreenForColor:(BOOL)showColor
 {
-    NSString *s = @"";
-    
-    if(showColor)
-        s = @"Show color";
-    else
-        s = @"Show logo";
-    
-    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Homescreen"
-                                                                                        action:s
-                                                                                         label:nil
-                                                                                         value:nil] build]];
     
     UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
     UINavigationController *nav = (UINavigationController *)[tab.viewControllers firstObject];
@@ -225,6 +214,8 @@
     
     NSString *color = [Entry averageColor];
     
+    NSString *trackingLabel = @"";
+    
     if(showColor && color.length > 0)
     {
         UILabel *lbl = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -260,6 +251,7 @@
         else if([color isEqualToString:sBluePurple])
             [lblColor setTextColor:kColor_BluePurple];
         
+        trackingLabel = [NSString stringWithFormat:@"Home with color: %@", color];
         
     }
     else
@@ -277,11 +269,22 @@
         UIImageView *imgViewLogo = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
         [imgViewLogo setFrame:CGRectMake(v.frame.size.width/2 - imgViewLogo.image.size.width/2, lbl.frame.origin.y - 10 - imgViewLogo.image.size.height, imgViewLogo.image.size.width, imgViewLogo.image.size.height)];
         [v addSubview:imgViewLogo];
+        
+        trackingLabel = [NSString stringWithFormat:@"Home with logo"];
+
     }
     
     [tab.tabBar addSubview:v];
+    
+    
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Screen"
+                                                                                        action:@"View"
+                                                                                         label:trackingLabel
+                                                                                         value:nil] build]];
+
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -319,6 +322,13 @@
     TipsTableViewController *tips = (TipsTableViewController *)[nav.viewControllers firstObject];
     
     [tips showAlert:notif.alertBody];
+    
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Notification"
+                                                                                        action:@"Tip Recieved"
+                                                                                         label:notif.alertBody
+                                                                                         value:nil] build]];
+
 }
 
 
@@ -418,10 +428,16 @@
 {
     loadingWindow = [Utils showLoadingScreen];
     
+    
+    
     [self.window.rootViewController dismissViewControllerAnimated:NO completion:^{
+        
+        NSString *trackingLabel = @"Canceled";
     
         if([info objectForKey:UIImagePickerControllerOriginalImage])
         {
+            trackingLabel = @"Picture selected";
+            
             if(imageViewController)
             {
                 [imageViewController setDelegate:nil];
@@ -441,6 +457,14 @@
                 [Utils dismissLoadingWindow:loadingWindow];
             }];
         }
+        
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Camera"
+                                                                                            action:@"Closed"
+                                                                                             label:trackingLabel
+                                                                                             value:nil] build]];
+        
+        
+        
     }];
 }
 
@@ -482,8 +506,13 @@
 
 -(void)selectColors:(id)sender
 {
-    UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
+
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Tab"
+                                                                                        action:@"Tapped"
+                                                                                         label:@"Colors"
+                                                                                         value:nil] build]];
     
+    UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
     
     if(!sender)
         sender = [self.tabBarController.tabBar viewWithTag:998];
@@ -506,6 +535,12 @@
 
 -(void)selectEntries:(id)sender
 {
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Tab"
+                                                                                        action:@"Tapped"
+                                                                                         label:@"Entries"
+                                                                                         value:nil] build]];
+    
+    
     UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
 
     if(!sender)
@@ -529,6 +564,12 @@
 
 -(void)selectCamera:(id)sender
 {
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Tab"
+                                                                                        action:@"Tapped"
+                                                                                         label:@"Camera"
+                                                                                         value:nil] build]];
+    
+    
     UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
 
     UIButton *btnHome = (UIButton *)[tab.tabBar viewWithTag:998];
@@ -546,6 +587,15 @@
 
 -(void)selectTips:(id)sender
 {
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Tab"
+                                                                                        action:@"Tapped"
+                                                                                         label:@"Tips"
+                                                                                         value:nil] build]];
+    
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createScreenView] build]];
+    
+    
     UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
 
     if(!sender)
@@ -569,6 +619,12 @@
 
 -(void)selectSettings:(id)sender
 {
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Tab"
+                                                                                        action:@"Tapped"
+                                                                                         label:@"Settings"
+                                                                                         value:nil] build]];
+    
+    
     UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
 
     if(!sender)

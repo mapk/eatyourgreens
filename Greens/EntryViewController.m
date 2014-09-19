@@ -85,6 +85,12 @@
     if(isNew)
         [Tips checkForTip];
     
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Screen"
+                                                                                        action:@"View"
+                                                                                         label:@"Entry"
+                                                                                         value:nil] build]];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -111,12 +117,12 @@
         if(pinchRecognizer.scale > 1.4)
         {
             pinchRecognizer.scale = 1.0;
-            [self addExpandedGraph];
+            [self removeExpandedGraph];
         }
         else if (pinchRecognizer.scale < .6)
         {
             pinchRecognizer.scale = 1.0;
-            [self removeExpandedGraph];
+            [self addExpandedGraph];
         }
     }
     
@@ -124,15 +130,31 @@
 
 -(void)addExpandedGraph
 {
+    NSString *value = @"";
+    
     if(expansionLevel == ExpansionLevelEntry)
+    {
         expansionLevel = ExpansionLevelDay;
+        value = @"Day";
+    }
     else if (expansionLevel == ExpansionLevelDay)
+    {
         expansionLevel = ExpansionLevelWeek;
+        value = @"Week";
+    }
     else if (expansionLevel == ExpansionLevelWeek)
+    {
         expansionLevel = ExpansionLevel30Days;
+        value = @"Month";
+    }
     else if (expansionLevel == ExpansionLevel30Days)
         return;
     
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Expanded Graph"
+                                                                                        action:@"Expanded"
+                                                                                         label:value
+                                                                                         value:nil] build]];
+
     NSArray *graphEntries = [Entry fetchFiles];
     NSTimeInterval time = 60 * 60 * 24 * -1;
     
@@ -263,17 +285,20 @@
 -(void)removeExpandedGraph
 {
     UIView *v = nil;
+    NSString *value = @"";
     
     if(expansionLevel == ExpansionLevel30Days)
     {
         expansionLevel = ExpansionLevelWeek;
         v = [self.view viewWithTag:101 + ExpansionLevel30Days];
+        value = @"Month";
     }
     else if (expansionLevel == ExpansionLevelWeek)
     {
         expansionLevel = ExpansionLevelDay;
         
         v = [self.view viewWithTag:101 + ExpansionLevelWeek];
+        value = @"Week";
     }
     else if (expansionLevel == ExpansionLevelDay)
     {
@@ -281,7 +306,16 @@
         [filteredEntries removeAllObjects];
         
         v = [self.view viewWithTag:101 + ExpansionLevelDay];
+        value = @"Day";
     }
+    else
+        return;
+    
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Expanded Graph"
+                                                                                        action:@"Removed"
+                                                                                         label:value
+                                                                                         value:nil] build]];
     
     if(v)
     {
@@ -464,6 +498,13 @@
     [imageViewController setEntry:e];
     [imageViewController setDelegate:self];
     [self.tabBarController presentViewController:imageViewController animated:YES completion:nil];
+    
+    
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Screen"
+                                                                                        action:@"View"
+                                                                                         label:@"Photo"
+                                                                                         value:nil] build]];
+    
 }
 
 -(UIImage *)imageForPieForTag:(NSInteger)tag
@@ -492,8 +533,6 @@
 
 -(void)share:(id)sender
 {
-    
-    
     UIGraphicsBeginImageContext(self.view.bounds.size);
     [self.view drawViewHierarchyInRect:self.view.bounds afterScreenUpdates:NO];
     UIImage *blurImg = UIGraphicsGetImageFromCurrentImageContext();
@@ -506,10 +545,6 @@
     [iv setFrame:CGRectMake(0, 0, blurImg.size.width, blurImg.size.height)];
     [self.view addSubview:iv];
         
-    
-    
-        
-    
     UIButton *btn = (UIButton *)sender;
     NSInteger tag = btn.tag;
 
@@ -525,6 +560,16 @@
         UIView *v = [self.view viewWithTag:9999];
         [v removeFromSuperview];
         
+        NSString *s = activityType;
+        
+        if(!completed)
+            s = @"Canceled";
+        
+        [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Entry"
+                                                                                            action:@"Shared"
+                                                                                             label:s
+                                                                                             value:nil] build]];
+        
     }];
     
     activityViewController.excludedActivityTypes =   @[UIActivityTypeCopyToPasteboard,
@@ -536,9 +581,8 @@
     
     
     NSAttributedString *as = [[NSAttributedString alloc] initWithString:@"Cancel" attributes:@{NSForegroundColorAttributeName:[UIColor colorWithRed:65.f/255.0f green:70.f/255.0f blue:80.f/255.0f alpha:1.0f]}];
+    
     [[UIButton appearanceWhenContainedIn:[UIActivityViewController class], nil] setAttributedTitle:as forState:UIControlStateNormal];
-    
-    
     
     [self presentViewController:activityViewController animated:YES completion:nil];
 

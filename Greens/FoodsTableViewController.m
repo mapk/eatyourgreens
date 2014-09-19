@@ -41,9 +41,9 @@
     [self.navigationItem setRightBarButtonItem:btn];
     
     
-    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Food colors"
+    [[[GAI sharedInstance] defaultTracker] send:[[GAIDictionaryBuilder createEventWithCategory:@"Screen"
                                                                                         action:@"View"
-                                                                                         label:nil
+                                                                                         label:@"Food colors"
                                                                                          value:nil] build]];
 
 }
