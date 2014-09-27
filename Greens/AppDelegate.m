@@ -474,6 +474,7 @@
     loadingWindow = [Utils showLoadingScreen];
     
     [self.window.rootViewController dismissViewControllerAnimated:YES completion:^{
+        [self selectEntries:nil];
         [Utils dismissLoadingWindow:loadingWindow];
     }];
     

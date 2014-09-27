@@ -368,10 +368,11 @@
 {
     UIView *view = [[UIView alloc] initWithFrame:frame];
     [view setTag:999];
-    [view setBackgroundColor:[UIColor clearColor]];
+    [view setBackgroundColor:kColor_Background];
     
     UIImage *wheelImage = [UIImage imageNamed:@"wheel-bg"];
     UIImageView *wheelImageView = [[UIImageView alloc] initWithImage:wheelImage];
+    [wheelImageView setBackgroundColor:kColor_Background];
     [wheelImageView setTag:tag];
     [wheelImageView setFrame:CGRectMake(frame.size.width/2 - wheelImage.size.width/2, 10, wheelImage.size.width, wheelImage.size.height)];
     [view addSubview:wheelImageView];
@@ -550,7 +551,7 @@
 
     UIImage *img = [self imageForPieForTag:tag];
     
-    NSString *s = [NSString stringWithFormat:@"I'm eating a variety of color with the help of the mobile app, Eat Your Greens. Check out my color wheel of foods. http://EatYourGreensApp.com"];
+    NSString *s = [NSString stringWithFormat:@"I'm eating a variety of color with the help of the mobile app, Eat Your Greens. Check out my color wheel of foods. http://changeranger.co"];
     
     NSArray *items  = [NSArray arrayWithObjects:s,img,nil];
     

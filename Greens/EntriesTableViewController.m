@@ -118,10 +118,36 @@
 
 -(void)newEntry:(Entry *)entry
 {
+    NSMutableArray *dayEntries = [[NSMutableArray alloc] init];
+
+    for(int i = 0;i<entrySections.count;i++)
+    {
+        NSArray *array = (NSArray *)[entrySections objectAtIndex:i];
+        
+        for(int j = 0;j<array.count;j++)
+        {
+            Entry *e = (Entry *)[array objectAtIndex:j];
+            
+            NSDateComponents *dc = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:e.date];
+            NSDateComponents *dc1 = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay fromDate:entry.date];
+            
+            if(dc1.day == dc.day && dc1.month == dc.month && dc1.year == dc.year)
+                [dayEntries addObject:e];
+        }
+    }
+    
     EntryViewController *entryViewController = [[EntryViewController alloc] init];
     [entryViewController setEntry:entry];
+    
+    if(dayEntries.count > 0)
+    {
+        [dayEntries insertObject:entry atIndex:0];
+        [entryViewController setEntries:dayEntries];
+    }
+    
     [entryViewController setIsNew:YES];
     [self.navigationController pushViewController:entryViewController animated:YES];
+     
 }
 
 #pragma mark - Table view data source
