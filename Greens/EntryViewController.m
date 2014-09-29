@@ -551,7 +551,7 @@
 
     UIImage *img = [self imageForPieForTag:tag];
     
-    NSString *s = [NSString stringWithFormat:@"I'm eating a variety of color with the help of the mobile app, Eat Your Greens. Check out my color wheel of foods. http://changeranger.co"];
+    NSString *s = [NSString stringWithFormat:@"I'm eating a variety of color with the help of the mobile app, Eat Your Greens. Check out my color wheel of foods. http://eatyourgreensapp.com"];
     
     NSArray *items  = [NSArray arrayWithObjects:s,img,nil];
     

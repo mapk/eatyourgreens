@@ -64,6 +64,7 @@
         [self setHue:_hue];
 }
 
+/*
 -(NSString *)colorText_bak2
 {
     NSString *s = @"";
@@ -76,44 +77,7 @@
     
     long count = CGColorGetNumberOfComponents(self.color.CGColor);
     
-    /*
-    if(count == 4)
-    {
-        const CGFloat *_components = CGColorGetComponents(self.color.CGColor);
-        CGFloat red = _components[0];
-        CGFloat green = _components[1];
-        CGFloat blue = _components[2];
-        CGFloat alpha = _components[3];
-        
-        red = red * 255;
-        green = green * 255;
-        blue = blue * 255;
-        
-        
-        if((red == 255 && green <= 102 && blue == 0)                //Red
-           || (red == 255 && green == 0 && blue <= 150))
-            s = sRed;
-        else if ((red == 255 && green >= 108 && green <= 252 && blue == 0)          //OrangeYellow
-                 || (red >= 240 && green == 255 && blue == 0))
-            s = sOrangeYellow;
-        else if ((red == 234 && green == 255 && blue == 0)          //Green
-                 || (red >= 0 && green == 255 && blue <= 144))
-            s = sGreen;
-        else if ((red == 0 && green == 255 && blue >= 150)          //Blue/Purple
-                 || (red == 0 && green <= 255 && blue == 255)
-                 || (red >= 0 && red <=252 && green == 0 && blue == 255)
-                 || (red == 255  && green == 0 && blue <= 252 && blue >= 153))
-            s = sBluePurple;
-        else if ((red >= 229 && green >= 229 && blue >= 229)          //WhiteTan
-                 || (red == green && blue >= red+19)
-                 || (red == blue && green >= red+19)
-                 || (green == blue && red >= blue+19))
-            s = sWhiteTan;
-        
-        //        NSLog(@"Red = %f, Green = %f, Blue = %f", red, green, blue);
-        //        NSLog(@"%@", s);
-    }
-    */
+
     
     CGFloat hue;
     CGFloat saturation;
@@ -140,7 +104,7 @@
     
     return s;
 }
-
+*/
 
 -(NSString *)colorText
 {
