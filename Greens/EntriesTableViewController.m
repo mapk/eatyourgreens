@@ -86,7 +86,7 @@
             oldDate = [calendar dateFromComponents:date1Components];
             [current addObject:entry];
             if(entries.count == 1)
-                [entrySections addObject:[NSArray arrayWithArray:current]];
+                [entrySections addObject:[NSMutableArray arrayWithArray:current]];
         }
         else
         {
@@ -100,14 +100,14 @@
                 [current addObject:entry];
             else
             {
-                [entrySections addObject:[NSArray arrayWithArray:current]];
+                [entrySections addObject:[NSMutableArray arrayWithArray:current]];
                 oldDate = entry.date;
                 [current removeAllObjects];
                 [current addObject:entry];
             }
             
             if(i == entries.count -1)
-                [entrySections addObject:[NSArray arrayWithArray:current]];
+                [entrySections addObject:[NSMutableArray arrayWithArray:current]];
         }
     }
     
@@ -231,4 +231,32 @@
     [entryViewController setIndex:indexPath.row];
     [self.navigationController pushViewController:entryViewController animated:YES];
 }
+
+
+-(UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSMutableArray *array = (NSMutableArray *)[entrySections objectAtIndex:indexPath.section];
+    Entry *entry = (Entry *)[array objectAtIndex:indexPath.row];
+    [entry remove];
+    [array removeObjectAtIndex:indexPath.row];
+    
+    [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    if(array.count == 0)
+    {
+        [entrySections removeObjectAtIndex:indexPath.section];
+        [tableView deleteSections:[NSIndexSet indexSetWithIndex:indexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
 @end

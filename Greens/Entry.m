@@ -289,8 +289,17 @@
     
     NSFileManager *fm = [NSFileManager defaultManager];
     NSError *error = nil;
+
+    if([fm fileExistsAtPath:iconPath])
+        [fm removeItemAtPath:iconPath error:&error];
+
+    if([fm fileExistsAtPath:imgPath])
+        [fm removeItemAtPath:imgPath error:&error];
+
     if([fm fileExistsAtPath:filePath])
         [fm removeItemAtPath:filePath error:&error];
+
+    
 }
 
 +(NSArray *)fetchFiles
