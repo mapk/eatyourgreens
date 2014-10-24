@@ -65,6 +65,14 @@
     [nav4.navigationBar setTranslucent:NO];
     [nav5.navigationBar setTranslucent:NO];
     
+    [[UINavigationBar appearance] setBackgroundImage:[[UIImage alloc] init] forBarMetrics:UIBarMetricsDefault];
+    [[UINavigationBar appearance] setShadowImage:[[UIImage alloc] init]];
+    
+    
+//    [nav1.navigationBar.layer setBorderWidth:0.0];// Just to make sure its working
+//    [nav1.navigationBar.layer setBorderColor:[[UIColor clearColor] CGColor]];
+    
+    /*
     [nav1.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [nav2.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     [nav3.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
@@ -76,6 +84,7 @@
     [nav3.navigationBar setTintColor:[UIColor whiteColor]];
     [nav4.navigationBar setTintColor:[UIColor whiteColor]];
     [nav5.navigationBar setTintColor:[UIColor whiteColor]];
+     */
     
     [nav1 setTabBarItem:tb1];
     [nav2 setTabBarItem:tb2];
@@ -194,7 +203,8 @@
     UINavigationBar *navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, -64, v.frame.size.width, 64)];
     [v addSubview:navBar];
     
-    UIColor *navColor = [UIColor colorWithRed:55.0f/255.0f green:61.0f/255.0f blue:72.0f/255.0f alpha:1.0];
+//    UIColor *navColor = [UIColor colorWithRed:55.0f/255.0f green:61.0f/255.0f blue:72.0f/255.0f alpha:1.0];
+    UIColor *navColor = [UIColor whiteColor];
     [[UINavigationBar appearance] setBarTintColor:navColor];
     [navBar setBackgroundColor:navColor];
     [navBar setTranslucent:NO];
