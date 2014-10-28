@@ -374,38 +374,45 @@
     {
         value = NO;
         
-        UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
-        [imagePicker.navigationBar setTintColor:[UIColor whiteColor]];
-        [imagePicker.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-        [imagePicker setDelegate:self];
         
-        if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront]
-           || [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
-        {
-            [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
-            [imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
-        }
-        else
-        {
-            [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-            [imagePicker setMediaTypes:[NSArray arrayWithObject:(NSString *) kUTTypeImage]];
-        }
-        
-        [self.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
+        [self chooseImage];
         
         
-        
-        
-        /*
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take New Picture", @"Select Picture From Library", nil];
-        [actionSheet showInView:self.window.rootViewController.view];
-         */
     }
     
     return value;
 }
 
-/*
+
+-(void)chooseImage
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take New Picture", @"Select Picture From Library", nil];
+    [actionSheet showInView:self.window.rootViewController.view];
+}
+    
+ /*
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    [imagePicker.navigationBar setTintColor:[UIColor whiteColor]];
+    [imagePicker.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    [imagePicker setDelegate:self];
+    
+    if([UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront]
+       || [UIImagePickerController isCameraDeviceAvailable:UIImagePickerControllerCameraDeviceFront])
+    {
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypeCamera];
+        [imagePicker setCameraCaptureMode:UIImagePickerControllerCameraCaptureModePhoto];
+    }
+    else
+    {
+        [imagePicker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        [imagePicker setMediaTypes:[NSArray arrayWithObject:(NSString *) kUTTypeImage]];
+    }
+    
+    [self.window.rootViewController presentViewController:imagePicker animated:YES completion:nil];
+
+*/
+
+
 #pragma mark UIActionSheetDelegate methods
 -(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
@@ -431,7 +438,7 @@
     }
     
 }
-*/
+
 
 #pragma mark UIImagePickerControllerDelegate methods
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
