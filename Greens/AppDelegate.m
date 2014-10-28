@@ -374,9 +374,8 @@
     {
         value = NO;
         
-        
-        [self chooseImage];
-        
+        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take New Picture", @"Select Picture From Library", nil];
+        [actionSheet showInView:self.window.rootViewController.view];
         
     }
     
@@ -384,12 +383,7 @@
 }
 
 
--(void)chooseImage
-{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take New Picture", @"Select Picture From Library", nil];
-    [actionSheet showInView:self.window.rootViewController.view];
-}
-    
+
  /*
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
     [imagePicker.navigationBar setTintColor:[UIColor whiteColor]];
@@ -590,6 +584,7 @@
     
     UITabBarController *tab = (UITabBarController *)self.window.rootViewController;
 
+    /*
     UIButton *btnHome = (UIButton *)[tab.tabBar viewWithTag:998];
     UIButton *btnInvite = (UIButton *)[tab.tabBar viewWithTag:997];
     UIButton *btnComments = (UIButton *)[tab.tabBar viewWithTag:995];
@@ -599,6 +594,7 @@
     [btnInvite setImage:[UIImage imageNamed:@"nav-entries"] forState:UIControlStateNormal];
     [btnComments setImage:[UIImage imageNamed:@"nav-tips"] forState:UIControlStateNormal];
     [btnUsers setImage:[UIImage imageNamed:@"nav-settings"] forState:UIControlStateNormal];
+    */
     
     BOOL value = [self tabBarController:tab shouldSelectViewController:[tab.viewControllers objectAtIndex:2]];
 }

@@ -208,7 +208,6 @@
     
     UIImage *img = [Utils imageWithColor:[UIColor clearColor] andSize:CGSizeMake(40, 40)];
     [cell.imageView setImage:img];
-//    [cell.imageView setImage:[UIImage imageNamed:@"nav-colorwheel-active"]];
     
     UIImageView *iv = [[UIImageView alloc] initWithImage:entry.icon];
     [iv setFrame:CGRectMake(10, 5, 40, 40)];
