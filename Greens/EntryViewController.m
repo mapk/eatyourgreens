@@ -718,14 +718,27 @@
 {
     if(filteredEntries.count > 0)
         return;
-    
-    if(!entry.iconPath)
+
+    if(!pieChart.tag)
     {
-        UIImage *image = [self imageForPieForTag:pieChart.tag];
-        image = [Utils image:image byScalingAndCroppingForSize:CGSizeMake(80, 80)];
-        [entry setIcon:image];
-        [entry save];
+        NSLog(@"no pieChart tag");
+    
+        Entry *e = nil;
+        
+        if(entries.count > 0)
+            e = (Entry *)[entries objectAtIndex:0];
+        else if (entry)
+            e = entry;
+        
+        if(e.iconPath.length == 0)
+        {
+            UIImage *image = [self imageForPieForTag:pieChart.tag];
+            image = [Utils image:image byScalingAndCroppingForSize:CGSizeMake(80, 80)];
+            [e setIcon:image];
+            [e save];
+        }
     }
+
 }
 
 #pragma mark ImageViewControllerDelegate methods

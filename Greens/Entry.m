@@ -289,12 +289,16 @@
     
     NSFileManager *fm = [NSFileManager defaultManager];
     NSError *error = nil;
+    
+    NSString *path = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, iconPath];
 
-    if([fm fileExistsAtPath:iconPath])
-        [fm removeItemAtPath:iconPath error:&error];
+    if([fm fileExistsAtPath:path])
+        [fm removeItemAtPath:path error:&error];
 
-    if([fm fileExistsAtPath:imgPath])
-        [fm removeItemAtPath:imgPath error:&error];
+    path = [NSString stringWithFormat:@"%@/%@.png", DOCUMENTS_FOLDER, imgPath];
+    
+    if([fm fileExistsAtPath:path])
+        [fm removeItemAtPath:path error:&error];
 
     if([fm fileExistsAtPath:filePath])
         [fm removeItemAtPath:filePath error:&error];

@@ -50,8 +50,8 @@
     UITabBarItem *tb4 = [[UITabBarItem alloc] initWithTitle:@"Tips" image:[UIImage imageNamed:@"nav-book"] selectedImage:[UIImage imageNamed:@"nav-book-active"]];
     UITabBarItem *tb5 = [[UITabBarItem alloc] initWithTitle:@"Settings" image:[UIImage imageNamed:@"nav-cog"] selectedImage:[UIImage imageNamed:@"nav-cog"]];
 
-    UIColor *navColor = [UIColor colorWithRed:55.0f/255.0f green:61.0f/255.0f blue:72.0f/255.0f alpha:1.0];
-    [[UINavigationBar appearance] setBarTintColor:navColor];
+//    UIColor *navColor = [UIColor colorWithRed:55.0f/255.0f green:61.0f/255.0f blue:72.0f/255.0f alpha:1.0];
+//    [[UINavigationBar appearance] setBarTintColor:navColor];
 
     UINavigationController *nav1 = [[UINavigationController alloc] initWithRootViewController:vc1];
     UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:vc2];
