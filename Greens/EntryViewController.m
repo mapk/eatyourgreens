@@ -267,7 +267,7 @@
     
     NSString *sDate = [NSString stringWithFormat:@"From: %@\nTo: %@", [df stringFromDate:startDate], [df stringFromDate:e.date]];
     
-    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, v.frame.size.height - 60, self.view.frame.size.width, 40)];
+    UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(0, v.frame.size.height - 80, self.view.frame.size.width, 40)];
     [lblDate setFont:kStandardFont];
     [lblDate setTextAlignment:NSTextAlignmentCenter];
     [lblDate setText:sDate];
@@ -719,7 +719,7 @@
     if(filteredEntries.count > 0)
         return;
 
-    if(!pieChart.tag)
+    if(isNew && !pieChart.tag)
     {
         NSLog(@"no pieChart tag");
     
