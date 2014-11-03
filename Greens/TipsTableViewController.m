@@ -150,13 +150,14 @@
         [lblHeadline setFont:kStandardFont];
         [lblHeadline setTag:999];
         [lblHeadline setBackgroundColor:[UIColor clearColor]];
+        [lblHeadline setTextColor:kColor_Text];
         [cell.contentView addSubview:lblHeadline];
         
         lblDate = [[UILabel alloc] initWithFrame:CGRectMake(210, 5, 95, 20)];
         [lblDate setTag:998];
         [lblDate setTextAlignment:NSTextAlignmentRight];
         [lblDate setBackgroundColor:[UIColor clearColor]];
-        [lblDate setTextColor:[UIColor lightGrayColor]];
+        [lblDate setTextColor:kColor_Text];
         [lblDate setFont:kStandardFont];
         [cell.contentView addSubview:lblDate];
         
@@ -181,12 +182,13 @@
     [cell.textLabel setLineBreakMode:NSLineBreakByWordWrapping];
     [cell.textLabel setFont:[UIFont systemFontOfSize:17.0f]];
     [cell.textLabel setBackgroundColor:[UIColor clearColor]];
+    [cell.textLabel setTextColor:kColor_Text];
     
     [lblHeadline setText:t.headline];
     [lblDate setText:[t dateString]];
     
     [cell.detailTextLabel setText:t.message];
-    [cell.detailTextLabel setTextColor:[UIColor lightGrayColor]];
+    [cell.detailTextLabel setTextColor:kColor_Text];
     [cell.detailTextLabel setNumberOfLines:2];
     [cell.detailTextLabel setFont:kStandardFont];
     [cell.detailTextLabel setBackgroundColor:[UIColor clearColor]];

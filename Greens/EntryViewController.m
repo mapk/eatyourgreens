@@ -260,6 +260,7 @@
     [lbl.layer setCornerRadius:50];
     [lbl.layer setMasksToBounds:YES];
     [lbl setBackgroundColor:[UIColor whiteColor]];
+    [lbl setTextColor:kColor_Text];
     [wheelImageView addSubview:lbl];
     [wheelImageView bringSubviewToFront:lbl];
     [lbl setCenter:CGPointMake(wheelImage.size.width/2, wheelImage.size.height/2)];
@@ -273,6 +274,7 @@
     [lblDate setText:sDate];
     [lblDate setNumberOfLines:0];
     [lblDate setLineBreakMode:NSLineBreakByWordWrapping];
+    [lblDate setTextColor:kColor_Text];
     [v setAlpha:0.0];
     [v addSubview:lblDate];
     
@@ -429,12 +431,14 @@
     [lblDate setFont:kStandardFont];
     [lblDate setTextAlignment:NSTextAlignmentCenter];
     [lblDate setText:[e longDate]];
+    [lblDate setTextColor:kColor_Text];
     [view addSubview:lblDate];
 
     UILabel *lblTime = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(lblDate.frame), self.view.frame.size.width, 18)];
     [lblTime setFont:kStandardFont];
     [lblTime setTextAlignment:NSTextAlignmentCenter];
     [lblTime setText:[e shortTime]];
+    [lblTime setTextColor:kColor_Text];
     [view addSubview:lblTime];
 
     return view;

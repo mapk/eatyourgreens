@@ -96,6 +96,7 @@
     [lbl setBackgroundColor:[UIColor clearColor]];
     [lbl setNumberOfLines:0];
     [lbl setLineBreakMode:NSLineBreakByWordWrapping];
+    [lbl setTextColor:kColor_Text];
     [v addSubview:lbl];
     
     return v;
@@ -171,7 +172,7 @@
     {
 //        [cell setAccessoryType:UITableViewCellAccessoryNone];
         [cell setAccessoryView:nil];
-        [cell.textLabel setTextColor:[UIColor blackColor]];
+        [cell.textLabel setTextColor:kColor_Text];
     }
     
     

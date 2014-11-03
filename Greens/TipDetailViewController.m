@@ -56,6 +56,7 @@
     [lblFood setBackgroundColor:[UIColor clearColor]];
     [lblFood setNumberOfLines:0];
     [lblFood setLineBreakMode:NSLineBreakByWordWrapping];
+    [lblFood setTextColor:kColor_Text];
     [lblFood setText:tips.food];
     
     CGSize szFood = [Utils sizeForLabel:lblFood forMaxSize:CGSizeMake(300, 0)];
@@ -85,6 +86,7 @@
     [lblHeadline setBackgroundColor:[UIColor clearColor]];
     [lblHeadline setNumberOfLines:0];
     [lblHeadline setLineBreakMode:NSLineBreakByWordWrapping];
+    [lblHeadline setTextColor:kColor_Text];
     [lblHeadline setText:tips.headline];
 
     CGSize szHeadline = [Utils sizeForLabel:lblHeadline forMaxSize:CGSizeMake(300, 0)];
@@ -98,6 +100,7 @@
     [detailTextLabel setText:tips.message];
     [detailTextLabel setNumberOfLines:0];
     [detailTextLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [detailTextLabel setTextColor:kColor_Text];
     
     [self.view addSubview:detailTextLabel];
     

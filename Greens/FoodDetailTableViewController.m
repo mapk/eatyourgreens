@@ -73,6 +73,7 @@
         [lbl setFont:[UIFont systemFontOfSize:17.0f]];
         [lbl setLineBreakMode:NSLineBreakByWordWrapping];
         [lbl setNumberOfLines:0];
+        [lbl setTextColor:kColor_Text];
         
         CGSize size = [Utils sizeForLabel:lbl forMaxSize:CGSizeMake(280, 0)];
         value = size.height;
