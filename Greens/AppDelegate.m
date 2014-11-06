@@ -72,19 +72,19 @@
 //    [nav1.navigationBar.layer setBorderWidth:0.0];// Just to make sure its working
 //    [nav1.navigationBar.layer setBorderColor:[[UIColor clearColor] CGColor]];
     
-    /*
-    [nav1.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [nav2.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [nav3.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [nav4.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-    [nav5.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     
-    [nav1.navigationBar setTintColor:[UIColor whiteColor]];
-    [nav2.navigationBar setTintColor:[UIColor whiteColor]];
-    [nav3.navigationBar setTintColor:[UIColor whiteColor]];
-    [nav4.navigationBar setTintColor:[UIColor whiteColor]];
-    [nav5.navigationBar setTintColor:[UIColor whiteColor]];
-     */
+    [nav1.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : kColor_Text}];
+    [nav2.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : kColor_Text}];
+    [nav3.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : kColor_Text}];
+    [nav4.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : kColor_Text}];
+    [nav5.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : kColor_Text}];
+    
+    [nav1.navigationBar setTintColor:kColor_Text];
+    [nav2.navigationBar setTintColor:kColor_Text];
+    [nav3.navigationBar setTintColor:kColor_Text];
+    [nav4.navigationBar setTintColor:kColor_Text];
+    [nav5.navigationBar setTintColor:kColor_Text];
+    
     
     [nav1 setTabBarItem:tb1];
     [nav2 setTabBarItem:tb2];
