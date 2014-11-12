@@ -79,11 +79,11 @@
     [nav4.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : kColor_Text}];
     [nav5.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : kColor_Text}];
     
-    [nav1.navigationBar setTintColor:kColor_Text];
-    [nav2.navigationBar setTintColor:kColor_Text];
-    [nav3.navigationBar setTintColor:kColor_Text];
-    [nav4.navigationBar setTintColor:kColor_Text];
-    [nav5.navigationBar setTintColor:kColor_Text];
+    [nav1.navigationBar setTintColor:kColor_Green];
+    [nav2.navigationBar setTintColor:kColor_Green];
+    [nav3.navigationBar setTintColor:kColor_Green];
+    [nav4.navigationBar setTintColor:kColor_Green];
+    [nav5.navigationBar setTintColor:kColor_Green];
     
     
     [nav1 setTabBarItem:tb1];
