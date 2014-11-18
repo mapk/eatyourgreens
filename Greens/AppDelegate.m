@@ -211,7 +211,7 @@
     
     UILabel *lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 20, navBar.frame.size.width, navBar.frame.size.height - 20)];
     [lblTitle setFont:[UIFont boldSystemFontOfSize:17.0f]];
-    [lblTitle setTextColor:[UIColor whiteColor]];
+    [lblTitle setTextColor:kColor_Text];
     [lblTitle setBackgroundColor:[UIColor clearColor]];
     [lblTitle setText:@"Eat Your Greens"];
     [lblTitle setTextAlignment:NSTextAlignmentCenter];
