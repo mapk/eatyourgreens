@@ -557,7 +557,7 @@
     
 //    NSString *s = [NSString stringWithFormat:@"I'm eating a variety of color with the help of the mobile app, Eat Your Greens. Check out my color wheel of foods. http://eatyourgreensapp.com"];
     
-    NSString *s = @"I'm eating a variety of color with @eatyourgreensap. Here's my food color wheel. #eatyourgreens http://eatyourgreensapp.com";
+    NSString *s = @"I’m eating a variety of color with @eatyourgreensapp. Here’s my color wheel. http://eatyourgreensapp.com";
     
     NSArray *items  = [NSArray arrayWithObjects:s,img,nil];
     
