@@ -516,6 +516,11 @@
 			attributes = {
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Todd Mathison";
+				TargetAttributes = {
+					A32C6724194799C200A4AA93 = {
+						DevelopmentTeam = FLDJMSH6Y4;
+					};
+				};
 			};
 			buildConfigurationList = A32C6720194799C200A4AA93 /* Build configuration list for PBXProject "Greens" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -664,6 +669,60 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4DB55B1E1A1BE7BD009406B0 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AppStore;
+		};
+		4DB55B1F1A1BE7BD009406B0 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Mark Uraine (FLDJMSH6Y4)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Greens/Greens-Prefix.pch";
+				INFOPLIST_FILE = "Greens/Greens-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Greens/3rdParty/Google",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "70639e70-d391-4ec0-bf99-6df8a8269273";
+				TARGETED_DEVICE_FAMILY = 1;
+				WRAPPER_EXTENSION = app;
+			};
+			name = AppStore;
+		};
 		A32C6755194799C200A4AA93 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -739,6 +798,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Greens/Greens-Prefix.pch";
 				INFOPLIST_FILE = "Greens/Greens-Info.plist";
@@ -748,6 +809,7 @@
 					"$(PROJECT_DIR)/Greens/3rdParty/Google",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -758,6 +820,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Greens/Greens-Prefix.pch";
 				INFOPLIST_FILE = "Greens/Greens-Info.plist";
@@ -767,6 +831,7 @@
 					"$(PROJECT_DIR)/Greens/3rdParty/Google",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -809,8 +874,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Todd Mathison (Y7PLD2N9KF)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Todd Mathison (Y7PLD2N9KF)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Greens/Greens-Prefix.pch";
 				INFOPLIST_FILE = "Greens/Greens-Info.plist";
@@ -820,7 +885,7 @@
 					"$(PROJECT_DIR)/Greens/3rdParty/Google",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4da8bab7-942d-4d5f-a7ef-c3f5c25e1506";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -834,6 +899,7 @@
 			buildConfigurations = (
 				A32C6755194799C200A4AA93 /* Debug */,
 				A32C6756194799C200A4AA93 /* Release */,
+				4DB55B1E1A1BE7BD009406B0 /* AppStore */,
 				A3D677BD19565BAE00B07927 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -844,6 +910,7 @@
 			buildConfigurations = (
 				A32C6758194799C200A4AA93 /* Debug */,
 				A32C6759194799C200A4AA93 /* Release */,
+				4DB55B1F1A1BE7BD009406B0 /* AppStore */,
 				A3D677BE19565BAE00B07927 /* AdHoc */,
 			);
 			defaultConfigurationIsVisible = 0;
